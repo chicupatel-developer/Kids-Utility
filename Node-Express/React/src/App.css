@@ -1,0 +1,224 @@
+
+.homePageHeader{
+    text-align: center;
+vertical-align: middle;
+color:blue;
+background-color:lightyellow;
+padding-bottom: 10px;
+padding-top: 10px;
+  border: 2px solid red;
+  border-radius: 20px;
+}
+
+.App {
+  /* text-align: center; */
+  font-family: "Courier New", monospace;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 42px;
+}
+
+.passwords {
+  list-style: none;
+  padding: 0;
+  font-size: 32px;
+  margin-bottom: 2em;
+}
+
+.more {
+  font-size: 32px;
+  font-family: "Courier New", monospace;
+  border: 2px solid #000;
+  background-color: #fff;
+  padding: 10px 25px;
+}
+.more:hover {
+  background-color: #FDD836;
+}
+.more:active {
+  background-color: #FFEFA9;
+}
+
+
+
+button{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+  }
+.header{
+      text-align: center;
+vertical-align: middle;
+ }
+
+ .correctTotal{
+   max-width: 200px;
+    padding-left: 15px;
+   padding-top: 15px;
+   background-color: lightgreen;   
+   font-size: medium;
+    border-color: green;
+   border-style: dotted;
+     border-radius: 10px;
+       text-align: center;
+vertical-align: middle;
+ }
+ .wrongTotal{
+   max-width: 200px;
+    padding-left: 15px;
+   padding-top: 15px;
+  background-color: lightcoral;   
+   font-size: large;
+    border-color: red;
+   border-style: dotted;
+     border-radius: 10px;
+       text-align: center;
+vertical-align: middle;
+ }
+ .correctResponse{
+   padding-bottom: 15px;
+    padding-left: 15px;
+   padding-top: 15px;
+   background-color: lightgreen;   
+   font-size: medium;
+    border-color: green;
+   border-style: dotted;
+     border-radius: 10px;
+    margin-top: 15px;
+ } 
+ .wrongResponse{
+   padding-bottom: 15px;
+   margin-top: 15px;
+   padding-left: 15px;
+   padding-top: 15px;
+   
+   background-color: lightcoral;   
+   font-size: large;
+    border-color: red;
+   border-style: dotted;
+     border-radius: 10px;
+ }
+ .optionDisplay{
+   padding-right: 5px;
+   padding-left: 100px; 
+  vertical-align: middle;
+ }
+  .optionText{
+  text-align: center;
+ }
+ .radioLeft
+{
+  text-align:left;
+  padding-left: 50px;
+}
+.timer{
+  color: red;
+  font-weight: bolder;
+}
+.testResultTime{
+    background-color: lightskyblue;   
+   font-size: large;
+    border-color: blue;
+   border-style: dotted;
+     border-radius: 10px;    
+         text-align: center;
+vertical-align: middle; 
+}
+.testResultUserName{
+  color: blue;
+  font-size: xx-large;
+  margin-left: 20px;
+}
+
+
+.loginErrorResponse{
+  color: red;
+  font-size: x-large;
+}
+
+
+.remainingEvent{
+  color:green;
+  background-color: lightgrey;
+  font-size: large;
+}
+.tomorrowEvent{
+  color:blue;
+  background-color: lightgrey;
+  font-size: large;
+}
+.todayEvent{
+  color:red;
+  background-color: lightgrey;
+  font-size: x-large;
+}
+.pastEvent{
+  color:black;
+  background-color: lightgrey;
+  font-size: small;
+}
+.eventTitle{
+  font-size: x-large;
+  font-weight: bold;
+  font-style: italic;
+}
+.createEventSuccess{
+  color:green;
+  font-size: x-large;
+   font-weight: bold;
+}
+.createEventError{
+  color:red;
+  font-size: x-large;
+   font-weight: bold;
+}
+.todayEventDiv{
+  color: white;
+  font-size: x-large;
+}
+.eventListHeader{
+     background-color: lightskyblue;   
+   font-size: large;
+    border-color: blue;
+   border-style: dotted;
+     border-radius: 10px;    
+         text-align: center;
+vertical-align: middle; 
+padding-top: 20px;
+padding-bottom: 20px;
+
+}
+.noEvents{
+     background-color: lightskyblue;   
+   font-size: large;
+    border-color: red;
+   border-style: solid;
+     border-radius: 10px;    
+         text-align: center;
+vertical-align: middle; 
+padding-top: 20px;
+padding-bottom: 20px;
+}
+.todayEventTime{
+  color: red;
+  background-color: lightgrey;
+  font-size: x-large;
+}
+.selectedEvent{
+     background-color: lightskyblue;   
+   font-size: large;
+    border-color: blue;
+   border-style: dotted;
+     border-radius: 10px;    
+         text-align: center;
+vertical-align: middle; 
+padding-top: 20px;
+padding-bottom: 20px;
+}
