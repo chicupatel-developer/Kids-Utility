@@ -93,7 +93,7 @@ const ManageEvent = () => {
         };
 
         // api call
-        fetch('/api/eventedit', {
+        fetch('/event/edit', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }
@@ -137,7 +137,7 @@ const ManageEvent = () => {
         };
 
         // api call
-        fetch('/api/eventdelete', {
+        fetch('/event/delete', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }

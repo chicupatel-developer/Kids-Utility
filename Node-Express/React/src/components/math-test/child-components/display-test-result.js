@@ -41,7 +41,7 @@ export default class DisplayTestResult extends Component {
                 timeMinutes: this.props.minutes + '',
                 timeSeconds: this.props.seconds + ''
             };
-            fetch('/api/testresults', {
+            fetch('/math-test/test-result-create', {
                 method: 'POST',
                 body: JSON.stringify(testresult),
                 headers: { 'Content-Type': 'application/json' }
@@ -81,7 +81,7 @@ export default class DisplayTestResult extends Component {
         };
 
         // api call
-        fetch('/api/text-mail', {
+        fetch('/email/send', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }
@@ -89,7 +89,7 @@ export default class DisplayTestResult extends Component {
             .then(json => {
                 console.log(json);
             }
-            );
+        );
     }
     
     render() {

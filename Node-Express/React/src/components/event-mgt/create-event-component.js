@@ -66,7 +66,7 @@ const CreateEvent = () => {
         };
 
         // api call
-        fetch('/api/eventcreate', {
+        fetch('/event/create', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }

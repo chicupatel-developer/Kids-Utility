@@ -23,15 +23,14 @@ export default class TestResultDatabase extends Component {
         return JSON.parse(localStorage.getItem('userName'));
     }
 
-    getTestResults() {   
-        fetch('/api/testresults')
+    getTestResults() {
+        fetch('/math-test/my-all-test-result')
             .then(res => res.json())
             .then(data => {
                 var currentUser = this.getCurrentUser();
                 var newArray = data.filter(entry => entry.userName == currentUser);
                 this.setState({ testResultCollection: newArray })
-            }
-            );
+            });
     } 
   
     render() {

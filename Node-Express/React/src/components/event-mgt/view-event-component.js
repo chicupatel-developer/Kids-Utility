@@ -37,7 +37,7 @@ const ViewEvent = () => {
     const getCurrentWeekEvents = (evt) => {
         setShowEvents('WeekEvent');
 
-        fetch('/api/eventget')
+        fetch('/event')
             .then(res => res.json())
             .then(data => {
 
@@ -88,7 +88,7 @@ const ViewEvent = () => {
     const getTodayEvents = (evt) => {
         setShowEvents('TodayEvent');
 
-        fetch('/api/eventget')
+        fetch('/event')
             .then(res => res.json())
             .then(data => {
 
@@ -118,7 +118,7 @@ const ViewEvent = () => {
     const getMonthEvents = (evt) => {   
         setShowEvents('MonthEvent');
 
-        fetch('/api/eventget')
+        fetch('/event')
             .then(res => res.json())
             .then(data => {
 
