@@ -7,7 +7,12 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        
+        var todaysDate = new Date();
+        todaysDate.setMonth(todaysDate.getMonth() - 1);
+        // const previousMonth = todaysDate.toLocaleString('default', { month: 'long' });
+        const previousMonth = todaysDate.getMonth();
+        console.log(previousMonth);
+
     }
 
     genRand(min, max, decimalPlaces) {

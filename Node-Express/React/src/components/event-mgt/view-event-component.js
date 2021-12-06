@@ -10,6 +10,8 @@ const ViewEvent = () => {
     const [todayEvents, setTodayEvents] = useState([]);
     const [monthEvents, setMonthEvents] = useState([]);
     const [weekEvents, setWeekEvents] = useState([]);
+    const [previousMonthEvents, setPreviousMonthEvents] = useState([]);
+    const [allPreviousMonthEvents, setAllPreviousMonthEvents] = useState([]);
     const [showEvents, setShowEvents] = useState('');
 
     useEffect(() => {
@@ -150,6 +152,108 @@ const ViewEvent = () => {
                     }
                 }
                 setMonthEvents(monthEvents_);
+            }
+        );
+    }
+
+    // previous month events
+    const getPreviousMonthEvents = (evt) => {
+        setShowEvents('PreviousMonthEvent');
+
+        fetch('/event')
+            .then(res => res.json())
+            .then(data => {
+
+                var currentUser = getCurrentUser();
+                data = data.filter(entry => entry.userName == currentUser);
+
+                // order by date/time
+                data.sort(function (x, y) {
+                    return new Date(x.eventDate) - new Date(y.eventDate)
+                });
+
+                var todaysDate = new Date();
+                todaysDate.setMonth(todaysDate.getMonth() - 1);
+                // const previousMonth = todaysDate.toLocaleString('default', { month: 'long' });
+                const previousMonth = todaysDate.getMonth();
+                console.log(previousMonth);
+
+                var i;
+                var eventDate;
+                var monthEvents_ = [];
+                for (i = 0; i < data.length; i++) {
+                    eventDate = new Date(data[i].eventDate);
+                    if (eventDate.getMonth() == previousMonth) {
+
+                        // calculate eventdate offset from today
+                        var currentDateTime = new Date();
+                        var d = (eventDate - currentDateTime);
+                        var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+
+                        monthEvents_.push({
+                            eventData: data[i],
+                            offsetFromToday: Difference_In_Days
+                        });
+                    }
+                }
+                setPreviousMonthEvents(monthEvents_);
+            }
+        );
+    }
+
+    // all previous month events
+    const getAllPreviousMonthEvents = (evt) => {
+        setShowEvents('AllPreviousMonthEvent');
+
+        fetch('/event')
+            .then(res => res.json())
+            .then(data => {
+
+                var currentUser = getCurrentUser();
+                data = data.filter(entry => entry.userName == currentUser);
+
+                // order by date/time
+                data.sort(function (x, y) {
+                    return new Date(x.eventDate) - new Date(y.eventDate)
+                });
+
+                var todaysDate = new Date();
+                todaysDate.setMonth(todaysDate.getMonth() - 1);
+                const previousMonth = todaysDate.getMonth();
+                console.log('previous month : '+ previousMonth);
+
+                var previousMonthList = [];                
+                for (var i = 0; i <= previousMonth; i++){
+                    previousMonthList.push(i);
+                }
+                console.log(previousMonthList);
+
+                var i;
+                var eventDate;
+                var monthEvents_ = [];
+                for (i = 0; i < data.length; i++) {
+                    eventDate = new Date(data[i].eventDate);
+
+                    var pMonth;
+                    for (pMonth = 0; pMonth < previousMonthList.length; pMonth++)
+                    {
+                        console.log('checking for pMonth : ' + pMonth);
+                        console.log('event date : ' + eventDate.getMonth());
+                        if (eventDate.getMonth() == pMonth) {
+                            // calculate eventdate offset from today
+                            var currentDateTime = new Date();
+                            var d = (eventDate - currentDateTime);
+                            var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+
+                            monthEvents_.push({
+                                eventData: data[i],
+                                offsetFromToday: Difference_In_Days
+                            });
+                        }
+                    }
+                  
+                }
+                setAllPreviousMonthEvents(monthEvents_);
             }
         );
     }
@@ -352,6 +456,156 @@ const ViewEvent = () => {
                 <p></p>
             </div>
         );
+    
+    let previousMonthEventsList = previousMonthEvents.length > 0
+        ? (previousMonthEvents.map((e, index) => {
+            return (
+                <span key={index}>
+                    <Button variant="success"
+                        style={{
+                            marginBottom: 10,
+                            marginRight: 15, width: 350, height: 150, borderColor: 'black', borderWidth: 2, color: 'white', borderStyle: 'dotted', borderRadius: 30
+                        }}
+                        onClick={() => { setActiveEvent(e.eventData) }}
+                        key={index}
+                        size="md">
+                        <div>
+                            <b>
+                                <span className="eventTitle">{e.eventData.eventTitle}</span>
+                                <br />
+                                {e.offsetFromToday > 1 ? (
+                                    <span className="remainingEvent">                                        
+                                    </span>
+                                ) : (
+                                    <span>
+                                        {
+                                            e.offsetFromToday == 1 ? (
+                                                <span className="tomorrowEvent">                                                    
+                                                </span>
+                                            ) : (
+                                                <span>
+                                                    {
+                                                        e.offsetFromToday == 0 ? (
+                                                            <span className="todayEvent">                                                                
+                                                            </span>
+                                                        ) : (
+                                                            <span>
+                                                                {e.offsetFromToday < -1 ? (
+                                                                    <span className="pastEvent">
+                                                                        [ {(e.offsetFromToday * (-1))} Days Before ]
+                                                                    </span>
+                                                                ) : (
+                                                                    <span className="pastEvent">
+                                                                        [ {(e.offsetFromToday * (-1))} Day Before ]
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                        )
+                                                    }
+                                                </span>
+                                            )
+                                        }
+                                    </span>
+                                )}
+                            </b>
+                            <br />
+                            <b>{moment(e.eventData.eventDate).format('ddd, Do MMM - h:mm a')}</b>
+                            <br />
+                            {e.eventData.eventDesc}
+                        </div>
+                    </Button>
+                </span>
+            )
+        }, this)) : (
+            <div>
+                <p></p>
+                <div className="row noEvents">
+                    <div className="col-sm-4">
+                    </div>
+                    <div className="col-sm-4">
+                        No Events Yet!
+                    </div>
+                    <div className="col-sm-4">
+                    </div>
+                </div>
+                <p></p>
+            </div>
+        );
+    
+    let allPreviousMonthEventsList = allPreviousMonthEvents.length > 0
+        ? (allPreviousMonthEvents.map((e, index) => {
+            return (
+                <span key={index}>
+                    <Button variant="success"
+                        style={{
+                            marginBottom: 10,
+                            marginRight: 15, width: 350, height: 150, borderColor: 'black', borderWidth: 2, color: 'white', borderStyle: 'dotted', borderRadius: 30
+                        }}
+                        onClick={() => { setActiveEvent(e.eventData) }}
+                        key={index}
+                        size="md">
+                        <div>
+                            <b>
+                                <span className="eventTitle">{e.eventData.eventTitle}</span>
+                                <br />
+                                {e.offsetFromToday > 1 ? (
+                                    <span className="remainingEvent">
+                                    </span>
+                                ) : (
+                                    <span>
+                                        {
+                                            e.offsetFromToday == 1 ? (
+                                                <span className="tomorrowEvent">
+                                                </span>
+                                            ) : (
+                                                <span>
+                                                    {
+                                                        e.offsetFromToday == 0 ? (
+                                                            <span className="todayEvent">
+                                                            </span>
+                                                        ) : (
+                                                            <span>
+                                                                {e.offsetFromToday < -1 ? (
+                                                                    <span className="pastEvent">
+                                                                        [ {(e.offsetFromToday * (-1))} Days Before ]
+                                                                    </span>
+                                                                ) : (
+                                                                    <span className="pastEvent">
+                                                                        [ {(e.offsetFromToday * (-1))} Day Before ]
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                        )
+                                                    }
+                                                </span>
+                                            )
+                                        }
+                                    </span>
+                                )}
+                            </b>
+                            <br />
+                            <b>{moment(e.eventData.eventDate).format('ddd, Do MMM - h:mm a')}</b>
+                            <br />
+                            {e.eventData.eventDesc}
+                        </div>
+                    </Button>
+                </span>
+            )
+        }, this)) : (
+            <div>
+                <p></p>
+                <div className="row noEvents">
+                    <div className="col-sm-4">
+                    </div>
+                    <div className="col-sm-4">
+                        No Events Yet!
+                    </div>
+                    <div className="col-sm-4">
+                    </div>
+                </div>
+                <p></p>
+            </div>
+        );
   
     return (
         <div>
@@ -376,6 +630,19 @@ const ViewEvent = () => {
                             type="button"
                             className="btn btn-block btn-info">
                             <h5>This Week Events !</h5>
+                        </button>
+                        <hr />
+                        <button
+                            onClick={getPreviousMonthEvents}
+                            type="button"
+                            className="btn btn-block btn-info">
+                            <h5>Previous Month Events !</h5>
+                        </button> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <button
+                            onClick={getAllPreviousMonthEvents}
+                            type="button"
+                            className="btn btn-block btn-info">
+                            <h5>All Previous Month Events !</h5>
                         </button>
                     </div>
                     <p></p>
@@ -432,7 +699,41 @@ const ViewEvent = () => {
                                                     {weekEventsList}
                                                 </div>
                                             ): (
-                                                <span></span>
+                                                    <div>
+                                                        {showEvents == 'PreviousMonthEvent' ? (
+                                                            <div>
+                                                                <div className="row">
+                                                                    <div className="col-sm-4">
+                                                                    </div>
+                                                                    <div className="col-sm-4 eventListHeader">
+                                                                        Previous Month Events
+                                                                    </div>
+                                                                    <div className="col-sm-4">
+                                                                    </div>
+                                                                </div>
+                                                                <p></p>
+                                                                <p></p>
+                                                                {previousMonthEventsList}
+                                                            </div>
+                                                        ): (
+                                                                <div>
+                                                                    <div className="row">
+                                                                        <div className="col-sm-4">
+                                                                        </div>
+                                                                        <div className="col-sm-4 eventListHeader">
+                                                                            All Previous Month Events
+                                                                        </div>
+                                                                        <div className="col-sm-4">
+                                                                        </div>
+                                                                    </div>
+                                                                    <p></p>
+                                                                    <p></p>
+                                                                    {allPreviousMonthEventsList}
+                                                                </div>  
+                                                            ) 
+                                                        }
+                                                     
+                                                    </div>
                                             )}
                                         </div>
                                 )}
