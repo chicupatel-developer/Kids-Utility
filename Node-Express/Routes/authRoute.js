@@ -62,6 +62,7 @@ router.route('/usercreate').post(async (req, res) => {
     // var jsonDatabaseFile = './JSONDatabase/UserDB.json';
     var jsonDatabaseFile = '\JSONDatabase\\UserDB.json';
     fs = require('fs');
+    var usersCollection = [];
     var obj = {
         table: []
     };
@@ -97,7 +98,14 @@ router.route('/usercreate').post(async (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    obj = JSON.parse(data); //now it an object         
+                    obj = JSON.parse(data); //now it an object   
+                    usersCollection = obj.table;
+
+                    // check for username already exist or not!
+                    if (checkUserName(usersCollection, req.body) != null) {
+                        return res.status(400).json({ error: "Duplicate UserName!" })
+                    }
+
                     obj.table.push(user); //add some data  
                     json = JSON.stringify(obj); //convert it back to json
                     fs.writeFile(jsonDatabaseFile, json, 'utf8', err => {
