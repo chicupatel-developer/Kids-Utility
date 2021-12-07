@@ -7,12 +7,15 @@ import { useHistory } from 'react-router-dom'
 const ViewEvent = () => {
     const history = useHistory();
 
-    const [todayEvents, setTodayEvents] = useState([]);
-    const [monthEvents, setMonthEvents] = useState([]);
-    const [weekEvents, setWeekEvents] = useState([]);
-    const [previousMonthEvents, setPreviousMonthEvents] = useState([]);
-    const [allPreviousMonthEvents, setAllPreviousMonthEvents] = useState([]);
+    const [myEvents, setMyEvents] = useState([]);
+    
     const [showEvents, setShowEvents] = useState('');
+
+    // paging
+    const [showPaging, setShowPaging] = useState(false);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPageData, setCurrentPageData] = useState([]);
 
     useEffect(() => {
         
@@ -82,7 +85,7 @@ const ViewEvent = () => {
                         });
                     }
                 }
-                setWeekEvents(weekEvents_);
+                setMyEvents(weekEvents_);
             }
         );
     }
@@ -112,7 +115,7 @@ const ViewEvent = () => {
                        todayEvents_.push(data[i]);
                     }
                 }
-                setTodayEvents(todayEvents_);
+                setMyEvents(todayEvents_);
             }
         );
     }
@@ -151,7 +154,7 @@ const ViewEvent = () => {
                         });
                     }
                 }
-                setMonthEvents(monthEvents_);
+                setMyEvents(monthEvents_);
             }
         );
     }
@@ -196,7 +199,7 @@ const ViewEvent = () => {
                         });
                     }
                 }
-                setPreviousMonthEvents(monthEvents_);
+                setMyEvents(monthEvents_);
             }
         );
     }
@@ -253,18 +256,67 @@ const ViewEvent = () => {
                     }
                   
                 }
-                setAllPreviousMonthEvents(monthEvents_);
+                setMyEvents(monthEvents_);
+
+                // paging
+                // 2 records per page
+                var totalPages_ = Math.ceil(monthEvents_.length / 2);
+                setTotalPages(totalPages_);
+                if (totalPages_ > 1){
+                    setShowPaging(true);
+                    var currentPageData_ = monthEvents_.slice(0, 2);
+                    console.log(currentPageData_);
+                    setCurrentPageData(currentPageData_);
+                }
+                else
+                    setShowPaging(false);
             }
         );
     }
+    const onNextPage = () => {
+        var currentPage_ = currentPage;
+        if (currentPage + 1 < totalPages) {
+            setCurrentPage(currentPage + 1);
+            currentPage_ = currentPage_ + 1;
+        } 
+        console.log(currentPage);
+
+        // 2  = records per page
+        var start = currentPage_ * 2;
+        var end = start + 2;
+        console.log('next : start point : ' + start);
+        console.log('all data : ' + myEvents);
+        var currentPageData_ = myEvents.slice(start, end);
+        console.log(currentPageData_);
+        setCurrentPageData(currentPageData_);
+    }
+    const onPreviousPage = () => {
+        var currentPage_ = currentPage;
+        if (currentPage - 1 >= 0) {
+            setCurrentPage(currentPage - 1);
+            currentPage_ = currentPage_ - 1;
+        }
+        console.log(currentPage);
+
+        // 2  = records per page
+        var start = currentPage_ * 2;
+        var end = start + 2;
+        console.log('previous : start point : ' + start);
+        console.log('all data : ' + myEvents);
+        var currentPageData_ = myEvents.slice(start, end);
+        console.log(currentPageData_);
+        setCurrentPageData(currentPageData_);
+    }
+
+
 
     const setActiveEvent = (selectedEvent) => {
         localStorage.setItem("selectedEvent", JSON.stringify(selectedEvent));
         history.push('manage-event');
     }
 
-    let todayEventsList = todayEvents.length > 0
-        ? (todayEvents.map((e, index) => {
+    let todayEventsList = myEvents.length > 0
+        ? (myEvents.map((e, index) => {
             return (
                 <span key={index}>                   
                     <Button variant="success"
@@ -301,8 +353,8 @@ const ViewEvent = () => {
             </div>          
         );
     
-    let monthEventsList = monthEvents.length > 0
-        ? (monthEvents.map((e, index) => {
+    let monthEventsList = myEvents.length > 0
+        ? (myEvents.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -379,8 +431,8 @@ const ViewEvent = () => {
             </div>
         );
         
-    let weekEventsList = weekEvents.length > 0
-        ? (weekEvents.map((e, index) => {
+    let weekEventsList = myEvents.length > 0
+        ? (myEvents.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -457,8 +509,8 @@ const ViewEvent = () => {
             </div>
         );
     
-    let previousMonthEventsList = previousMonthEvents.length > 0
-        ? (previousMonthEvents.map((e, index) => {
+    let previousMonthEventsList = myEvents.length > 0
+        ? (myEvents.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -532,8 +584,8 @@ const ViewEvent = () => {
             </div>
         );
     
-    let allPreviousMonthEventsList = allPreviousMonthEvents.length > 0
-        ? (allPreviousMonthEvents.map((e, index) => {
+    let allPreviousMonthEventsList = myEvents.length > 0
+        ? (myEvents.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -659,8 +711,7 @@ const ViewEvent = () => {
                         <br />
                     </div>
                 </div>
-                <div className="col-sm-8">
-
+                <div className="col-sm-8">                 
                     {showEvents == 'TodayEvent' ? (
                         <div>
                             <div className="row">
@@ -671,7 +722,7 @@ const ViewEvent = () => {
                                 </div>
                                 <div className="col-sm-1">
                                 </div>
-                            </div>
+                            </div>                        
                             <p></p>
                             <p></p>
                             {todayEventsList}
@@ -728,21 +779,43 @@ const ViewEvent = () => {
                                                     {previousMonthEventsList}
                                                 </div>
                                             ) : (
-                                                <div>
-                                                    <div className="row">
-                                                        <div className="col-sm-1">
+                                                    <div>
+                                                        <div className="row">
+                                                            <div className="col-sm-1">
+                                                            </div>
+                                                            <div className="col-sm-10 eventListHeader">
+                                                                All Previous Month Events
+                                                            </div>
+                                                            <div className="col-sm-1">
+                                                            </div>
                                                         </div>
-                                                        <div className="col-sm-10 eventListHeader">
-                                                            All Previous Month Events
-                                                        </div>
-                                                        <div className="col-sm-1">
-                                                        </div>
+                                                        
+                                                        <p></p>
+                                                        { showPaging ? (
+                                                               <div>
+                                                                    <button
+                                                                        onClick={onPreviousPage}
+                                                                        type="button"
+                                                                        className="btn btn-block btn-info">
+                                                                        &lt;&lt;PREVIOUS
+                                                                    </button>
+                                                                    <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+                                                                    <button
+                                                                        onClick={onNextPage}
+                                                                        type="button"
+                                                                        className="btn btn-block btn-info">
+                                                                        NEXT&gt;&gt;
+                                                                    </button>
+                                                                </div>
+                                                        ) : (
+                                                            <span></span>
+                                                        )}
+                                                     
+                                                        <p></p>
+                                                        <p></p>
+                                                        {allPreviousMonthEventsList}
                                                     </div>
-                                                    <p></p>
-                                                    <p></p>
-                                                    {allPreviousMonthEventsList}
-                                                </div>
-                                            )
+                                                )
                                             }
 
                                         </div>
