@@ -123,23 +123,21 @@ const ViewEvent = () => {
                 var i;
                 var eventDate;
                 var todayEvents_ = [];
-                for(i=0; i < data.length; i++){
+                var currentDateTime = new Date();
+                var currentDate_ = currentDateTime.getDate() + '-' + currentDateTime.getMonth() + '-' + currentDateTime.getFullYear();
+                for (i = 0; i < data.length; i++){
                     eventDate = new Date(data[i].eventDate);
-                    var currentDateTime = new Date();
-                    var difference = eventDate.getTime() - currentDateTime.getTime();
-                    var days = Math.ceil(difference / (1000 * 3600 * 24));
-                    console.log(eventDate + ' : ' + days);
 
-                    // todayEvents_.push(data[i]);
-                    if (days == 0) {
+                    var eventDate_ = eventDate.getDate() + '-' + eventDate.getMonth() + '-' + eventDate.getFullYear();                    
+                  
+                    if (currentDate_===eventDate_) {
                         todayEvents_.push({
                             eventData: data[i],
-                            offsetFromToday: Number(days)
+                            offsetFromToday: 0
                         });
                     }                  
                 }
                 setMyEvents(todayEvents_);
-                console.log(todayEvents_);
 
                 // paging
                 // 2 records per page
@@ -183,9 +181,11 @@ const ViewEvent = () => {
                     eventDate = new Date(data[i].eventDate);
                     if (eventDate.getMonth() == todaysDate.getMonth()) {
 
-                        // calculate eventdate offset from today
-                        var currentDateTime = new Date();
-                        var d = (eventDate - currentDateTime);
+                        var myToday = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate(), 0, 0, 0);
+                        var myEventDate = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate(), 0, 0, 0);
+
+                        // calculate eventdate offset from today                     
+                        var d = (myEventDate - myToday);
                         var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
 
                         monthEvents_.push({
@@ -802,20 +802,29 @@ const ViewEvent = () => {
                             <p></p>
                             {showPaging ?
                                 (
-                                    <div>
-                                        <button
-                                            onClick={onPreviousPage}
-                                            type="button"
-                                            className="btn btn-block btn-info">
-                                            &lt;&lt;PREVIOUS
-                                        </button>
-                                        <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
-                                        <button
-                                            onClick={onNextPage}
-                                            type="button"
-                                            className="btn btn-block btn-info">
-                                            NEXT&gt;&gt;
-                                        </button>
+                                    <div className="row">
+                                        <div className="col-sm-1">
+                                        </div>
+                                        <div className="col-sm-4">
+                                            <button
+                                                onClick={onPreviousPage}
+                                                type="button"
+                                                className="btn btn-block btn-info">
+                                                &lt;&lt;PREVIOUS
+                                            </button>
+                                        </div>
+                                        <div className="col-sm-2">
+                                        </div>
+                                        <div className="col-sm-4 nextPage">
+                                            <button
+                                                onClick={onNextPage}
+                                                type="button"
+                                                className="btn btn-block btn-info">
+                                                NEXT&gt;&gt;
+                                            </button>
+                                        </div>
+                                        <div className="col-sm-1">
+                                        </div>
                                     </div>
                                 ) : (
                                     <span></span>
@@ -841,20 +850,29 @@ const ViewEvent = () => {
                                     <p></p>
                                     {showPaging ?
                                         (
-                                                <div>
-                                                    <button
-                                                        onClick={onPreviousPage}
-                                                        type="button"
-                                                        className="btn btn-block btn-info">
-                                                        &lt;&lt;PREVIOUS
-                                                    </button>
-                                                    <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
-                                                    <button
-                                                        onClick={onNextPage}
-                                                        type="button"
-                                                        className="btn btn-block btn-info">
-                                                        NEXT&gt;&gt;
-                                                    </button>
+                                                <div className="row">
+                                                    <div className="col-sm-1">
+                                                    </div>
+                                                    <div className="col-sm-4">
+                                                        <button
+                                                            onClick={onPreviousPage}
+                                                            type="button"
+                                                            className="btn btn-block btn-info">
+                                                            &lt;&lt;PREVIOUS
+                                                        </button>
+                                                    </div>
+                                                    <div className="col-sm-2">
+                                                    </div>
+                                                    <div className="col-sm-4 nextPage">
+                                                        <button
+                                                            onClick={onNextPage}
+                                                            type="button"
+                                                            className="btn btn-block btn-info">
+                                                            NEXT&gt;&gt;
+                                                        </button>
+                                                    </div>
+                                                    <div className="col-sm-1">
+                                                    </div>
                                                 </div>
                                         ) : (
                                                 <span></span>
@@ -882,21 +900,30 @@ const ViewEvent = () => {
                                             <p></p>
                                                 { showPaging ? 
                                                     (
-                                                            <div>
-                                                                <button
-                                                                    onClick={onPreviousPage}
-                                                                    type="button"
-                                                                    className="btn btn-block btn-info">
-                                                                    &lt;&lt;PREVIOUS
-                                                                </button>
-                                                                <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
-                                                                <button
-                                                                    onClick={onNextPage}
-                                                                    type="button"
-                                                                    className="btn btn-block btn-info">
-                                                                    NEXT&gt;&gt;
-                                                                </button>
-                                                            </div>                                                            
+                                                            <div className="row">
+                                                                <div className="col-sm-1">
+                                                                </div>
+                                                                <div className="col-sm-4">
+                                                                    <button
+                                                                        onClick={onPreviousPage}
+                                                                        type="button"
+                                                                        className="btn btn-block btn-info">
+                                                                        &lt;&lt;PREVIOUS
+                                                                    </button>
+                                                                </div>
+                                                                <div className="col-sm-2">
+                                                                </div>
+                                                                <div className="col-sm-4 nextPage">
+                                                                    <button
+                                                                        onClick={onNextPage}
+                                                                        type="button"
+                                                                        className="btn btn-block btn-info">
+                                                                        NEXT&gt;&gt;
+                                                                    </button>
+                                                                </div>
+                                                                <div className="col-sm-1">
+                                                                </div>
+                                                            </div>
                                                     ) : (
                                                             <span></span>
                                                         )
@@ -922,21 +949,30 @@ const ViewEvent = () => {
                                                     <p></p>
                                                     { showPaging ? 
                                                         (
-                                                            <div>
-                                                                <button
-                                                                    onClick={onPreviousPage}
-                                                                    type="button"
-                                                                    className="btn btn-block btn-info">
-                                                                    &lt;&lt;PREVIOUS
-                                                                </button>
-                                                                <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
-                                                                <button
-                                                                    onClick={onNextPage}
-                                                                    type="button"
-                                                                    className="btn btn-block btn-info">
-                                                                    NEXT&gt;&gt;
-                                                                </button>
-                                                            </div>                                                            
+                                                                        <div className="row">
+                                                                            <div className="col-sm-1">
+                                                                            </div>
+                                                                            <div className="col-sm-4">
+                                                                                <button
+                                                                                    onClick={onPreviousPage}
+                                                                                    type="button"
+                                                                                    className="btn btn-block btn-info">
+                                                                                    &lt;&lt;PREVIOUS
+                                                                                </button>
+                                                                            </div>
+                                                                            <div className="col-sm-2">
+                                                                            </div>
+                                                                            <div className="col-sm-4 nextPage">
+                                                                                <button
+                                                                                    onClick={onNextPage}
+                                                                                    type="button"
+                                                                                    className="btn btn-block btn-info">
+                                                                                    NEXT&gt;&gt;
+                                                                                </button>
+                                                                            </div>
+                                                                            <div className="col-sm-1">
+                                                                            </div>
+                                                                        </div>
                                                         ) : (
                                                             <span></span>
                                                         )
@@ -960,20 +996,29 @@ const ViewEvent = () => {
                                                         <p></p>
                                                         { showPaging ? 
                                                             (
-                                                               <div>
-                                                                    <button
-                                                                        onClick={onPreviousPage}
-                                                                        type="button"
-                                                                        className="btn btn-block btn-info">
-                                                                        &lt;&lt;PREVIOUS
-                                                                    </button>
-                                                                    <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
-                                                                    <button
-                                                                        onClick={onNextPage}
-                                                                        type="button"
-                                                                        className="btn btn-block btn-info">
-                                                                        NEXT&gt;&gt;
-                                                                    </button>
+                                                                <div className="row">
+                                                                    <div className="col-sm-1">
+                                                                    </div>
+                                                                    <div className="col-sm-4">
+                                                                        <button
+                                                                            onClick={onPreviousPage}
+                                                                            type="button"
+                                                                            className="btn btn-block btn-info">
+                                                                            &lt;&lt;PREVIOUS
+                                                                        </button>
+                                                                    </div>
+                                                                    <div className="col-sm-2">
+                                                                    </div>
+                                                                    <div className="col-sm-4 nextPage">
+                                                                        <button
+                                                                            onClick={onNextPage}
+                                                                            type="button"
+                                                                            className="btn btn-block btn-info">
+                                                                            NEXT&gt;&gt;
+                                                                        </button>
+                                                                    </div>
+                                                                    <div className="col-sm-1">
+                                                                    </div>
                                                                 </div>
                                                             ) : (
                                                                 <span></span>
