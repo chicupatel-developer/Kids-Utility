@@ -52,8 +52,7 @@ const ViewEvent = () => {
                 // order by date/time
                 data.sort(function (x, y) {
                     return new Date(x.eventDate) - new Date(y.eventDate)
-                });
-                
+                });                
                 
                 // getting firstday and lastday of current week
                 var curr = new Date(); // get current date
@@ -66,7 +65,6 @@ const ViewEvent = () => {
                 lastday = new Date(lastday.setHours(0, 0, 0, 0));
                 console.log(firstday + ' : ' + lastday);
 
-
                 var i;
                 var eventDate;
                 var weekEvents_ = [];
@@ -76,12 +74,13 @@ const ViewEvent = () => {
                     if ((eventDate_.setHours(0, 0, 0, 0) <= lastday.setHours(0, 0, 0, 0)) && (eventDate_.setHours(0, 0, 0, 0) >= firstday.setHours(0, 0, 0, 0))) {
                         // calculate eventdate offset from today
                         var currentDateTime = new Date();
-                        var d = (eventDate - currentDateTime);
-                        var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+                        var difference = eventDate.getTime() - currentDateTime.getTime();
+                        var days = Math.ceil(difference / (1000 * 3600 * 24));
+                        console.log(eventDate + ' : ' + days);
 
                         weekEvents_.push({
                             eventData: data[i],
-                            offsetFromToday: Number(Difference_In_Days)
+                            offsetFromToday: Number(days)
                         });
                     }
                 }
@@ -121,17 +120,26 @@ const ViewEvent = () => {
                     return new Date(x.eventDate) - new Date(y.eventDate)
                 });
 
-                var todaysDate = new Date();
                 var i;
                 var eventDate;
                 var todayEvents_ = [];
                 for(i=0; i < data.length; i++){
                     eventDate = new Date(data[i].eventDate);
-                    if (eventDate.setHours(0, 0, 0, 0) == todaysDate.setHours(0, 0, 0, 0)) {
-                       todayEvents_.push(data[i]);
-                    }
+                    var currentDateTime = new Date();
+                    var difference = eventDate.getTime() - currentDateTime.getTime();
+                    var days = Math.ceil(difference / (1000 * 3600 * 24));
+                    console.log(eventDate + ' : ' + days);
+
+                    // todayEvents_.push(data[i]);
+                    if (days == 0) {
+                        todayEvents_.push({
+                            eventData: data[i],
+                            offsetFromToday: Number(days)
+                        });
+                    }                  
                 }
                 setMyEvents(todayEvents_);
+                console.log(todayEvents_);
 
                 // paging
                 // 2 records per page
@@ -391,15 +399,15 @@ const ViewEvent = () => {
                             marginBottom: 10,
                             marginRight: 15, width: 350, height: 150, borderColor: 'black', borderWidth: 2, color: 'white', borderStyle: 'dotted', borderRadius: 30
                         }}
-                        onClick={() => { setActiveEvent(e) }}
+                        onClick={() => { setActiveEvent(e.eventData) }}
                         key={index}
                         size="md">
                         <div className="todayEventDiv">  
-                            <b>{e.eventTitle}</b>
+                            <b>{e.eventData.eventTitle}</b>
                             <br />
-                            <span className="todayEventTime"> @ {moment(e.eventDate).format('hh:mm A')}</span>
+                            <span className="todayEventTime"> @ {moment(e.eventData.eventDate).format('hh:mm A')}</span>
                             <br />
-                            {e.eventDesc}
+                            {e.eventData.eventDesc}
                         </div>
                     </Button>
                 </span>
