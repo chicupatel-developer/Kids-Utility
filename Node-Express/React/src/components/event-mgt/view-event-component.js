@@ -608,137 +608,150 @@ const ViewEvent = () => {
         );
   
     return (
-        <div>
+        <div>          
             <div className="row">
-                <div className="col-sm-12">
-
-                    <div>
-                        <button
-                            onClick={getTodayEvents}
-                            type="button"
-                            className="btn btn-block btn-info">
-                            <h5>Today's Events !</h5>
-                        </button> &nbsp;&nbsp;|&nbsp;&nbsp;
-                        <button
-                            onClick={getMonthEvents}
-                            type="button"
-                            className="btn btn-block btn-info">
-                            <h5>This Month Events !</h5>
-                        </button> &nbsp;&nbsp;|&nbsp;&nbsp;
-                        <button
-                            onClick={getCurrentWeekEvents}
-                            type="button"
-                            className="btn btn-block btn-info">
-                            <h5>This Week Events !</h5>
-                        </button>
-                        <hr />
-                        <button
-                            onClick={getPreviousMonthEvents}
-                            type="button"
-                            className="btn btn-block btn-info">
-                            <h5>Previous Month Events !</h5>
-                        </button> &nbsp;&nbsp;|&nbsp;&nbsp;
-                        <button
-                            onClick={getAllPreviousMonthEvents}
-                            type="button"
-                            className="btn btn-block btn-info">
-                            <h5>All Previous Month Events !</h5>
-                        </button>
+                <div className="col-sm-4">
+                    <div>                      
+                        <div className="leftColumn">
+                            <button
+                                onClick={getTodayEvents}
+                                type="button"
+                                className="btn btn-block">
+                                <h5>Today's Events!</h5>
+                            </button>
+                        </div>
+                        <br />
+                        <div className="leftColumn">
+                            <button
+                                onClick={getMonthEvents}
+                                type="button"
+                                className="btn btn-block">
+                                <h5>This Month Events!</h5>
+                            </button>
+                        </div>
+                        <br />
+                        <div className="leftColumn">
+                            <button
+                                onClick={getCurrentWeekEvents}
+                                type="button"
+                                className="btn btn-block">
+                                <h5>This Week Event!</h5>
+                            </button>
+                        </div>
+                        <br />
+                        <div className="leftColumn">
+                            <button
+                                onClick={getPreviousMonthEvents}
+                                type="button"
+                                className="btn btn-block">
+                                <h5>Previous Month Events!</h5>
+                            </button>
+                        </div>
+                        <br />
+                        <div className="leftColumn">
+                            <button
+                                onClick={getAllPreviousMonthEvents}
+                                type="button"
+                                className="btn btn-block">
+                                <h5>All Previous Month Events!</h5>
+                            </button>
+                        </div>
+                        <br />
                     </div>
-                    <p></p>
-                    <hr />
-                    <p></p>
+                </div>
+                <div className="col-sm-8">
 
                     {showEvents == 'TodayEvent' ? (
                         <div>
                             <div className="row">
-                                <div className="col-sm-4">
+                                <div className="col-sm-1">
                                 </div>
-                                <div className="col-sm-4 eventListHeader">
+                                <div className="col-sm-9 eventListHeader">
                                     Today's Events
                                 </div>
-                                <div className="col-sm-4">
+                                <div className="col-sm-1">
                                 </div>
-                            </div>                        
+                            </div>
                             <p></p>
-                            <p></p>                            
+                            <p></p>
                             {todayEventsList}
                         </div>
-                    ): (
-                            <div>
-                                {showEvents == 'MonthEvent' ? (
-                                    <div>
-                                        <div className="row">
-                                            <div className="col-sm-4">
-                                            </div>
-                                            <div className="col-sm-4 eventListHeader">
-                                                This Month Events
-                                            </div>
-                                            <div className="col-sm-4">
-                                            </div>
+                    ) : (
+                        <div>
+                            {showEvents == 'MonthEvent' ? (
+                                <div>
+                                    <div className="row">
+                                        <div className="col-sm-1">
                                         </div>
-                                        <p></p>
-                                        <p></p>
-                                        {monthEventsList}
+                                        <div className="col-sm-10 eventListHeader">
+                                            This Month Events
+                                        </div>
+                                        <div className="col-sm-1">
+                                        </div>
                                     </div>
-                                ): (
+                                    <p></p>
+                                    <p></p>
+                                    {monthEventsList}
+                                </div>
+                            ) : (
+                                <div>
+                                    {showEvents == 'WeekEvent' ? (
                                         <div>
-                                            {showEvents == 'WeekEvent' ? (
+                                            <div className="row">
+                                                <div className="col-sm-1">
+                                                </div>
+                                                <div className="col-sm-10 eventListHeader">
+                                                    This Week Events
+                                                </div>
+                                                <div className="col-sm-1">
+                                                </div>
+                                            </div>
+                                            <p></p>
+                                            <p></p>
+                                            {weekEventsList}
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            {showEvents == 'PreviousMonthEvent' ? (
                                                 <div>
                                                     <div className="row">
-                                                        <div className="col-sm-4">
+                                                        <div className="col-sm-1">
                                                         </div>
-                                                        <div className="col-sm-4 eventListHeader">
-                                                            This Week Events
+                                                        <div className="col-sm-10 eventListHeader">
+                                                            Previous Month Events
                                                         </div>
-                                                        <div className="col-sm-4">
+                                                        <div className="col-sm-1">
                                                         </div>
                                                     </div>
                                                     <p></p>
                                                     <p></p>
-                                                    {weekEventsList}
+                                                    {previousMonthEventsList}
                                                 </div>
-                                            ): (
-                                                    <div>
-                                                        {showEvents == 'PreviousMonthEvent' ? (
-                                                            <div>
-                                                                <div className="row">
-                                                                    <div className="col-sm-4">
-                                                                    </div>
-                                                                    <div className="col-sm-4 eventListHeader">
-                                                                        Previous Month Events
-                                                                    </div>
-                                                                    <div className="col-sm-4">
-                                                                    </div>
-                                                                </div>
-                                                                <p></p>
-                                                                <p></p>
-                                                                {previousMonthEventsList}
-                                                            </div>
-                                                        ): (
-                                                                <div>
-                                                                    <div className="row">
-                                                                        <div className="col-sm-4">
-                                                                        </div>
-                                                                        <div className="col-sm-4 eventListHeader">
-                                                                            All Previous Month Events
-                                                                        </div>
-                                                                        <div className="col-sm-4">
-                                                                        </div>
-                                                                    </div>
-                                                                    <p></p>
-                                                                    <p></p>
-                                                                    {allPreviousMonthEventsList}
-                                                                </div>  
-                                                            ) 
-                                                        }
-                                                     
+                                            ) : (
+                                                <div>
+                                                    <div className="row">
+                                                        <div className="col-sm-1">
+                                                        </div>
+                                                        <div className="col-sm-10 eventListHeader">
+                                                            All Previous Month Events
+                                                        </div>
+                                                        <div className="col-sm-1">
+                                                        </div>
                                                     </div>
-                                            )}
+                                                    <p></p>
+                                                    <p></p>
+                                                    {allPreviousMonthEventsList}
+                                                </div>
+                                            )
+                                            }
+
                                         </div>
-                                )}
-                            </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
                     )}
+                    <p></p>
                 </div>
             </div>
         </div>
