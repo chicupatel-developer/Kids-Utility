@@ -66,7 +66,7 @@ export default class Addition2By2 extends Component {
             window.location.reload();
         }
         this.setParentEmail();
-    }
+    } 
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('userName'));
     }
@@ -310,6 +310,7 @@ export default class Addition2By2 extends Component {
                                         <DisplayQuestion
                                             parentCallback={this.onAnswerOptionChange}
                                             parentCallbackNextQuestion={this.onNextQuestion}
+                                            testName={testName}
                                             minutes={minutes}
                                             seconds={seconds}
                                             questionNumber={questionNumber}

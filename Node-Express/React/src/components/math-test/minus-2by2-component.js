@@ -301,6 +301,7 @@ export default class Minus2By2 extends Component {
                                         <DisplayQuestion
                                             parentCallback={this.onAnswerOptionChange}
                                             parentCallbackNextQuestion={this.onNextQuestion}
+                                            testName={testName}
                                             minutes={minutes}
                                             seconds={seconds}
                                             questionNumber={questionNumber}
