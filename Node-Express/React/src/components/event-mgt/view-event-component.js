@@ -86,6 +86,22 @@ const ViewEvent = () => {
                     }
                 }
                 setMyEvents(weekEvents_);
+
+                // paging
+                // 2 records per page
+                var totalPages_ = Math.ceil(weekEvents_.length / 2);
+                setTotalPages(totalPages_);
+                if (totalPages_ > 1) {
+                    setShowPaging(true);
+                    var currentPageData_ = weekEvents_.slice(0, 2);
+                    console.log(currentPageData_);
+                    setCurrentPage(0);
+                    setCurrentPageData(currentPageData_);
+                }
+                else {
+                    setShowPaging(false);
+                    setCurrentPageData(weekEvents_);
+                }
             }
         );
     }
@@ -116,6 +132,22 @@ const ViewEvent = () => {
                     }
                 }
                 setMyEvents(todayEvents_);
+
+                // paging
+                // 2 records per page
+                var totalPages_ = Math.ceil(todayEvents_.length / 2);
+                setTotalPages(totalPages_);
+                if (totalPages_ > 1) {
+                    setShowPaging(true);
+                    var currentPageData_ = todayEvents_.slice(0, 2);
+                    console.log(currentPageData_);
+                    setCurrentPage(0);
+                    setCurrentPageData(currentPageData_);
+                }
+                else {
+                    setShowPaging(false);
+                    setCurrentPageData(todayEvents_);
+                }
             }
         );
     }
@@ -155,6 +187,22 @@ const ViewEvent = () => {
                     }
                 }
                 setMyEvents(monthEvents_);
+
+                // paging
+                // 2 records per page
+                var totalPages_ = Math.ceil(monthEvents_.length / 2);
+                setTotalPages(totalPages_);
+                if (totalPages_ > 1) {
+                    setShowPaging(true);
+                    var currentPageData_ = monthEvents_.slice(0, 2);
+                    console.log(currentPageData_);
+                    setCurrentPage(0);
+                    setCurrentPageData(currentPageData_);
+                }
+                else {
+                    setShowPaging(false);
+                    setCurrentPageData(monthEvents_);
+                }
             }
         );
     }
@@ -200,6 +248,22 @@ const ViewEvent = () => {
                     }
                 }
                 setMyEvents(monthEvents_);
+
+                // paging
+                // 2 records per page
+                var totalPages_ = Math.ceil(monthEvents_.length / 2);
+                setTotalPages(totalPages_);
+                if (totalPages_ > 1) {
+                    setShowPaging(true);
+                    var currentPageData_ = monthEvents_.slice(0, 2);
+                    console.log(currentPageData_);
+                    setCurrentPage(0);
+                    setCurrentPageData(currentPageData_);
+                }
+                else {
+                    setShowPaging(false);
+                    setCurrentPageData(monthEvents_);
+                }
             }
         );
     }
@@ -262,17 +326,22 @@ const ViewEvent = () => {
                 // 2 records per page
                 var totalPages_ = Math.ceil(monthEvents_.length / 2);
                 setTotalPages(totalPages_);
-                if (totalPages_ > 1){
+                if (totalPages_ > 1) {
                     setShowPaging(true);
                     var currentPageData_ = monthEvents_.slice(0, 2);
                     console.log(currentPageData_);
+                    setCurrentPage(0);
                     setCurrentPageData(currentPageData_);
                 }
-                else
+                else {
                     setShowPaging(false);
+                    setCurrentPageData(monthEvents_);
+                }
             }
         );
     }
+
+    // paging
     const onNextPage = () => {
         var currentPage_ = currentPage;
         if (currentPage + 1 < totalPages) {
@@ -308,15 +377,13 @@ const ViewEvent = () => {
         setCurrentPageData(currentPageData_);
     }
 
-
-
     const setActiveEvent = (selectedEvent) => {
         localStorage.setItem("selectedEvent", JSON.stringify(selectedEvent));
         history.push('manage-event');
     }
 
-    let todayEventsList = myEvents.length > 0
-        ? (myEvents.map((e, index) => {
+    let todayEventsList = currentPageData.length > 0
+        ? (currentPageData.map((e, index) => {
             return (
                 <span key={index}>                   
                     <Button variant="success"
@@ -353,8 +420,8 @@ const ViewEvent = () => {
             </div>          
         );
     
-    let monthEventsList = myEvents.length > 0
-        ? (myEvents.map((e, index) => {
+    let monthEventsList = currentPageData.length > 0
+        ? (currentPageData.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -431,8 +498,8 @@ const ViewEvent = () => {
             </div>
         );
         
-    let weekEventsList = myEvents.length > 0
-        ? (myEvents.map((e, index) => {
+    let weekEventsList = currentPageData.length > 0
+        ? (currentPageData.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -509,8 +576,8 @@ const ViewEvent = () => {
             </div>
         );
     
-    let previousMonthEventsList = myEvents.length > 0
-        ? (myEvents.map((e, index) => {
+    let previousMonthEventsList = currentPageData.length > 0
+        ? (currentPageData.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -584,8 +651,8 @@ const ViewEvent = () => {
             </div>
         );
     
-    let allPreviousMonthEventsList = myEvents.length > 0
-        ? (myEvents.map((e, index) => {
+    let allPreviousMonthEventsList = currentPageData.length > 0
+        ? (currentPageData.map((e, index) => {
             return (
                 <span key={index}>
                     <Button variant="success"
@@ -722,7 +789,30 @@ const ViewEvent = () => {
                                 </div>
                                 <div className="col-sm-1">
                                 </div>
-                            </div>                        
+                            </div>
+                            
+                            <p></p>
+                            {showPaging ?
+                                (
+                                    <div>
+                                        <button
+                                            onClick={onPreviousPage}
+                                            type="button"
+                                            className="btn btn-block btn-info">
+                                            &lt;&lt;PREVIOUS
+                                        </button>
+                                        <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+                                        <button
+                                            onClick={onNextPage}
+                                            type="button"
+                                            className="btn btn-block btn-info">
+                                            NEXT&gt;&gt;
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <span></span>
+                                )
+                            }
                             <p></p>
                             <p></p>
                             {todayEventsList}
@@ -741,6 +831,29 @@ const ViewEvent = () => {
                                         </div>
                                     </div>
                                     <p></p>
+                                    {showPaging ?
+                                        (
+                                                <div>
+                                                    <button
+                                                        onClick={onPreviousPage}
+                                                        type="button"
+                                                        className="btn btn-block btn-info">
+                                                        &lt;&lt;PREVIOUS
+                                                    </button>
+                                                    <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+                                                    <button
+                                                        onClick={onNextPage}
+                                                        type="button"
+                                                        className="btn btn-block btn-info">
+                                                        NEXT&gt;&gt;
+                                                    </button>
+                                                </div>
+                                        ) : (
+                                                <span></span>
+                                            )
+                                    }
+
+                                    <p></p>
                                     <p></p>
                                     {monthEventsList}
                                 </div>
@@ -756,7 +869,30 @@ const ViewEvent = () => {
                                                 </div>
                                                 <div className="col-sm-1">
                                                 </div>
-                                            </div>
+                                                    </div>
+                                                    
+                                            <p></p>
+                                                { showPaging ? 
+                                                    (
+                                                            <div>
+                                                                <button
+                                                                    onClick={onPreviousPage}
+                                                                    type="button"
+                                                                    className="btn btn-block btn-info">
+                                                                    &lt;&lt;PREVIOUS
+                                                                </button>
+                                                                <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+                                                                <button
+                                                                    onClick={onNextPage}
+                                                                    type="button"
+                                                                    className="btn btn-block btn-info">
+                                                                    NEXT&gt;&gt;
+                                                                </button>
+                                                            </div>                                                            
+                                                    ) : (
+                                                            <span></span>
+                                                        )
+                                                }
                                             <p></p>
                                             <p></p>
                                             {weekEventsList}
@@ -774,6 +910,29 @@ const ViewEvent = () => {
                                                         <div className="col-sm-1">
                                                         </div>
                                                     </div>
+
+                                                    <p></p>
+                                                    { showPaging ? 
+                                                        (
+                                                            <div>
+                                                                <button
+                                                                    onClick={onPreviousPage}
+                                                                    type="button"
+                                                                    className="btn btn-block btn-info">
+                                                                    &lt;&lt;PREVIOUS
+                                                                </button>
+                                                                <span> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; </span>
+                                                                <button
+                                                                    onClick={onNextPage}
+                                                                    type="button"
+                                                                    className="btn btn-block btn-info">
+                                                                    NEXT&gt;&gt;
+                                                                </button>
+                                                            </div>                                                            
+                                                        ) : (
+                                                            <span></span>
+                                                        )
+                                                    }
                                                     <p></p>
                                                     <p></p>
                                                     {previousMonthEventsList}
@@ -791,7 +950,8 @@ const ViewEvent = () => {
                                                         </div>
                                                         
                                                         <p></p>
-                                                        { showPaging ? (
+                                                        { showPaging ? 
+                                                            (
                                                                <div>
                                                                     <button
                                                                         onClick={onPreviousPage}
@@ -807,10 +967,10 @@ const ViewEvent = () => {
                                                                         NEXT&gt;&gt;
                                                                     </button>
                                                                 </div>
-                                                        ) : (
-                                                            <span></span>
-                                                        )}
-                                                     
+                                                            ) : (
+                                                                <span></span>
+                                                            )
+                                                        }                                                     
                                                         <p></p>
                                                         <p></p>
                                                         {allPreviousMonthEventsList}
