@@ -3,8 +3,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { Card, Table, Button } from "react-bootstrap";
 import { useHistory } from 'react-router-dom'
+import MyEvent from "./child-components/my-event-component";
 
 const ViewEvent = () => {
+
+    // 
+    const [eventName, setEventName] = useState('event name : coming from parent!');
+
     const history = useHistory();
 
     const [myEvents, setMyEvents] = useState([]);
@@ -146,7 +151,7 @@ const ViewEvent = () => {
                 if (totalPages_ > 1) {
                     setShowPaging(true);
                     var currentPageData_ = todayEvents_.slice(0, 2);
-                    console.log(currentPageData_);
+                    // console.log(currentPageData_);
                     setCurrentPage(0);
                     setCurrentPageData(currentPageData_);
                 }
@@ -451,44 +456,6 @@ const ViewEvent = () => {
         localStorage.setItem("selectedEvent", JSON.stringify(selectedEvent));
         history.push('manage-event');
     }
-
-    let todayEventsList = currentPageData.length > 0
-        ? (currentPageData.map((e, index) => {
-            return (
-                <span key={index}>                   
-                    <Button variant="success"
-                        style={{
-                            marginBottom: 10,
-                            marginRight: 15, width: 350, height: 150, borderColor: 'black', borderWidth: 2, color: 'white', borderStyle: 'dotted', borderRadius: 30
-                        }}
-                        onClick={() => { setActiveEvent(e.eventData) }}
-                        key={index}
-                        size="md">
-                        <div className="todayEventDiv">  
-                            <b>{e.eventData.eventTitle}</b>
-                            <br />
-                            <span className="todayEventTime"> @ {moment(e.eventData.eventDate).format('hh:mm A')}</span>
-                            <br />
-                            {e.eventData.eventDesc}
-                        </div>
-                    </Button>
-                </span>
-            )
-        }, this)) : (
-            <div>
-                <p></p>
-                <div className="row noEvents">
-                    <div className="col-sm-4">
-                    </div>
-                    <div className="col-sm-4">
-                        No Events Yet!
-                    </div>
-                    <div className="col-sm-4">
-                    </div>
-                </div>
-                <p></p>
-            </div>          
-        );
     
     let monthEventsList = currentPageData.length > 0
         ? (currentPageData.map((e, index) => {
@@ -946,39 +913,16 @@ const ViewEvent = () => {
                             </div>
                             
                             <p></p>
-                            {showPaging ?
-                                (
-                                    <div className="row">
-                                        <div className="col-sm-1">
-                                        </div>
-                                        <div className="col-sm-4">
-                                            <button
-                                                onClick={onPreviousPage}
-                                                type="button"
-                                                className="btn btn-block btn-info">
-                                                &lt;&lt;PREVIOUS
-                                            </button>
-                                        </div>
-                                        <div className="col-sm-2">
-                                        </div>
-                                        <div className="col-sm-4 nextPage">
-                                            <button
-                                                onClick={onNextPage}
-                                                type="button"
-                                                className="btn btn-block btn-info">
-                                                NEXT&gt;&gt;
-                                            </button>
-                                        </div>
-                                        <div className="col-sm-1">
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <span></span>
-                                )
-                            }
-                            <p></p>
-                            <p></p>
-                            {todayEventsList}
+                            {currentPageData.length > 0 && currentPageData && (
+                                <div>
+                                    <MyEvent                              
+                                        myEvents={myEvents}                                
+                                        currentPageData={currentPageData}
+                                        totalPages={totalPages}
+                                        showPaging={showPaging}
+                                    />
+                                </div>
+                            )}         
                         </div>
                     ) : (
                         <div>
