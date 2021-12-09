@@ -131,9 +131,7 @@ const MyEvent = ({ myEvents, currentPageData, totalPages, showPaging }) => {
     return (
         <div>
             <div>
-                Child Component !
-                <p></p>      
-              
+                <p></p>                    
                 {showPaging ? (
                     <div className="row">
                         <div className="col-sm-1">
@@ -160,7 +158,7 @@ const MyEvent = ({ myEvents, currentPageData, totalPages, showPaging }) => {
                         </div>
                     </div>
                 ): (
-                    <span>Paging Control Not Required!</span>
+                    <span></span>
                 )}
             </div>
             <p></p>

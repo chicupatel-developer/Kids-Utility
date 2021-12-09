@@ -50,6 +50,7 @@ export default class Home extends Component {
                                 <div>
                                     <ul>
                                         <li>Create Grocery List</li>
+                                        <li>Create New Item for Grocery List</li>
                                         <li>Add Item To Grocery List By Check In</li>
                                         <li>Remove Item From Grocery List By Check Out</li>
                                     </ul>

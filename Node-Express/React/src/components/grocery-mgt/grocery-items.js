@@ -65,23 +65,23 @@ export const grocery_items = [
     },
     {
         name: "Paneer",
-        cat: "Freeze"
+        cat: "Frozen"
     },
     {
         name: "Butter",
-        cat: "Freeze"
+        cat: "Frozen"
     },
     {
         name: "Khadi Banavanu-Curd",
-        cat: "Freeze"
+        cat: "Frozen"
     },
     {
         name: "Milk",
-        cat: "Freeze"
+        cat: "Frozen"
     },
     {
         name: "Samosa",
-        cat: "Freeze"
+        cat: "Frozen"
     },
     {
         name: "Sugar",
