@@ -1,49 +1,42 @@
 import { useState, useEffect  } from "react";
-import { grocery_items } from "./grocery-items";
 import './grocery-style.css';
 
 import { FaPlusCircle } from "react-icons/fa";
 
 export default function MyGrocery() {
-    const [checkedState, setCheckedState] = useState(
-        new Array(grocery_items.length).fill(false)
-    );
-    
+
     // 
-    const [groceryCollection, setGroceryCollection] = useState([]);
+    const [checkedState_, setCheckedState_] = useState(
+        new Array().fill(false)
+    );
+    const [groceryCollection, setGroceryCollection] = useState([]);  
    
     const [isDisabled, setIsDisabled] = useState(true);
     const [cat, setCat] = useState('');
     const [itemName, setItemName] = useState('');
 
     useEffect(() => {
-        var myGrocery = JSON.parse(localStorage.getItem('myGrocery') || "[]");
-        if (myGrocery.length == 0) {
-            console.log("empty");
-            const updatedCheckedState = checkedState.map((item, index) =>
-                false
-            );
-            setCheckedState(updatedCheckedState);
-            localStorage.setItem("myGrocery", JSON.stringify(updatedCheckedState));
+        var myGrocery_ = JSON.parse(localStorage.getItem('myGrocery_') || "[]");
+        
+        if (myGrocery_.length == 0) {
+            console.log("empty");       
+            // get grocery collection from server
+            getGroceryCollection(true);
         }
         else {
             console.log("loading");
-            setCheckedState(myGrocery);
+            // get grocery collection state from local-storage
+            getGroceryCollection(false);
         }
-
-        //
-        getGroceryCollection();
-
     }, []);
 
     const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
+        const updatedCheckedState_ = checkedState_.map((item, index) =>
             index === position ? !item : item
         );
-
-        setCheckedState(updatedCheckedState);  
-
-        localStorage.setItem("myGrocery", JSON.stringify(updatedCheckedState));
+        setCheckedState_(updatedCheckedState_);
+        console.log(updatedCheckedState_);
+        localStorage.setItem("myGrocery_", JSON.stringify(updatedCheckedState_));
     };
 
     const getCategories = () => {
@@ -82,15 +75,33 @@ export default function MyGrocery() {
         }
     }
 
-    const getGroceryCollection = () => {
-
+    const getGroceryCollection = (flag) => {
         setGroceryCollection([]);
-
         fetch('/grocery')
             .then(res => res.json())
             .then(data => {
                 setGroceryCollection(data);
-                console.log(groceryCollection);
+
+                if (flag) {
+                    console.log('loading from server!');
+                    // first time
+                    // from server
+                    var updatedCheckedState_ = data.map((item, index) =>
+                        false
+                    );
+                    setCheckedState_(updatedCheckedState_);
+                    localStorage.setItem("myGrocery_", JSON.stringify(updatedCheckedState_));
+                }
+                else {
+                    // any time after first time
+                    // from local-storage
+                    console.log('loading from local-storage!');
+                    var myGrocery_ = JSON.parse(localStorage.getItem('myGrocery_') || "[]");
+                    var updatedCheckedState_ = myGrocery_.map((item, index) =>
+                        item
+                    );
+                    setCheckedState_(updatedCheckedState_);
+                }
             }
         );
     }
@@ -114,10 +125,7 @@ export default function MyGrocery() {
             headers: { 'Content-Type': 'application/json' }
         }).then(res => res.json())
             .then(json => {
-                console.log(json);
-                
-                // 
-                getGroceryCollection();
+                console.log(json); 
             }
         );
     }
@@ -195,10 +203,11 @@ export default function MyGrocery() {
             <p></p>
 
 
+            
             <div className="col-sm-4">
                 <h3>Fruits</h3>
                 <ul className="grocery-list">
-                    {grocery_items.map(({ name, cat }, index) => {
+                    {groceryCollection.map(({ name, cat }, index) => {
                         return (
                             <span key={index}>
                                 {
@@ -212,7 +221,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState[index]}
+                                                            checked={checkedState_[index]}
                                                             onChange={() => handleOnChange(index)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
@@ -229,7 +238,7 @@ export default function MyGrocery() {
                 </ul>
                 <h3>Frozen</h3>
                 <ul className="grocery-list">
-                    {grocery_items.map(({ name, cat }, index) => {
+                    {groceryCollection.map(({ name, cat }, index) => {
                         return (
                             <span key={index}>
                                 {
@@ -243,7 +252,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState[index]}
+                                                            checked={checkedState_[index]}
                                                             onChange={() => handleOnChange(index)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
@@ -263,7 +272,7 @@ export default function MyGrocery() {
             <div className="col-sm-4">              
                 <h3>Vegitables</h3>
                 <ul className="grocery-list">
-                    {grocery_items.map(({ name, cat }, index) => {
+                    {groceryCollection.map(({ name, cat }, index) => {
                         return (
                             <span key={index}>
                                 {
@@ -277,7 +286,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState[index]}
+                                                            checked={checkedState_[index]}
                                                             onChange={() => handleOnChange(index)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
@@ -294,7 +303,7 @@ export default function MyGrocery() {
                 </ul>
                 <h3>Bakery</h3>
                 <ul className="grocery-list">
-                    {grocery_items.map(({ name, cat }, index) => {
+                    {groceryCollection.map(({ name, cat }, index) => {
                         return (
                             <span key={index}>
                                 {
@@ -308,7 +317,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState[index]}
+                                                            checked={checkedState_[index]}
                                                             onChange={() => handleOnChange(index)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
@@ -329,7 +338,7 @@ export default function MyGrocery() {
             <div className="col-sm-4">
                 <h3>Others</h3>
                 <ul className="grocery-list">
-                    {grocery_items.map(({ name, cat }, index) => {
+                    {groceryCollection.map(({ name, cat }, index) => {
                         return (
                             <span key={index}>
                                 {
@@ -343,7 +352,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState[index]}
+                                                            checked={checkedState_[index]}
                                                             onChange={() => handleOnChange(index)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
