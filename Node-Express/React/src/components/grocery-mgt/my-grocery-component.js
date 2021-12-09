@@ -5,38 +5,37 @@ import { FaPlusCircle } from "react-icons/fa";
 
 export default function MyGrocery() {
 
-    // 
-    const [checkedState_, setCheckedState_] = useState(
-        new Array().fill(false)
-    );
     const [groceryCollection, setGroceryCollection] = useState([]);  
    
     const [isDisabled, setIsDisabled] = useState(true);
     const [cat, setCat] = useState('');
     const [itemName, setItemName] = useState('');
+    const [selected, setSelected] = useState(false);
+
+    const [groceryList, setGroceryList] = useState([]);
 
     useEffect(() => {
-        var myGrocery_ = JSON.parse(localStorage.getItem('myGrocery_') || "[]");
-        
-        if (myGrocery_.length == 0) {
-            console.log("empty");       
-            // get grocery collection from server
-            getGroceryCollection(true);
-        }
-        else {
-            console.log("loading");
-            // get grocery collection state from local-storage
-            getGroceryCollection(false);
-        }
+        getGroceryCollection();
     }, []);
 
-    const handleOnChange = (position) => {
-        const updatedCheckedState_ = checkedState_.map((item, index) =>
-            index === position ? !item : item
-        );
-        setCheckedState_(updatedCheckedState_);
-        console.log(updatedCheckedState_);
-        localStorage.setItem("myGrocery_", JSON.stringify(updatedCheckedState_));
+    const handleOnChange = (itemName, cat, e) => {
+        console.log(itemName + ' : ' + e.target.checked);
+        var groceryItem = {            
+            cat: cat,
+            name: itemName,
+            selected: e.target.checked
+        };
+        console.log(groceryItem);
+
+        // find object                    
+        const removeIndex = groceryList.findIndex(item => item.name === itemName);
+        // remove object
+        groceryList.splice(removeIndex, 1);
+        // add modified object
+        groceryList.push(groceryItem);
+
+        console.log(groceryList);
+
     };
 
     const getCategories = () => {
@@ -68,40 +67,21 @@ export default function MyGrocery() {
 
     const onChangeItemName = (event) => {
         console.log(event.target.value);
-        if (event.target.value == '' || event.target.value == null)
+        if (event.target.value == '')
             return;
         else {
             setItemName(event.target.value);
         }
     }
 
-    const getGroceryCollection = (flag) => {
+    const getGroceryCollection = () => {
         setGroceryCollection([]);
         fetch('/grocery')
             .then(res => res.json())
             .then(data => {
                 setGroceryCollection(data);
-
-                if (flag) {
-                    console.log('loading from server!');
-                    // first time
-                    // from server
-                    var updatedCheckedState_ = data.map((item, index) =>
-                        false
-                    );
-                    setCheckedState_(updatedCheckedState_);
-                    localStorage.setItem("myGrocery_", JSON.stringify(updatedCheckedState_));
-                }
-                else {
-                    // any time after first time
-                    // from local-storage
-                    console.log('loading from local-storage!');
-                    var myGrocery_ = JSON.parse(localStorage.getItem('myGrocery_') || "[]");
-                    var updatedCheckedState_ = myGrocery_.map((item, index) =>
-                        item
-                    );
-                    setCheckedState_(updatedCheckedState_);
-                }
+                setGroceryList(data);
+                console.log(data);
             }
         );
     }
@@ -117,7 +97,8 @@ export default function MyGrocery() {
         // api call
         var data = {
             cat: cat,
-            name: itemName
+            name: itemName,
+            selected: false
         };
         fetch('/grocery/add', {
             method: 'POST',
@@ -125,9 +106,26 @@ export default function MyGrocery() {
             headers: { 'Content-Type': 'application/json' }
         }).then(res => res.json())
             .then(json => {
-                console.log(json); 
+                console.log(json);
+                getGroceryCollection();
+
+                setItemName('');
+                setCat('');
             }
         );
+    }
+
+    const saveMyList = () => {
+        // send groceryList to server
+        fetch('/grocery/edit', {
+            method: 'POST',
+            body: JSON.stringify(groceryList),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res => res.json())
+            .then(json => {
+                console.log(json);
+            }
+            );
     }
     
     return (
@@ -166,7 +164,7 @@ export default function MyGrocery() {
                                         style={{height: 40, borderColor: 'green', borderWidth: 3, color: 'blue' }}
                                         id="cat"
                                         value={cat}
-                                        onChange={onChangeCategory}
+                                        onChange={e => onChangeCategory(e)}
                                         name="cat">
                                         <option value=''>
                                             ---select category---
@@ -183,7 +181,7 @@ export default function MyGrocery() {
                                             id="itemName"
                                             value={itemName}
                                             name="itemName"
-                                            onChange={onChangeItemName}
+                                            onChange={e => onChangeItemName(e)}
                                             disabled={isDisabled}
                                         />
                                     </span>
@@ -192,7 +190,8 @@ export default function MyGrocery() {
                         </div>                     
                         <div className="col-sm-2 verticalCenter">
                             <button className="btn btn-block "
-                                onClick={addNewItem}>
+                                // onClick={addNewItem}>
+                                onClick={saveMyList}>
                                 <FaPlusCircle style={{ color: 'green', fontSize: '50px' }} />                                
                             </button>
                         </div>
@@ -207,7 +206,7 @@ export default function MyGrocery() {
             <div className="col-sm-4">
                 <h3>Fruits</h3>
                 <ul className="grocery-list">
-                    {groceryCollection.map(({ name, cat }, index) => {
+                    {groceryCollection.map(({ name, cat, selected }, index) => {
                         return (
                             <span key={index}>
                                 {
@@ -220,9 +219,8 @@ export default function MyGrocery() {
                                                             type="checkbox"
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
-                                                            value={name}
-                                                            checked={checkedState_[index]}
-                                                            onChange={() => handleOnChange(index)}
+                                                            value={name}                                                           
+                                                            onChange={(e) => handleOnChange(name,cat, e)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                                                     </span>
@@ -252,8 +250,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState_[index]}
-                                                            onChange={() => handleOnChange(index)}
+                                                            onChange={(e) => handleOnChange(name, cat, e)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                                                     </span>
@@ -286,8 +283,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState_[index]}
-                                                            onChange={() => handleOnChange(index)}
+                                                            onChange={(e) => handleOnChange(name, cat, e)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                                                     </span>
@@ -317,8 +313,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState_[index]}
-                                                            onChange={() => handleOnChange(index)}
+                                                            onChange={(e) => handleOnChange(name, cat, e)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                                                     </span>
@@ -352,8 +347,7 @@ export default function MyGrocery() {
                                                             id={`custom-checkbox-${index}`}
                                                             name={name}
                                                             value={name}
-                                                            checked={checkedState_[index]}
-                                                            onChange={() => handleOnChange(index)}
+                                                            onChange={(e) => handleOnChange(name, cat, e)}
                                                         />&nbsp;
                                                         <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                                                     </span>
@@ -362,18 +356,11 @@ export default function MyGrocery() {
                                         </span>
                                     )
                                 }
-
                             </span>
                         );
                     })}
                 </ul>
-            </div>
-
-            
-        
-
-        
-            
+            </div>            
         </div>
     );
 }

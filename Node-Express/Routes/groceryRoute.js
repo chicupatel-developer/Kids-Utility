@@ -79,4 +79,36 @@ router.route('/').get(async (req, res) => {
     }
 });
 
+router.route('/edit').post(async (req, res) => {
+
+    var jsonDatabaseFile = '\JSONDatabase\\groceryDB.json';
+    fs = require('fs');
+    var obj = {
+        table: []
+    };
+
+    var gList = req.body;
+    // obj.table.push(gList);
+    obj.table = gList.map(a => Object.assign({}, a));
+
+    json = JSON.stringify(obj); //convert it back to json
+    console.log(gList);
+    console.log(json);
+
+    fs.readFile(jsonDatabaseFile, function (err, data) {
+        if (data == undefined) {
+            console.log('Database Offline!');
+            return res.status(400).json({ error: "Database Offline!" });
+        }
+        // over-write to file
+        fs.writeFile(jsonDatabaseFile, json, function (err) {
+            if (err) {
+                return res.status(400).json({ error: "Error Saving Grocery List!" });
+            }
+            return res.status(200).json({ error: "Grocery List Saved!" });
+        });
+    })
+});
+
+
 module.exports = router;
