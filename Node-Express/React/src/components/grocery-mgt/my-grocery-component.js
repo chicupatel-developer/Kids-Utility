@@ -151,8 +151,7 @@ export default function MyGrocery() {
                         <div className="col-sm-4 verticalCenter">
                             <button className="btn btn-block "
                                 onClick={addNewItem}>
-                                <FaPlusCircle style={{ color: 'green', fontSize: '50px' }} />
-                                <i className="fas fa-camera fa-lg"></i>
+                                <FaPlusCircle style={{ color: 'green', fontSize: '50px' }} />                                
                             </button>
                         </div>
                     </div>
