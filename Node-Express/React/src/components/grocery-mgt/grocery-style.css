@@ -36,10 +36,12 @@ padding-bottom: 20px;
 
 .addNewListItem{
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .verticalCenter{
   padding-top: 20px;
 padding-bottom: 20px;
   vertical-align: middle; 
+  text-align: center;
 }

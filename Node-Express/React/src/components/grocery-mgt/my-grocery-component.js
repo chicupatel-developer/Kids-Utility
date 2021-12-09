@@ -7,7 +7,10 @@ import { FaPlusCircle } from "react-icons/fa";
 export default function MyGrocery() {
     const [checkedState, setCheckedState] = useState(
         new Array(grocery_items.length).fill(false)
-    ); 
+    );
+    
+    // 
+    const [groceryCollection, setGroceryCollection] = useState([]);
    
     const [isDisabled, setIsDisabled] = useState(true);
     const [cat, setCat] = useState('');
@@ -27,6 +30,9 @@ export default function MyGrocery() {
             console.log("loading");
             setCheckedState(myGrocery);
         }
+
+        //
+        getGroceryCollection();
 
     }, []);
 
@@ -76,6 +82,18 @@ export default function MyGrocery() {
         }
     }
 
+    const getGroceryCollection = () => {
+
+        setGroceryCollection([]);
+
+        fetch('/grocery')
+            .then(res => res.json())
+            .then(data => {
+                setGroceryCollection(data);
+                console.log(groceryCollection);
+            }
+        );
+    }
     const addNewItem = () => {
         
         if (cat === '' || itemName === '') {
@@ -85,7 +103,23 @@ export default function MyGrocery() {
         console.log(cat + ' : ' + itemName);
         
         // add cat and itemName to grocery-items.js file
-
+        // api call
+        var data = {
+            cat: cat,
+            name: itemName
+        };
+        fetch('/grocery/add', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-Type': 'application/json' }
+        }).then(res => res.json())
+            .then(json => {
+                console.log(json);
+                
+                // 
+                getGroceryCollection();
+            }
+        );
     }
     
     return (
@@ -116,12 +150,12 @@ export default function MyGrocery() {
                     <hr />
                     <p></p>
                     <div className="row">
-                        <div className="col-sm-4">
+                        <div className="col-sm-3">
                             <div className="addNewListItem">
                                 <form>
                                     <select
                                         className={"form-control"}
-                                        style={{ width: 300, height: 40, borderColor: 'green', borderWidth: 3, color: 'blue' }}
+                                        style={{height: 40, borderColor: 'green', borderWidth: 3, color: 'blue' }}
                                         id="cat"
                                         value={cat}
                                         onChange={onChangeCategory}
@@ -136,7 +170,7 @@ export default function MyGrocery() {
                                         <input
                                             type="text"
                                             placeholder="Item Name"
-                                            style={{ width: 300, height: 40, borderColor: 'green', borderWidth: 3, color: 'blue' }}
+                                            style={{height: 40, borderColor: 'green', borderWidth: 3, color: 'blue' }}
                                             className={"form-control"}
                                             id="itemName"
                                             value={itemName}
@@ -147,8 +181,8 @@ export default function MyGrocery() {
                                     </span>
                                 </form>
                             </div>
-                        </div>
-                        <div className="col-sm-4 verticalCenter">
+                        </div>                     
+                        <div className="col-sm-2 verticalCenter">
                             <button className="btn btn-block "
                                 onClick={addNewItem}>
                                 <FaPlusCircle style={{ color: 'green', fontSize: '50px' }} />                                

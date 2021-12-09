@@ -28,6 +28,9 @@ app.use('/auth', authRoute);
 // math-test
 const mathTestRoute = require('./Routes/mathTestRoute');
 app.use('/math-test', mathTestRoute);
+// grocery
+const groceryRoute = require('./Routes/groceryRoute');
+app.use('/grocery', groceryRoute);
 
 
 // The "catchall" handler: for any request that doesn't
