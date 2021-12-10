@@ -54,6 +54,7 @@
  
  ## System Diagram->
  
+ ### need to change
  ![KidsUtility_SystemDia drawio](https://user-images.githubusercontent.com/26190114/142479793-a9284c47-16e0-4584-bd78-5c087795f25f.png)
 
 
@@ -62,10 +63,12 @@
 
 ## Home->
 
-![Home](https://user-images.githubusercontent.com/26190114/142461765-dec9790a-af50-4779-9715-41a7b68769c0.PNG)
+![Home](https://user-images.githubusercontent.com/26190114/145648240-52db6bd8-de92-4b84-971c-fbae65023fae.PNG)
 
 
 ## Register->
+
+![Register_DuplicateUserName](https://user-images.githubusercontent.com/26190114/145648271-d28da9c9-9966-46ff-82ea-0042d45a18f1.PNG)
 
 ![Register](https://user-images.githubusercontent.com/26190114/142461905-5b61f8b1-5c2f-40bc-93ff-de10c90c59c9.PNG)
 
@@ -81,19 +84,19 @@
 
 ## Math-Test->
 
-![Math-Test1](https://user-images.githubusercontent.com/26190114/142462169-618a2b62-cbb8-444e-969f-9d5d9931ec5e.PNG)
+![MathTest1](https://user-images.githubusercontent.com/26190114/145648309-3c9a3ac9-617b-4217-9b98-c40b01abc530.PNG)
 
-![Test1](https://user-images.githubusercontent.com/26190114/142462184-03ee7db1-2790-4b04-a6df-3167438c92a1.PNG)
+![MathTest2](https://user-images.githubusercontent.com/26190114/145648321-5e1c213c-c8a4-4669-aaa9-d61302ba28c8.PNG)
 
-![Test2](https://user-images.githubusercontent.com/26190114/142462201-a47a054c-78e5-4def-a90d-13b4b47f2438.PNG)
+![MathTest3](https://user-images.githubusercontent.com/26190114/145648328-a511dd5f-5cc8-4ab2-8568-ad2d23f4274f.PNG)
 
-![Test-Result1](https://user-images.githubusercontent.com/26190114/142462228-25ad3c0a-6e4a-40ac-8099-8fd737c66ad9.PNG)
+![MathTest4](https://user-images.githubusercontent.com/26190114/145648335-e63cda17-0963-45ac-9e24-6fe82a83e2db.PNG)
 
-![Test-Result2](https://user-images.githubusercontent.com/26190114/142462247-ad328704-b7f0-4648-a989-97c474f5bc03.PNG)
+![MathTest5](https://user-images.githubusercontent.com/26190114/145648339-7c0af62b-17b7-4341-9d78-4d9f5b4abddd.PNG)
 
-![Test-Result3](https://user-images.githubusercontent.com/26190114/142462261-3d786e82-df55-40b6-ae97-86dc2e758be5.PNG)
+![MathTest6](https://user-images.githubusercontent.com/26190114/145648346-76e32d21-73bf-4e3b-a8ea-6becb262f783.PNG)
 
-![Test-Result4](https://user-images.githubusercontent.com/26190114/142462288-909b5d43-a04c-419a-b675-5454f6351e66.PNG)
+![MathTest7](https://user-images.githubusercontent.com/26190114/145648351-974d6eb7-9d5f-43cb-b777-992c5b2f0a5c.PNG)
 
 
 ## Event-MGT->
@@ -105,13 +108,20 @@
 
 ## Event-View->
 
-![EventView1](https://user-images.githubusercontent.com/26190114/142462479-6354d63f-b722-4281-a366-aede4e47d462.PNG)
+![EventView1](https://user-images.githubusercontent.com/26190114/145648375-be24901a-3868-46f3-9faa-efe77ee399b1.PNG)
 
-![EventView2](https://user-images.githubusercontent.com/26190114/142462484-144bbb85-533b-4320-82d6-8a1c76f28215.PNG)
+![EventView2](https://user-images.githubusercontent.com/26190114/145648384-9833b2b1-7b61-4996-bedd-ba2e908d5dd9.PNG)
 
-![EventView3](https://user-images.githubusercontent.com/26190114/142462488-7f2fe4b4-a8f0-4060-a26d-ab27423a3629.PNG)
+![EventView3](https://user-images.githubusercontent.com/26190114/145648387-bc18e75c-c4d0-4fc5-808d-41343f849f77.PNG)
 
-![EventDetailView](https://user-images.githubusercontent.com/26190114/142462502-76593074-e87f-4799-9777-28579ff4a246.PNG)
+![EventView4](https://user-images.githubusercontent.com/26190114/145648390-485cc11a-2ddd-47d2-a047-3c38e06b4ea1.PNG)
+
+![EventView5](https://user-images.githubusercontent.com/26190114/145648393-aebe36da-b8bd-40b4-9f63-94aff4a7a729.PNG)
+
+![EventView6](https://user-images.githubusercontent.com/26190114/145648397-1df88076-8ee8-40de-8c00-93640bf59ba2.PNG)
+
+![EventView7](https://user-images.githubusercontent.com/26190114/145648402-2f2d1c50-0f88-440b-8af8-5a872609144b.PNG)
+
 
 ## Event-Edit->
 
@@ -128,6 +138,7 @@
 
 ## Grocery-MGT->
 
+### need to change
 ![Grocery1](https://user-images.githubusercontent.com/26190114/142462711-0d5050ec-2df6-4c59-b620-1d1594f2eaa4.PNG)
 
 
