@@ -105,7 +105,7 @@ router.route('/edit').post(async (req, res) => {
             if (err) {
                 return res.status(400).json({ error: "Error Saving Grocery List!" });
             }
-            return res.status(200).json({ error: "Grocery List Saved!" });
+            return res.status(200).json({ success: "Grocery List Saved!" });
         });
     })
 });
