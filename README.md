@@ -42,14 +42,15 @@
 ## ---> [Event-MGT]
 
   ### - User can Create/View/Edit and Delete Event
-  ### - User can View Events for Today, Current Week or Current Month
+  ### - User can View Events for Today, Current Week, Current Month, Previous Month, All Previous Months, or Next Month
  
  
 ## ---> [Grocery-MGT]
 
-  ### - User can Create Grocery List
   ### - User can Add Item To Grocery List By Check In
   ### - User can Remove Item From Grocery List By Check Out
+  ### - User can Add [NEW] Item To Grocery List Database
+  ### - User can Store Grocery List To JSON Database
   
  
  ## System Diagram->
