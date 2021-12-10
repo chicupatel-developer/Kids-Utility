@@ -245,3 +245,7 @@ font-weight: bold;
 .nextPage{
   text-align: right;
 }
+
+.eventContainer{
+  margin-left: 70px;
+}

@@ -163,7 +163,13 @@ const MyEvent = ({ myEvents, currentPageData, totalPages, showPaging }) => {
             </div>
             <p></p>
             <p></p>
-            {myEventsList}
+            <div className="row">
+                <div className="com-sm-1"></div>
+                <div className="com-sm-10 eventContainer">
+                    {myEventsList}
+                </div>
+            </div>
+            
         </div>
     );
 };

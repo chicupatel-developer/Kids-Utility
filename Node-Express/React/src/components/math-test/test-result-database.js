@@ -47,10 +47,10 @@ export default class TestResultDatabase extends Component {
                     {
                         (testResultCollection && testResultCollection[0]) ? (
                             <div>
-                                Test-Result For
                                 <span className="testResultUserName">
+                                    Test-Result For : &nbsp;
                                     <b>
-                                        {testResultCollection[0].userName}
+                                        <u>{testResultCollection[0].userName}</u>
                                     </b>
                                 </span>
                             </div>

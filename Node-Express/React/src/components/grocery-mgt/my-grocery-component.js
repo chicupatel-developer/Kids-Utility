@@ -349,29 +349,29 @@ export default function MyGrocery() {
                 <p></p>
                 <div className="row">
                     <div className="col-sm-4">
-                        <h3>Fruits</h3>
+                        <h3><u>Fruits</u></h3>
                         <ul className="grocery-list">
                             {displayFruitGroceryCollection}
                         </ul>
-                        <h3>Frozen</h3>
+                        <h3><u>Frozen</u></h3>
                         <ul className="grocery-list">
                             {displayFrozenGroceryCollection}
                         </ul>
                     </div>
 
                     <div className="col-sm-4">
-                        <h3>Vegitables</h3>
+                        <h3><u>Vegitables</u></h3>
                         <ul className="grocery-list">
                             {displayVegitablesGroceryCollection}
                         </ul>
-                        <h3>Bakery</h3>
+                        <h3><u>Bakery</u></h3>
                         <ul className="grocery-list">
                             {displayBakeryGroceryCollection}
                         </ul>
                     </div>
 
                     <div className="col-sm-4">
-                        <h3>Others</h3>
+                        <h3><u>Others</u></h3>
                         <ul className="grocery-list">
                             {displayOthersGroceryCollection}
                         </ul>
