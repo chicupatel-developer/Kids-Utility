@@ -55,9 +55,7 @@
  
  ## System Diagram->
  
- ### need to change
- ![KidsUtility_SystemDia drawio](https://user-images.githubusercontent.com/26190114/142479793-a9284c47-16e0-4584-bd78-5c087795f25f.png)
-
+ ![System Dia](https://user-images.githubusercontent.com/26190114/145859620-5b86b72e-5af3-4702-910a-d21914ad6cfd.png)
 
 
 # Screens
@@ -139,7 +137,6 @@
 
 ## Grocery-MGT->
 
-### need to change
-![Grocery1](https://user-images.githubusercontent.com/26190114/142462711-0d5050ec-2df6-4c59-b620-1d1594f2eaa4.PNG)
+![grocery](https://user-images.githubusercontent.com/26190114/145859664-fc8a0524-3c3c-452b-9dcb-a8289a7982c3.PNG)
 
 
