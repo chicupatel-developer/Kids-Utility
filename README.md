@@ -2,6 +2,14 @@
 
 # Express + Node + React JS + JSON File Storage
 
+
+ 
+ ## System Diagram->
+ 
+ ![System Dia](https://user-images.githubusercontent.com/26190114/145859620-5b86b72e-5af3-4702-910a-d21914ad6cfd.png)
+
+
+
 ## ---> [register]
 
   - User can create Account by Registering with UserName, Password and Parent's Email Address
@@ -52,10 +60,6 @@
   ### - User can Add [NEW] Item To Grocery List Database
   ### - User can Store Grocery List To JSON Database
   
- 
- ## System Diagram->
- 
- ![System Dia](https://user-images.githubusercontent.com/26190114/145859620-5b86b72e-5af3-4702-910a-d21914ad6cfd.png)
 
 
 # Screens
