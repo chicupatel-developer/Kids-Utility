@@ -6,18 +6,8 @@ export default class Home extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        var todaysDate = new Date();
-        todaysDate.setMonth(todaysDate.getMonth() - 1);
-        // const previousMonth = todaysDate.toLocaleString('default', { month: 'long' });
-        const previousMonth = todaysDate.getMonth();
-        console.log(previousMonth);
-
-    }
-
-    genRand(min, max, decimalPlaces) {
-        return (Math.random() * (max - min) + min).toFixed(decimalPlaces) * 1;        
-    }  
+    componentDidMount() {      
+    }   
 
     render() {
 
