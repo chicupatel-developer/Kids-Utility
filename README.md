@@ -1,7 +1,14 @@
-# Kids-Utility [Math-Test / Event-MGT / Grocery-MGT]
+# Kids-Utility [Math-Test / Event-MGT / Grocery-MGT] 
 
-# Express + Node + React JS + JSON File Storage
+Technology
+----------
+- Express, Node JS, bcrypt
 
+- JSON File Storage
+
+- Client(1) : Angular, Html, Css, Bootstrap
+
+- Client(2) : React, Html, Css, Bootstrap 
 
  
  ## System Diagram->
