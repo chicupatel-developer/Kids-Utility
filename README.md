@@ -6,7 +6,7 @@ Technology
 
 - JSON File Storage
 
-- Client(1) : Angular, Html, Css, Bootstrap
+- ###WIP Client(1) : Angular, Html, Css, Bootstrap
 
 - Client(2) : React, Html, Css, Bootstrap 
 
