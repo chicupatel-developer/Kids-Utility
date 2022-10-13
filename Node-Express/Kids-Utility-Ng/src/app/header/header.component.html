@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)">Kids-Utility</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <!-- left align items -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">                  
+                    <a class='nav-link' aria-current="page" 
+                        [routerLink]="['/home']">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link' aria-current="page" 
+                        [routerLink]="['/my-grocery']">
+                        My-Grocery
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class='nav-link' aria-current="page" 
+                        [routerLink]="['/math-test']">
+                        Math-Test
+                    </a>
+                </li>
+            </ul>
+
+            <!-- right align items -->
+            <div class="d-flex align-items-center">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class='nav-link rightItem' aria-current="page" [routerLink]="['/signin']">
+                            Signin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class='nav-link rightItem' aria-current="page" [routerLink]="['/register']">
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-primary" type="button">Signout
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
