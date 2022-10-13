@@ -73,7 +73,7 @@ Technology
 
 ## Home->
 
-![Home](https://user-images.githubusercontent.com/26190114/145648240-52db6bd8-de92-4b84-971c-fbae65023fae.PNG)
+![home](https://user-images.githubusercontent.com/26190114/195666598-a485ace5-a6f0-4f51-b5bd-5d75eadbafa6.PNG)
 
 
 ## Register->
