@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 
 import { UserService } from '../services/user.service';
 import { LocalDataService } from '../services/local-data.service';
+import Validation from '../services/validation';
 
 @Component({
   selector: 'app-register',
@@ -66,17 +67,13 @@ export class RegisterComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(40)
           ]
         ],
-        ParentEmail: [
-          '',
-          [
-            Validators.required,
-          ]
-        ],
-      },     
+        ParentEmail: ['', [Validators.required, Validators.email]],
+      },    
+      {
+        validators: [Validation.match('Password', 'ConfirmPassword')]
+      }
     );
   }
 

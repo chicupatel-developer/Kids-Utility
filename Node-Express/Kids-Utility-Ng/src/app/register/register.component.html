@@ -59,11 +59,8 @@
                             <div *ngIf="submitted && f['ConfirmPassword'].errors" 
                                 class="invalid-feedback">
                                 <div *ngIf="f['ConfirmPassword'].errors['required']">Confirm-Password is required</div>
-                                <div *ngIf="f['ConfirmPassword'].errors['minlength']">
-                                    Confirm-Password must be at least 6 characters
-                                </div>
-                                <div *ngIf="f['ConfirmPassword'].errors['maxlength']">
-                                    Confirm-Password must not exceed 40 characters
+                                <div *ngIf="f['ConfirmPassword'].errors['matching']">
+                                    Confirm-Password does not match
                                 </div>
                             </div>
                         </div>
@@ -76,6 +73,7 @@
                                 [ngClass]="{ 'is-invalid': submitted && f['ParentEmail'].errors }" />
                             <div *ngIf="submitted && f['ParentEmail'].errors" class="invalid-feedback">
                                 <div *ngIf="f['ParentEmail'].errors['required']">Parent-Email is required</div>                             
+                                <div *ngIf="f['ParentEmail'].errors['email']">Parent-Email is invalid</div>
                             </div>
                         </div>
                         <p></p>
