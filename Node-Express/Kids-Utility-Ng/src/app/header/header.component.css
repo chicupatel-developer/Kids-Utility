@@ -5,4 +5,13 @@
 .userNameSpan {
     color : white;
     font-weight: bold;
+    font-style: italic;
+    font-size: x-large;
+}
+
+.notSigninSpan {
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: large;
 }

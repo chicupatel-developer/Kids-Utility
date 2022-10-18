@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)">Kids-Utility</a>
+        <a class="navbar-brand" 
+            [routerLink]="['/home']">
+            Kids-Utility
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,13 +37,13 @@
                     <li *ngIf="!this._userService.isLoggedIn"
                         class="nav-item">
                         <a class='nav-link rightItem' aria-current="page" [routerLink]="['/signin']">
-                            Signin
+                            <span class="notSigninSpan">Signin</span>
                         </a>
                     </li>
                     <li *ngIf="!this._userService.isLoggedIn"
                         class="nav-item">
                         <a class='nav-link rightItem' aria-current="page" [routerLink]="['/register']">
-                            Register
+                            <span class="notSigninSpan">Register</span>
                         </a>
                     </li>
                     <li *ngIf="this._userService.isLoggedIn"

@@ -7,7 +7,9 @@ export class LocalDataService {
 
   private UserName;
   private ParentEmail;
-  private isAuthenticated;
+  private isAuthenticated;  
+
+  constructor() { }
 
   
   setUserName(val) {
@@ -30,6 +32,4 @@ export class LocalDataService {
   getIsAuthenticated() {
     return this.isAuthenticated;
   }
-
-  constructor() { }
 }
