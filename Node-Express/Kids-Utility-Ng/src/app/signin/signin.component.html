@@ -4,6 +4,12 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Login</h3>   
+                    <p></p>
+                    <div *ngIf="apiResponse">
+                        <span [style.color]="responseColor">
+                            {{apiResponse}}
+                        </span>
+                    </div>
                 </div>
                 <div class="card-body">
                     <form [formGroup]="form" 
