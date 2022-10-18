@@ -19,7 +19,8 @@
                         My-Grocery
                     </a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="this._userService.isLoggedIn" 
+                    class="nav-item">
                     <a class='nav-link' aria-current="page" 
                         [routerLink]="['/math-test']">
                         Math-Test
@@ -30,18 +31,26 @@
             <!-- right align items -->
             <div class="d-flex align-items-center">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <li *ngIf="!this._userService.isLoggedIn"
+                        class="nav-item">
                         <a class='nav-link rightItem' aria-current="page" [routerLink]="['/signin']">
                             Signin
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="!this._userService.isLoggedIn"
+                        class="nav-item">
                         <a class='nav-link rightItem' aria-current="page" [routerLink]="['/register']">
                             Register
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <button class="btn btn-primary" type="button">Signout
+                    <li *ngIf="this._userService.isLoggedIn"
+                        class="nav-item">
+                        <span class="userNameSpan">
+                          {{userName}}
+                        </span>
+                        <button class="btn btn-primary" 
+                            (click)="logout()" 
+                            type="button">Signout
                         </button>
                     </li>
                 </ul>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-
 import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { UserService } from '../services/user.service';
+import { LocalDataService } from '../services/local-data.service';
 
 @Component({
   selector: 'app-signin',
@@ -29,11 +30,17 @@ export class SigninComponent implements OnInit {
   };
 
   constructor(
+    public localDataService: LocalDataService,
+    public userService: UserService,
     private formBuilder: FormBuilder,
     public router: Router,
   ) { }
 
   ngOnInit() {
+    if (this.userService.isLoggedIn) {
+      this.router.navigate(['/home']);
+    }
+   
     this.form = this.formBuilder.group(
       {
         UserName: [
@@ -88,14 +95,21 @@ export class SigninComponent implements OnInit {
       if (json.error) {
         this.responseColor = 'red';
         this.apiResponse = json.error;
-        console.log('Error : '+this.apiResponse);
+        console.log('Error : ' + this.apiResponse);
+        
+        this.userService.sendAuthStateChangeNotification(false, "");
       }
       else {
+
         this.responseColor = 'green';
         this.apiResponse = "Success!";
         this.parentEmail = json.parentEmail;
-        localStorage.setItem("userName", JSON.stringify(this.signinModel.userName));
-        localStorage.setItem("parentEmail", JSON.stringify(json.parentEmail));
+        // localStorage.setItem("userName", JSON.stringify(this.signinModel.userName));
+        localStorage.setItem("userName",this.signinModel.userName);
+        localStorage.setItem("parentEmail", json.parentEmail);
+        localStorage.setItem("isAuthenticated", JSON.stringify(true));
+
+        this.userService.sendAuthStateChangeNotification(true, this.signinModel.userName);
 
         setTimeout(() => {
           this.onReset();
