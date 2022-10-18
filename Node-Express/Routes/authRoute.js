@@ -13,6 +13,7 @@ const checkUserName = (usersCollection, body) => {
 };
 
 router.route('/login').post(async (req, res) => {
+    console.log(req.body);
 
     var jsonDatabaseFile = '\JSONDatabase\\UserDB.json';
     // var jsonDatabaseFile = './UserDB.json';
