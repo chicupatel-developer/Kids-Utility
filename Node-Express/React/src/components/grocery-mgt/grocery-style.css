@@ -47,12 +47,12 @@ padding-bottom: 20px;
 }
 
 .groceryListContainer{
-    background-color: lightblue;   
-   font-size: large;
-    border-color: black;
-   border-style: solid;
-     border-radius: 10px;    
-vertical-align: middle; 
-padding-top: 20px;
-padding-bottom: 20px;
+  background-color: lightblue;   
+  font-size: large;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10px;    
+  vertical-align: middle; 
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

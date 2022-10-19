@@ -1,1 +1,66 @@
-<p>my-grocery works!</p>
+<div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+        <div class="groceryListHeader">
+            <h3>Grocery List</h3>
+        </div>
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
+<p></p>
+<div class="groceryListHeaderDetails">
+    <div class="row">
+        <div class="col-sm-3">
+           
+        </div>
+    </div>
+</div>
+<p></p>
+<div class="groceryListContainer">
+    <div class="row">
+        <div class="col-sm-3">
+            <button class="btn btn-block " 
+                onClick="saveMyList">
+                <i class="fa fa-save fa-lg"></i>
+                &nbsp;&nbsp;<b>Save My List!</b>
+            </button>
+        </div>
+        <div class="col-sm-9">
+            <ul>
+                <li>
+                    Do Check To Add Item To Your Grocery List
+                </li>
+                <li>
+                    Undo Check To Remove Item (Or) Bought Item From Your Grocery List
+                </li>
+            </ul>
+        </div>
+    </div>
+    <p></p>
+    <hr />
+    <p></p>
+    <div class="row">
+        <div class="col-sm-4">
+            <h3><u>Fruits</u></h3>
+            
+            <form [formGroup]="form" 
+                (ngSubmit)="submitForm()" 
+                novalidate>
+                <div *ngFor="let data of Data; let i=index">
+                    <label>
+                        <input type="checkbox" 
+                            [checked]="data.selected"
+                            [value]="data.value" 
+                            (change)="onCheckboxChange($event)" />
+                            {{data.name}}
+                    </label>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="grocery-list">
+            </div>
+        </div>
+    </div>
+</div>

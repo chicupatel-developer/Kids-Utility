@@ -1,0 +1,44 @@
+.groceryListHeader {
+    background-color: lightgoldenrodyellow;
+    font-size: large;
+    border-color: blue;
+    border-style: dotted;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.groceryListHeaderDetails {
+    background-color: lightgoldenrodyellow;
+    font-size: large;
+    border-color: blue;
+    border-style: solid;
+    border-radius: 10px;
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.groceryListContainer {
+    background-color: lightblue;
+    font-size: large;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.grocery-list {
+    list-style: none;
+    padding: 0;
+}
+.grocery-list li {
+    margin-bottom: 0.5rem;
+}
+.grocery-list-item {
+    display: flex;
+    justify-content: space-between;
+}
