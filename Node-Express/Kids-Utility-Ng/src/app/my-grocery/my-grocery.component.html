@@ -23,9 +23,16 @@
         <div class="col-sm-3">
             <button class="btn btn-block " 
                 (click)="saveMyList()">
-                <i class="fa fa-save fa-lg"></i>
+                <i class="fa fa-save"></i>
                 &nbsp;&nbsp;<b>Save My List!</b>
             </button>
+            <div *ngIf="apiResponse">
+                <span [style.color]="responseColor">
+                    <span class="apiResponseStyle">
+                        {{apiResponse}}
+                    </span>
+                </span>
+            </div>
         </div>
         <div class="col-sm-9">
             <ul>

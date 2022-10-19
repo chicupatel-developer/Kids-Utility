@@ -15,11 +15,15 @@ import {
 })
 export class MyGroceryComponent implements OnInit {
 
+  apiResponse = '';
+  responseColor = '';
+
   baseServerUrl = 'http://localhost:5000/';
   baseGroceryUrl = 'grocery/';
 
   groceryCollection: [{name: '', cat: '', selected: false}];
-  cat: '1';
+  
+  cat: '';
   itemName: '';
   selected: false;
   isDisabled: true;
@@ -56,8 +60,41 @@ export class MyGroceryComponent implements OnInit {
 
   saveMyList() {
     console.log(this.groceryCollection);
+
+    this.responseColor = '';
+    this.apiResponse = '';
+
+    // send groceryList to server
+    fetch(this.baseServerUrl+this.baseGroceryUrl+"edit", {
+      method: "POST",
+      // body: JSON.stringify(groceryCollection),
+      body: JSON.stringify(this.groceryCollection),
+      headers: { "Content-Type": "application/json" },
+    })
+    .then((res) => res.json())
+    .then((json) => {
+      console.log(json);
+
+      if (json.error) {
+        this.responseColor = 'red';
+        this.apiResponse = json.error;        
+      }
+      else {
+        this.responseColor = 'green';
+        this.apiResponse = json.success;
+      
+        setTimeout(() => {
+          this.onReset();
+        }, 3000);
+      }
+    });
   }
-   
+  
+  onReset() {
+    this.responseColor = '';
+    this.apiResponse = '';
+  }
+
   displayOrNot(data, cat) {
     if (data.cat == cat)
       return true;
