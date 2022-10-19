@@ -19,21 +19,31 @@ export class MyGroceryComponent implements OnInit {
   baseGroceryUrl = 'grocery/';
 
   groceryCollection: [{name: '', cat: '', selected: false}];
-  cat: '';
+  cat: '1';
   itemName: '';
   selected: false;
   isDisabled: true;
-
+  
+  form: FormGroup;
  
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       checkArray: this.fb.array([])
     })
   }
-
   ngOnInit(): void {
     this.getGroceryCollection();
   }
+  
+  onCheckboxChange(e, data) {
+    var checkArray: FormArray = this.form.get('checkArray') as FormArray;
+
+    console.log(e.target.value, ' : ', e.target.checked);    
+
+    let index = this.groceryCollection.findIndex(x => x.name === e.target.value);
+    index!==-1 && (this.groceryCollection[index].selected = e.target.checked);
+  }
+  
   getGroceryCollection() {
     fetch(this.baseServerUrl+this.baseGroceryUrl)
       .then(res => res.json())
@@ -44,18 +54,14 @@ export class MyGroceryComponent implements OnInit {
     );
   };
 
-
-
-  form: FormGroup;
-  onCheckboxChange(e, data) {
-    var checkArray: FormArray = this.form.get('checkArray') as FormArray;
-
-    console.log(e.target.value, ' : ', e.target.checked);    
-
-    let index = this.groceryCollection.findIndex(x => x.name === e.target.value);
-    index!==-1 && (this.groceryCollection[index].selected = e.target.checked);
-  }
   saveMyList() {
     console.log(this.groceryCollection);
+  }
+   
+  displayOrNot(data, cat) {
+    if (data.cat == cat)
+      return true;
+    else
+      return false;
   }
 }

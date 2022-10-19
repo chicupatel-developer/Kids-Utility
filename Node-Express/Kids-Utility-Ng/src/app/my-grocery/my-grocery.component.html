@@ -42,23 +42,75 @@
     <hr />
     <p></p>
     <div class="row">
-        <div class="col-sm-4">
-            <h3><u>Fruits</u></h3>
-            
+        <div class="col-sm-12">     
             <form [formGroup]="form"               
                 novalidate>
-                <div *ngFor="let data of groceryCollection; let i=index">
-                    <label>
-                        <input type="checkbox" 
-                            [checked]="data.selected"
-                            [value]="data.name" 
-                            (change)="onCheckboxChange($event, data)" />
-                            {{data.name}}
-                    </label>
-                </div>           
+                
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3><u>Fruits</u></h3>
+                        <div *ngFor="let data of groceryCollection; let i=index">
+                            <span>
+                                <label *ngIf="displayOrNot(data, 'Fruit')" class="itemStyle">
+                                    <input type="checkbox" [checked]="data.selected" [value]="data.name"
+                                        (change)="onCheckboxChange($event, data)" />
+                                    {{data.name}}
+                                </label>
+                            </span>
+                        </div>
+                        
+                        <p></p>
+                        <h3><u>Frozen</u></h3>
+                        <div *ngFor="let data of groceryCollection; let i=index">
+                            <span>
+                                <label *ngIf="displayOrNot(data, 'Frozen')" class="itemStyle">
+                                    <input type="checkbox" [checked]="data.selected" [value]="data.name"
+                                        (change)="onCheckboxChange($event, data)" />
+                                    {{data.name}}
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3><u>Vegitables</u></h3>
+                        <div *ngFor="let data of groceryCollection; let i=index">
+                            <span>
+                                <label *ngIf="displayOrNot(data, 'Vegitables')" class="itemStyle">
+                                    <input type="checkbox" [checked]="data.selected" [value]="data.name"
+                                        (change)="onCheckboxChange($event, data)" />
+                                    {{data.name}}
+                                </label>
+                            </span>
+                        </div>
+                        
+                        <p></p>
+                        <h3><u>Bakery</u></h3>
+                        <div *ngFor="let data of groceryCollection; let i=index">
+                            <span>
+                                <label *ngIf="displayOrNot(data, 'Bakery')" class="itemStyle">
+                                    <input type="checkbox" [checked]="data.selected" [value]="data.name"
+                                        (change)="onCheckboxChange($event, data)" />
+                                    {{data.name}}
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3><u>Others</u></h3>
+                        <div *ngFor="let data of groceryCollection; let i=index">
+                            <span>
+                                <label *ngIf="displayOrNot(data, 'Others')" class="itemStyle">
+                                    <input type="checkbox" [checked]="data.selected" [value]="data.name"
+                                        (change)="onCheckboxChange($event, data)" />
+                                    {{data.name}}
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+             
             </form>
-            <div class="grocery-list">
-            </div>
+         
         </div>
     </div>
 </div>

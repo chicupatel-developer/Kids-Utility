@@ -31,14 +31,13 @@
 }
 
 
-.grocery-list {
-    list-style: none;
-    padding: 0;
+
+u {
+    padding-left: 10px;
 }
-.grocery-list li {
-    margin-bottom: 0.5rem;
-}
-.grocery-list-item {
-    display: flex;
-    justify-content: space-between;
+
+.itemStyle {
+    font-style: italic;
+    padding-left: 10px;
+    padding-bottom: 7px;
 }
