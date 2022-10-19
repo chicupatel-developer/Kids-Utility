@@ -45,35 +45,17 @@ export class MyGroceryComponent implements OnInit {
   };
 
 
-  Data: Array<any> = [
-    { name: 'Pear', value: 'pear', selected: false },
-    { name: 'Plum', value: 'plum', selected: false },
-    { name: 'Kiwi', value: 'kiwi', selected: true },
-    { name: 'Apple', value: 'apple', selected: false },
-    { name: 'Lime', value: 'lime', selected: false }
-  ];
-  form: FormGroup;
-  onCheckboxChange(e) {
-    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-    console.log(e.target.value, ' : ', e.target.checked);
-    if (e.target.checked) {
-      checkArray.push(new FormControl(e.target.value));
-    } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {        
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
 
-    checkArray.controls.forEach((item: FormControl) => {        
-      console.log(item.value);
-    });
+  form: FormGroup;
+  onCheckboxChange(e, data) {
+    var checkArray: FormArray = this.form.get('checkArray') as FormArray;
+
+    console.log(e.target.value, ' : ', e.target.checked);    
+
+    let index = this.groceryCollection.findIndex(x => x.name === e.target.value);
+    index!==-1 && (this.groceryCollection[index].selected = e.target.checked);
   }
-  submitForm() {
-    console.log(this.form.value);
+  saveMyList() {
+    console.log(this.groceryCollection);
   }
 }

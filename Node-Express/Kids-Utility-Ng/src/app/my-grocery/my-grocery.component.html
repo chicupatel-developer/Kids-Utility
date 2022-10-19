@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-sm-3">
             <button class="btn btn-block " 
-                onClick="saveMyList">
+                (click)="saveMyList()">
                 <i class="fa fa-save fa-lg"></i>
                 &nbsp;&nbsp;<b>Save My List!</b>
             </button>
@@ -45,19 +45,17 @@
         <div class="col-sm-4">
             <h3><u>Fruits</u></h3>
             
-            <form [formGroup]="form" 
-                (ngSubmit)="submitForm()" 
+            <form [formGroup]="form"               
                 novalidate>
-                <div *ngFor="let data of Data; let i=index">
+                <div *ngFor="let data of groceryCollection; let i=index">
                     <label>
                         <input type="checkbox" 
                             [checked]="data.selected"
-                            [value]="data.value" 
-                            (change)="onCheckboxChange($event)" />
+                            [value]="data.name" 
+                            (change)="onCheckboxChange($event, data)" />
                             {{data.name}}
                     </label>
-                </div>
-                <input type="submit" value="Submit">
+                </div>           
             </form>
             <div class="grocery-list">
             </div>
