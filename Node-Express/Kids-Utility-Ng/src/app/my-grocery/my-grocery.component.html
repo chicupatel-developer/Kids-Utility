@@ -37,6 +37,10 @@
                                     </button>
                                     &nbsp;
                                     <span class="addItemTextStyle">Add New Grocery Item Here!</span>
+                                    <p></p>
+                                    <span *ngIf="addItemApiResponse">
+                                        {{addItemApiResponse}}
+                                    </span>
                                 </div>
                             </div>
                         </div> 

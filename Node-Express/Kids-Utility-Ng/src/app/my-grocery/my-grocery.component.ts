@@ -15,6 +15,8 @@ import {
 })
 export class MyGroceryComponent implements OnInit {
 
+  addItemApiResponse = '';
+  
   apiResponse = '';
   responseColor = '';
 
@@ -97,7 +99,10 @@ export class MyGroceryComponent implements OnInit {
   addItem() {     
     console.log(this.formEntry.value);
 
+    this.addItemApiResponse = '';
+
     if (this.formEntry.value["Category"] == '' || this.formEntry.value["ItemName"] == '') {
+      this.addItemApiResponse = "Invalid Data Entry!";
       return;
     }
     else {
@@ -114,11 +119,18 @@ export class MyGroceryComponent implements OnInit {
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
-        this.getGroceryCollection();
-        this.formEntry.patchValue({
-          Category: '',
-          ItemName: '',
-        });
+        if (json.error) {
+          this.addItemApiResponse = json.error;
+        }
+        else {
+          this.addItemApiResponse = json.message;
+          this.getGroceryCollection();
+          this.formEntry.patchValue({
+            Category: '',
+            ItemName: '',
+          });
+        }
+      
       });
     }
       
