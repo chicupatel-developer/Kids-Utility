@@ -23,20 +23,46 @@ export class MyGroceryComponent implements OnInit {
 
   groceryCollection: [{name: '', cat: '', selected: false}];
   
-  cat: '';
-  itemName: '';
-  selected: false;
-  isDisabled: true;
+  categories = [];
+  selectedCategory = '';
+  itemName = '';
   
+
+  formEntry: FormGroup = new FormGroup({
+    Category: new FormControl(''),
+    ItemName: new FormControl(''),
+  });
+
   form: FormGroup;
  
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       checkArray: this.fb.array([])
-    })
+    });
+
+
+    this.formEntry = this.fb.group(
+      {
+        Category: [
+          '',        
+        ],
+        ItemName: [
+          '',        
+        ],      
+      },     
+    );
   }
+  
+  get f(): { [key: string]: AbstractControl } {
+    return this.formEntry.controls;
+  }
+  
   ngOnInit(): void {
     this.getGroceryCollection();
+
+    this.categories = ["Fruit", "Frozen", "Vegitables", "Bakery", "Others"];
+
+    this.formEntry.controls['ItemName'].disable();   
   }
   
   onCheckboxChange(e, data) {
@@ -58,6 +84,20 @@ export class MyGroceryComponent implements OnInit {
     );
   };
 
+  changeCategory(e) {
+    console.log(e.target.value);
+    if (e.target.value == '') {  
+      this.formEntry.patchValue({
+        ItemName: '',
+      });
+      this.formEntry.controls['ItemName'].disable();   
+    }
+    else {
+      this.selectedCategory = e.target.value;
+      this.formEntry.controls['ItemName'].enable();   
+    }
+  }
+  
   saveMyList() {
     console.log(this.groceryCollection);
 

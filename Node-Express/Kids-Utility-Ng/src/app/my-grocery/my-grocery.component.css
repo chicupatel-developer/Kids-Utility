@@ -52,3 +52,7 @@ u {
     font-weight: bold;
     font-size: large;
 }
+
+.formControl {
+    padding: 30px;
+}

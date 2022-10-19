@@ -12,8 +12,35 @@
 <p></p>
 <div class="groceryListHeaderDetails">
     <div class="row">
-        <div class="col-sm-3">
-           
+        <div class="col-sm-3 formControl">
+
+            <div class="card-body">
+                <form 
+                    [formGroup]="formEntry">
+                    <div class="form-group">                     
+                        <select 
+                            formControlName="Category"
+                            class="form-control" 
+                            (change)="changeCategory($event)">
+                            <option value="">---Select Category---</option>
+                            <option value={{c}} *ngFor="let c of categories">
+                                {{c}}
+                            </option>
+                        </select>
+                        <p></p>
+                        <input type="text" 
+                            formControlName="ItemName" 
+                            class="form-control"
+                        />
+                        <p></p>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success">
+                                Add Item
+                            </button>                     
+                        </div>
+                    </div>
+                </form>
+            </div>        
         </div>
     </div>
 </div>
