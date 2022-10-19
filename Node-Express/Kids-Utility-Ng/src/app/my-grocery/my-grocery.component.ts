@@ -23,10 +23,7 @@ export class MyGroceryComponent implements OnInit {
 
   groceryCollection: [{name: '', cat: '', selected: false}];
   
-  categories = [];
-  selectedCategory = '';
-  itemName = '';
-  
+  categories = []; 
 
   formEntry: FormGroup = new FormGroup({
     Category: new FormControl(''),
@@ -92,12 +89,41 @@ export class MyGroceryComponent implements OnInit {
       });
       this.formEntry.controls['ItemName'].disable();   
     }
-    else {
-      this.selectedCategory = e.target.value;
+    else {    
       this.formEntry.controls['ItemName'].enable();   
     }
   }
   
+  addItem() {     
+    console.log(this.formEntry.value);
+
+    if (this.formEntry.value["Category"] == '' || this.formEntry.value["ItemName"] == '') {
+      return;
+    }
+    else {
+      var data = {
+          cat: this.formEntry.value["Category"],
+          name: this.formEntry.value["ItemName"],
+          selected: false,
+        };
+      fetch(this.baseServerUrl+this.baseGroceryUrl+"add", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        this.getGroceryCollection();
+        this.formEntry.patchValue({
+          Category: '',
+          ItemName: '',
+        });
+      });
+    }
+      
+  }
+
   saveMyList() {
     console.log(this.groceryCollection);
 
