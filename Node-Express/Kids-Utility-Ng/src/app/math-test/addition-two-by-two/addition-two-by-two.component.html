@@ -141,6 +141,43 @@
 </div>
 
 <div *ngIf="displayTestResult" class="row">
-    Test Result
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>Test Result !</h2>
+            <p></p>
+            <h4>{{testName}}</h4>
+        </div>
+    </div>
+    <p></p>
+    <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6  testResultTime">
+            Time To Complete Test : {{minutes}}M : {{seconds}}S
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+    <p></p>
+    <hr />
+    <p></p>
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+        <div class="correctTotal col-sm-3">
+            Total Correct : {{totalCorrect}}
+            <p></p>
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class="wrongTotal col-sm-3">
+            Total Wrong : {{totalWrong}}
+            <p></p>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+    <hr />
+    <p></p>
 </div>
 
