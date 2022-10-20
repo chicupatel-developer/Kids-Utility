@@ -60,3 +60,29 @@
     text-align: center;
     vertical-align: middle;
 }
+
+
+.correctResponse {
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    background-color: lightgreen;
+    font-size: medium;
+    border-color: green;
+    border-style: dotted;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.wrongResponse {
+    padding-bottom: 15px;
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+
+    background-color: lightcoral;
+    font-size: large;
+    border-color: red;
+    border-style: dotted;
+    border-radius: 10px;
+}
