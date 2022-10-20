@@ -17,7 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
 import { MyGroceryComponent } from './my-grocery/my-grocery.component';
-import { MathTestComponent } from './math-test/math-test.component';
+import { AdditionTwoByTwoComponent } from './math-test/addition-two-by-two/addition-two-by-two.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { MathTestComponent } from './math-test/math-test.component';
     SigninComponent,
     RegisterComponent,
     MyGroceryComponent,
-    MathTestComponent,  
+    AdditionTwoByTwoComponent,  
   ],
   imports: [
     BrowserModule,

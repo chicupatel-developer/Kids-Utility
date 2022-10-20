@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MathTestComponent } from './math-test.component';
+import { AdditionTwoByTwoComponent } from './addition-two-by-two.component';
 
-describe('MathTestComponent', () => {
-  let component: MathTestComponent;
-  let fixture: ComponentFixture<MathTestComponent>;
+describe('AdditionTwoByTwoComponent', () => {
+  let component: AdditionTwoByTwoComponent;
+  let fixture: ComponentFixture<AdditionTwoByTwoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MathTestComponent ]
+      declarations: [ AdditionTwoByTwoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MathTestComponent);
+    fixture = TestBed.createComponent(AdditionTwoByTwoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
