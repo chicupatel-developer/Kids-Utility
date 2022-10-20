@@ -99,11 +99,12 @@ export class MyGroceryComponent implements OnInit {
   addItem() {     
     console.log(this.formEntry.value);
 
+    this.responseColor = '';
     this.addItemApiResponse = '';
 
     if (this.formEntry.value["Category"] == '' || this.formEntry.value["ItemName"] == '') {
       this.addItemApiResponse = "Invalid Data Entry!";
-      return;
+      this.responseColor = 'red';
     }
     else {
       var data = {
@@ -121,19 +122,22 @@ export class MyGroceryComponent implements OnInit {
         console.log(json);
         if (json.error) {
           this.addItemApiResponse = json.error;
+          this.responseColor = 'red';
         }
         else {
           this.addItemApiResponse = json.message;
+          this.responseColor = 'green';
           this.getGroceryCollection();
           this.formEntry.patchValue({
             Category: '',
             ItemName: '',
-          });
-        }
-      
+          });       
+        }      
       });
     }
-      
+    setTimeout(() => {
+      this.onReset();
+    }, 3000);
   }
 
   saveMyList() {
@@ -171,6 +175,7 @@ export class MyGroceryComponent implements OnInit {
   onReset() {
     this.responseColor = '';
     this.apiResponse = '';
+    this.addItemApiResponse = '';
   }
 
   displayOrNot(data, cat) {

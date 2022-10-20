@@ -39,8 +39,12 @@
                                     <span class="addItemTextStyle">Add New Grocery Item Here!</span>
                                     <p></p>
                                     <span *ngIf="addItemApiResponse">
-                                        {{addItemApiResponse}}
-                                    </span>
+                                        <span [style.color]="responseColor">
+                                            <span class="apiResponseStyle">
+                                                {{addItemApiResponse}}
+                                            </span>
+                                        </span>
+                                    </span>                                 
                                 </div>
                             </div>
                         </div> 
