@@ -1,3 +1,30 @@
 .nextQuestionBtn {
     text-align: right;    
 }
+
+.test-name-header {
+    background-color: lightgoldenrodyellow;
+    font-size: x-large;
+    border-color: brown;
+    border-style: dotted;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+
+.questionPanel {
+    background-color: lightblue;
+    font-size: large;
+    font-weight: bold;
+}
+.answerPanel {
+    background-color: lightgoldenrodyellow;
+}
+.questionOption{
+    padding-left: 80px;
+    padding-bottom: 5px;
+}
