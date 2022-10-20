@@ -1,1 +1,131 @@
-<p>addition-two-by-two works!</p>
+<div class="row">
+    <div class="col-sm-2">
+    
+    </div>
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-6">
+                display timer
+            </div>
+            <div class="col-sm-6 nextQuestionBtn">
+                <button type="button" 
+                    (click)="onNextQuestion()" 
+                    class="btn btn-primary">
+                    N.E.X.T
+                </button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            [Q : {{questionNumber}}] {{number1}} {{operator}} {{number2}} = ___
+        </div>
+        <div class="row">
+            <div>
+                <div  *ngIf="1==location">
+                    <div>
+                        <span>
+                            <input 
+                                type="radio" 
+                                value={{(number1+number2).toString()}} 
+                                checked=getOptionValueForRightAnswer()  
+                                />
+                        </span>
+                        <span>
+                            {{(number1+number2).toString()}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="1==wrongLocation1">
+                    <div>
+                        <span>
+                            <input type="radio" 
+                                value={{wrongAnswer1}} 
+                                checked=getOptionValueForWrongAnswer1()  />
+                        </span>
+                        <span>
+                            {{wrongAnswer1}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="1==wrongLocation2">
+                    <div>
+                        <span>
+                            <input type="radio" 
+                                value={{wrongAnswer2}} 
+                                checked=getOptionValueForWrongAnswer2() />
+                        </span>
+                        <span>
+                            {{wrongAnswer2}}
+                        </span>
+                    </div>
+                </div>
+
+
+                <div *ngIf="2==location">
+                    <div>
+                        <span>
+                            <input type="radio" value={{(number1+number2).toString()}} checked=getOptionValueForRightAnswer() />
+                        </span>
+                        <span>
+                            {{(number1+number2).toString()}}
+                        </span>
+                    </div>
+                </div>                
+                <div *ngIf="2==wrongLocation1">
+                    <div>
+                        <span>
+                            <input type="radio" value={{wrongAnswer1}} checked=getOptionValueForWrongAnswer1() />
+                        </span>
+                        <span>
+                            {{wrongAnswer1}}
+                        </span>
+                    </div>
+                </div>                
+                <div *ngIf="2==wrongLocation2">
+                    <div>
+                        <span>
+                            <input type="radio" value={{wrongAnswer2}} checked=getOptionValueForWrongAnswer2() />
+                        </span>
+                        <span>
+                            {{wrongAnswer2}}
+                        </span>
+                    </div>
+                </div>
+
+                <div *ngIf="3==location">
+                    <div>
+                        <span>
+                            <input type="radio" value={{(number1+number2).toString()}} checked=getOptionValueForRightAnswer() />
+                        </span>
+                        <span>
+                            {{(number1+number2).toString()}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="3==wrongLocation1">
+                    <div>
+                        <span>
+                            <input type="radio" value={{wrongAnswer1}} checked=getOptionValueForWrongAnswer1() />
+                        </span>
+                        <span>
+                            {{wrongAnswer1}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="3==wrongLocation2">
+                    <div>
+                        <span>
+                            <input type="radio" value={{wrongAnswer2}} checked=getOptionValueForWrongAnswer2() />
+                        </span>
+                        <span>
+                            {{wrongAnswer2}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+    
+    </div>
+</div>

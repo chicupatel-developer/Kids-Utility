@@ -21,6 +21,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
   number2Upper = 99;
 
   testName = 'Addition [2 Digits + 2 Digits]';  
+  operator = '+';
 
   parentEmail = '';
 
@@ -57,22 +58,29 @@ export class AdditionTwoByTwoComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    if (this.userService.isLoggedIn) {
+    if (!this.userService.isLoggedIn) {
       this.router.navigate(['/home']);
     }
     this.setParentEmail();
+
+    this.onStartTest();
   }
 
   setParentEmail() {
-    if (JSON.parse(localStorage.getItem('parentEmail')) != "") {
-      this.parentEmail = JSON.parse(localStorage.getItem('parentEmail'));
+    if ((localStorage.getItem('parentEmail')) != "") {
+      this.parentEmail = (localStorage.getItem('parentEmail'));
     }
     else {
       this.parentEmail = "";
     }
   }
  
-  onStartTest() {    
+  onStartTest() {
+    this.startTest = true;
+    this.myProgress = [];
+    localStorage.setItem("my-progress", JSON.stringify([]));
+    this.getStart();
+    this.getMyProgressFromLocalStorage();
   }
   startTimer() {  
   }
@@ -99,12 +107,12 @@ export class AdditionTwoByTwoComponent implements OnInit {
   }
   
   getStart() {
-       this.getQuestionNumber();
-        this.getNumber1(this.number1Lower, this.number1Upper);
-        this.getNumber2(this.number2Lower, this.number2Upper);
-        this.getCorrectAnswer();
-        this.getWrongAnswer1();
-        this.getWrongAnswer2();
+    this.getQuestionNumber();
+    this.getNumber1(this.number1Lower, this.number1Upper);
+    this.getNumber2(this.number2Lower, this.number2Upper);
+    this.getCorrectAnswer();
+    this.getWrongAnswer1();
+    this.getWrongAnswer2();
   }
   getMyProgressFromLocalStorage() {
     
@@ -144,11 +152,13 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.correctAnswer = correctAnswer;
     return correctAnswer;
   }
+  // +1
   getWrongAnswer1 = () => {
     var wrongAnswer1 = this.correctAnswer + 1;
     this.wrongAnswer1 = wrongAnswer1;
     return wrongAnswer1;
   }
+  // -1
   getWrongAnswer2 = () => {
     var wrongAnswer2 = this.correctAnswer - 1;
     this.wrongAnswer2 = wrongAnswer2;
@@ -174,5 +184,24 @@ export class AdditionTwoByTwoComponent implements OnInit {
 
     // continue with next question
     this.getStart();
+  }
+
+  getOptionValueForRightAnswer() {
+    if (this.answerOption == (this.number1 + this.number2).toString())
+      return true;
+    else
+      return false;
+  }
+  getOptionValueForWrongAnswer1() {
+    if (this.answerOption == this.wrongAnswer1.toString())
+      return true;
+    else
+      return false;
+  }
+  getOptionValueForWrongAnswer2() {
+    if (this.answerOption == this.wrongAnswer2.toString())
+      return true;
+    else
+      return false;
   }
 }
