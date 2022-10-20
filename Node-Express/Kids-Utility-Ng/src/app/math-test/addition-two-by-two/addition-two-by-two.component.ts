@@ -165,6 +165,18 @@ export class AdditionTwoByTwoComponent implements OnInit {
     return wrongAnswer2;
   }
 
+
+  displayTestResultNow() {
+    var testCollection = JSON.parse(localStorage.getItem("my-progress") || "[]");
+    if (testCollection) {
+      this.displayTestResult = true;
+      this.questionNumber = 0;
+    }
+    else {
+      this.displayTestResult = false;
+    }
+  }
+
   // next question
   onNextQuestion() {
     //store currect question-answer,,, to state and local-storage
@@ -180,7 +192,14 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.myProgress = currentProgress;
     localStorage.setItem("my-progress", JSON.stringify(this.myProgress));
 
-       
+    // if last question, then display test result
+    if (this.questionNumber == 20) {
+      this.displayTestResultNow();
+
+      // stop timer
+      // this.stopTimer();
+      return;
+    }
 
     // continue with next question
     this.getStart();
@@ -203,5 +222,10 @@ export class AdditionTwoByTwoComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  onAnswerOptionChange(e) {
+    console.log(e.target.value);
+    this.answerOption = e.target.value;
   }
 }

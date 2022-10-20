@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="!displayTestResult" class="row">
     <div class="col-sm-2">
     
     </div>
@@ -25,9 +25,11 @@
                     <div>
                         <span>
                             <input 
+                                name="question"
                                 type="radio" 
                                 value={{(number1+number2).toString()}} 
-                                checked=getOptionValueForRightAnswer()  
+                                [checked]="getOptionValueForRightAnswer()" 
+                                (change)="onAnswerOptionChange($event)"
                                 />
                         </span>
                         <span>
@@ -39,8 +41,11 @@
                     <div>
                         <span>
                             <input type="radio" 
+                                name="question"
                                 value={{wrongAnswer1}} 
-                                checked=getOptionValueForWrongAnswer1()  />
+                                [checked]="getOptionValueForWrongAnswer1()" 
+                                (change)="onAnswerOptionChange($event)"
+                                />
                         </span>
                         <span>
                             {{wrongAnswer1}}
@@ -51,8 +56,11 @@
                     <div>
                         <span>
                             <input type="radio" 
+                                name="question"
                                 value={{wrongAnswer2}} 
-                                checked=getOptionValueForWrongAnswer2() />
+                                [checked]="getOptionValueForWrongAnswer2()" 
+                                (change)="onAnswerOptionChange($event)"
+                               />
                         </span>
                         <span>
                             {{wrongAnswer2}}
@@ -60,42 +68,53 @@
                     </div>
                 </div>
 
-
                 <div *ngIf="2==location">
                     <div>
                         <span>
-                            <input type="radio" value={{(number1+number2).toString()}} checked=getOptionValueForRightAnswer() />
+                            <input type="radio" 
+                                name="question"
+                                (change)="onAnswerOptionChange($event)"
+                                value={{(number1+number2).toString()}} [checked]="getOptionValueForRightAnswer()" />
                         </span>
                         <span>
                             {{(number1+number2).toString()}}
                         </span>
                     </div>
-                </div>                
+                </div>
                 <div *ngIf="2==wrongLocation1">
                     <div>
                         <span>
-                            <input type="radio" value={{wrongAnswer1}} checked=getOptionValueForWrongAnswer1() />
+                            <input type="radio" 
+                                name="question"
+                                (change)="onAnswerOptionChange($event)"
+                                value={{wrongAnswer1}} [checked]="getOptionValueForWrongAnswer1()" />
                         </span>
                         <span>
                             {{wrongAnswer1}}
                         </span>
                     </div>
-                </div>                
+                </div>
                 <div *ngIf="2==wrongLocation2">
                     <div>
                         <span>
-                            <input type="radio" value={{wrongAnswer2}} checked=getOptionValueForWrongAnswer2() />
+                            <input type="radio" 
+                                name="question"
+                                (change)="onAnswerOptionChange($event)"
+                                value={{wrongAnswer2}} [checked]="getOptionValueForWrongAnswer2()" />
                         </span>
                         <span>
                             {{wrongAnswer2}}
                         </span>
                     </div>
-                </div>
+                </div>              
 
                 <div *ngIf="3==location">
                     <div>
                         <span>
-                            <input type="radio" value={{(number1+number2).toString()}} checked=getOptionValueForRightAnswer() />
+                            <input type="radio"
+                                name="question"
+                                (change)="onAnswerOptionChange($event)"
+                                value={{(number1+number2).toString()}} [checked]="getOptionValueForRightAnswer()" />
                         </span>
                         <span>
                             {{(number1+number2).toString()}}
@@ -105,7 +124,10 @@
                 <div *ngIf="3==wrongLocation1">
                     <div>
                         <span>
-                            <input type="radio" value={{wrongAnswer1}} checked=getOptionValueForWrongAnswer1() />
+                            <input type="radio" 
+                                name="question"
+                                (change)="onAnswerOptionChange($event)"
+                                value={{wrongAnswer1}} [checked]="getOptionValueForWrongAnswer1()" />
                         </span>
                         <span>
                             {{wrongAnswer1}}
@@ -115,7 +137,10 @@
                 <div *ngIf="3==wrongLocation2">
                     <div>
                         <span>
-                            <input type="radio" value={{wrongAnswer2}} checked=getOptionValueForWrongAnswer2() />
+                            <input type="radio" 
+                                name="question"
+                                (change)="onAnswerOptionChange($event)"
+                                value={{wrongAnswer2}} [checked]="getOptionValueForWrongAnswer2()" />
                         </span>
                         <span>
                             {{wrongAnswer2}}
@@ -129,3 +154,8 @@
     
     </div>
 </div>
+
+<div *ngIf="displayTestResult" class="row">
+    Test Result
+</div>
+

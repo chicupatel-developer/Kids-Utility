@@ -164,6 +164,7 @@ export default class Addition2By2 extends Component {
     }
     */
     onAnswerOptionChange(childData) {
+        console.log('selected answer,,,',childData);
         this.setState({
             answerOption: childData
         });
