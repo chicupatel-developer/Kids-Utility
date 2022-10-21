@@ -1,0 +1,14 @@
+.questionPanel {
+    background-color: lightblue;
+    font-size: large;
+    font-weight: bold;
+}
+
+.answerPanel {
+    background-color: lightgoldenrodyellow;
+}
+
+.questionOption {
+    padding-left: 80px;
+    padding-bottom: 5px;
+}

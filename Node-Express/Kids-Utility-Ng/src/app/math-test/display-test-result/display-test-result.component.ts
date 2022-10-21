@@ -21,7 +21,7 @@ export class DisplayTestResultComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
-   console.log('in the display-test-result component...'+ this.testName);
+  
   }
 
  

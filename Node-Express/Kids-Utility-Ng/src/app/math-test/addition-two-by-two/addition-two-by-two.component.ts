@@ -70,6 +70,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.onStartTest();
   }
 
+  // set username and parentemail
   setParentEmail() {
     if ((localStorage.getItem('parentEmail')) != "") {
       this.parentEmail = (localStorage.getItem('parentEmail'));
@@ -87,6 +88,8 @@ export class AdditionTwoByTwoComponent implements OnInit {
     }
   }
  
+  // when user press START TEST button
+  // test start
   onStartTest() {
     this.startTest = true;
     this.myProgress = [];
@@ -95,8 +98,11 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.getMyProgressFromLocalStorage();
 
     // timer
+    // this will start timer when user START test
     this.startTimer();
   }
+
+  // timer
   startTimer() {
     this.seconds = 0;
     this.minutes = 0;
@@ -119,28 +125,9 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.time = 0;
     this.isOn = false;
   }
-  
-
-  // next test
-  resetTest() {
-    this.location = 0;
-    this.wrongLocation1 = 0;
-    this.wrongLocation2 = 0;
-    this.questionNumber = 0;
-    this.answerOption = '-';
-    this.number1 = 0;
-    this.number2 = 0;
-    this.correctAnswer = 0;
-    this.wrongAnswer1 = 0;
-    this.wrongAnswer2 = 0;
-    this.myProgress = [];
-    this.totalCorrect = 0;
-    this.totalWrong = 0;
-    this.displayTestResult = false;
-    this.getStart();
-    this.getMyProgressFromLocalStorage();
-  }
-  
+ 
+  // when user press NEXT question button
+  // get new question/right-answer/2 wrong-answers randomly
   getStart() {
     this.getQuestionNumber();
     this.getNumber1(this.number1Lower, this.number1Upper);
@@ -201,20 +188,8 @@ export class AdditionTwoByTwoComponent implements OnInit {
     return wrongAnswer2;
   }
 
-
-  displayTestResultNow() {
-    var testCollection = JSON.parse(localStorage.getItem("my-progress") || "[]");
-    if (testCollection) {
-      this.displayTestResult = true;
-      this.questionNumber = 0;
-
-      this.displayFinalTestResult();
-    }
-    else {
-      this.displayTestResult = false;
-    }
-  }
-
+  // call back from display-question component
+  // when user press NEXT question button
   // next question
   onNextQuestion() {
     //store currect question-answer,,, to state and local-storage
@@ -244,6 +219,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.getStart();
   }
 
+  // xfer to display-question component
   getOptionValueForRightAnswer() {
     if (this.answerOption == (this.number1 + this.number2).toString())
       return true;
@@ -263,14 +239,28 @@ export class AdditionTwoByTwoComponent implements OnInit {
       return false;
   }
 
-  onAnswerOptionChange(e) {
-    console.log(e.target.value);
-    this.answerOption = e.target.value;
+  // call back from display-question component
+  onAnswerOptionChange(userAnswer) {
+    console.log(userAnswer);
+    this.answerOption = userAnswer;
   }
   
+
   // display test result
   // reset myProgress to [] @ local-storage
-  // calculate totalCorrect and totalWrong
+  // calculate totalCorrect and totalWrong  
+  displayTestResultNow() {
+    var testCollection = JSON.parse(localStorage.getItem("my-progress") || "[]");
+    if (testCollection) {
+      this.displayTestResult = true;
+      this.questionNumber = 0;
+
+      this.displayFinalTestResult();
+    }
+    else {
+      this.displayTestResult = false;
+    }
+  }
   displayFinalTestResult() {
     var testCollection = JSON.parse(localStorage.getItem("my-progress") || "[]");
     if (testCollection) {
@@ -300,4 +290,24 @@ export class AdditionTwoByTwoComponent implements OnInit {
     localStorage.setItem("my-progress", JSON.stringify([]));
   }
     
+
+  // next test
+  resetTest() {
+    this.location = 0;
+    this.wrongLocation1 = 0;
+    this.wrongLocation2 = 0;
+    this.questionNumber = 0;
+    this.answerOption = '-';
+    this.number1 = 0;
+    this.number2 = 0;
+    this.correctAnswer = 0;
+    this.wrongAnswer1 = 0;
+    this.wrongAnswer2 = 0;
+    this.myProgress = [];
+    this.totalCorrect = 0;
+    this.totalWrong = 0;
+    this.displayTestResult = false;
+    this.getStart();
+    this.getMyProgressFromLocalStorage();
+  }
 }
