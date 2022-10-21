@@ -51,6 +51,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
   totalCorrect = 0;
   totalWrong = 0;
   displayTestResult = false;
+  testResult = {};
   
   constructor(
     public localDataService: LocalDataService,
@@ -289,6 +290,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
       };
           
       console.log(testresult);
+      this.testResult = testresult;
     }
 
     // @last reset local-storage

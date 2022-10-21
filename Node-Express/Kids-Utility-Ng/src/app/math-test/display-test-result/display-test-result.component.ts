@@ -12,12 +12,18 @@ export class DisplayTestResultComponent implements OnChanges {
   @Input() seconds;
   @Input() parentEmail;
   @Input() userName;
-  @Input() myPorgress: [];
+  @Input() myProgress;
+  @Input() testResult;
+  @Input() totalCorrect;
+  @Input() totalWrong;
   
+ 
   constructor() { }
 
   ngOnChanges() {
    console.log('in the display-test-result component...'+ this.testName);
   }
+
+ 
 
 }

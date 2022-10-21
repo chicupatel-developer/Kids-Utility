@@ -140,89 +140,17 @@
     </div>  
 </div>
 
-<div>
+<div *ngIf="displayTestResult" class="row">
     <app-display-test-result
         [testName] = "testName"
         [minutes] = "minutes"
         [seconds] = "seconds"
         [myProgress] = "myProgress"
+        [testResult] = "testResult"
+        [totalCorrect] = "totalCorrect"
+        [totalWrong] = "totalWrong"
         [parentEmail]=  "parentEmail"
         [userName] = "currentUser"
     >
     </app-display-test-result>
 </div>
-<!-- 
-<div *ngIf="displayTestResult" class="row">
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <h2>Test Result !</h2>
-            <p></p>
-            <h4>{{testName}}</h4>
-        </div>
-        <div class="col-sm-2"></div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-6  testResultTime">
-            Time To Complete Test : {{minutes}}M : {{seconds}}S
-        </div>
-        <div class="col-sm-3">
-        </div>
-    </div>
-    <p></p>
-    <div class="row">
-        <div class="col-sm-2">
-        </div>
-        <div class="correctTotal col-sm-3">
-            Total Correct : {{totalCorrect}}
-            <p></p>
-        </div>
-        <div class="col-sm-2">
-        </div>
-        <div class="wrongTotal col-sm-3">
-            Total Wrong : {{totalWrong}}
-            <p></p>
-        </div>
-        <div class="col-sm-2">
-        </div>
-    </div>
-    <p></p>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-10">
-                <div *ngFor="let item of myProgress">
-                    <div *ngIf="item.questionResult == 'Correct'">
-                        <div class="correctResponse">
-                            Question : [{{item.questionNumber}}] : {{item.question}}
-                            <br />
-                            Your Answer : {{item.myAnswer}}
-                            <br />
-                            Correct Answer : {{item.correctAnswer}}
-                            <br />
-                            Response : {{item.questionResult}}
-                        </div>
-                    </div>
-                    <div *ngIf="item.questionResult != 'Correct'">
-                        <div class="wrongResponse">
-                            Question : [{{item.questionNumber}}] : {{item.question}}
-                            <br />
-                            Your Answer : {{item.myAnswer}}
-                            <br />
-                            Correct Answer : {{item.correctAnswer}}
-                            <br />
-                            Response : {{item.questionResult}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-1">
-            </div>
-        </div>
-    </div>
-</div>
--->
