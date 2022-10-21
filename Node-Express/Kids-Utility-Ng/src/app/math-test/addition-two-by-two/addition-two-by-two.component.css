@@ -86,3 +86,10 @@
     border-style: dotted;
     border-radius: 10px;
 }
+
+.timerDisplay {
+    color : red;
+    background-color: lightgoldenrodyellow;
+    font-size: x-large;
+    padding: 6px;
+}

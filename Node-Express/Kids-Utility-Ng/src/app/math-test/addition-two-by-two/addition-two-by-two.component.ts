@@ -27,6 +27,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
   currentUser = '';
 
   // timer
+  timer;
   seconds = 0;
   minutes = 0;
   time = 0;
@@ -91,8 +92,31 @@ export class AdditionTwoByTwoComponent implements OnInit {
     localStorage.setItem("my-progress", JSON.stringify([]));
     this.getStart();
     this.getMyProgressFromLocalStorage();
+
+    // timer
+    this.startTimer();
   }
-  startTimer() {  
+  startTimer() {
+    this.seconds = 0;
+    this.minutes = 0;
+    this.isOn = true;
+    this.time = this.time;
+    this.start = Date.now() - this.time;
+    this.timer = setInterval(() => {
+      var seconds_ = this.seconds;
+      var minutes_ = this.minutes;
+      this.time = Date.now() - this.start;
+      this.seconds = (seconds_ == 59) ? (0) : (seconds_ + 1);
+      this.minutes = (seconds_ == 59) ? (minutes_ + 1) : (minutes_);
+    }, 1000);
+  }
+  stopTimer() {
+    this.isOn = false;
+    clearInterval(this.timer)
+  }
+  resetTimer() {
+    this.time = 0;
+    this.isOn = false;
   }
   
 
@@ -125,8 +149,9 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.getWrongAnswer2();
   }
   getMyProgressFromLocalStorage() {
-    
+    this.myProgress = JSON.parse(localStorage.getItem("my-progress") || "[]");
   }
+  
   getQuestionNumber() {
     this.getRandomLocation();
     var questionNumber = this.questionNumber;
@@ -209,7 +234,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
       this.displayTestResultNow();
 
       // stop timer
-      // this.stopTimer();
+      this.stopTimer();
       return;
     }
 
@@ -241,6 +266,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
     console.log(e.target.value);
     this.answerOption = e.target.value;
   }
+  
   // display test result
   // reset myProgress to [] @ local-storage
   // calculate totalCorrect and totalWrong
@@ -268,7 +294,6 @@ export class AdditionTwoByTwoComponent implements OnInit {
     // @last reset local-storage
     this.resetMyProgressAtLocalStorage();
   }
-
   resetMyProgressAtLocalStorage() {
     localStorage.setItem("my-progress", JSON.stringify([]));
   }
