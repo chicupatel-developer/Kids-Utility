@@ -168,15 +168,15 @@ export class AdditionDecimalComponent implements OnInit {
     return number2;
   }
   getCorrectAnswer = () => {
-    this.correctAnswer = (Number((this.number1.toFixed(2) + this.number2.toFixed(2)))).toFixed(2);        
+    this.correctAnswer = ((Number((this.number1.toFixed(2) + this.number2.toFixed(2)))).toFixed(2)).toString();        
     return this.correctAnswer;
   }
   getWrongAnswer1 = () => {    
-    this.wrongAnswer1 = (Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.01))).toFixed(2);    
+    this.wrongAnswer1 = ((Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.01))).toFixed(2)).toString();    
     return this.wrongAnswer1;
   }
   getWrongAnswer2 = () => {    
-    this.wrongAnswer2 = (Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.02))).toFixed(2);    
+    this.wrongAnswer2 = ((Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.02))).toFixed(2)).toString();    
     return this.wrongAnswer2;
   }
 

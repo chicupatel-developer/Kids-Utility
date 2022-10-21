@@ -24,11 +24,11 @@
                     <div *ngIf="1==location">
                         <div class="questionOption">
                             <span>
-                                <input name="question" type="radio" value={{(number1+number2).toString()}}
+                                <input name="question" type="radio" value={{value}}
                                     [checked]="getOptionValueForRightAnswer()" (change)="answerOptionChange($event)" />
                             </span>
                             <span>
-                                {{(number1+number2).toString()}}
+                                {{value}}
                             </span>
                         </div>
                     </div>
@@ -59,10 +59,10 @@
                         <div class="questionOption">
                             <span>
                                 <input type="radio" name="question" (change)="answerOptionChange($event)"
-                                    value={{(number1+number2).toString()}} [checked]="getOptionValueForRightAnswer()" />
+                                    value={{value}} [checked]="getOptionValueForRightAnswer()" />
                             </span>
                             <span>
-                                {{(number1+number2).toString()}}
+                                {{value}}
                             </span>
                         </div>
                     </div>
@@ -93,10 +93,10 @@
                         <div class="questionOption">
                             <span>
                                 <input type="radio" name="question" (change)="answerOptionChange($event)"
-                                    value={{(number1+number2).toString()}} [checked]="getOptionValueForRightAnswer()" />
+                                    value={{value}} [checked]="getOptionValueForRightAnswer()" />
                             </span>
                             <span>
-                                {{(number1+number2).toString()}}
+                                {{value}}
                             </span>
                         </div>
                     </div>
