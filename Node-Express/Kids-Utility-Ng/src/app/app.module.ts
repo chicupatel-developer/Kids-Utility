@@ -20,6 +20,7 @@ import { MyGroceryComponent } from './my-grocery/my-grocery.component';
 import { AdditionTwoByTwoComponent } from './math-test/addition-two-by-two/addition-two-by-two.component';
 import { DisplayTestResultComponent } from './math-test/display-test-result/display-test-result.component';
 import { DisplayQuestionComponent } from './math-test/display-question/display-question.component';
+import { AdditionDecimalComponent } from './math-test/addition-decimal/addition-decimal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DisplayQuestionComponent } from './math-test/display-question/display-q
     MyGroceryComponent,
     AdditionTwoByTwoComponent,
     DisplayTestResultComponent,
-    DisplayQuestionComponent,  
+    DisplayQuestionComponent,
+    AdditionDecimalComponent,  
   ],
   imports: [
     BrowserModule,
