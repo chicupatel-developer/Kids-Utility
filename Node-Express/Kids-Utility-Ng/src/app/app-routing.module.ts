@@ -6,6 +6,7 @@ import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
 import { MyGroceryComponent } from './my-grocery/my-grocery.component';
 import { AdditionTwoByTwoComponent } from './math-test/addition-two-by-two/addition-two-by-two.component';
+import { AdditionDecimalComponent } from './math-test/addition-decimal/addition-decimal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'my-grocery', component: MyGroceryComponent },
   { path: 'addition-2by2', component: AdditionTwoByTwoComponent },
+  { path: 'addition-decimal', component: AdditionDecimalComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

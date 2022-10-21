@@ -12,7 +12,7 @@ import { LocalDataService } from '../../services/local-data.service';
 })
 export class AdditionDecimalComponent implements OnInit {
 
-  testName = 'Addition [2 Digits + 2 Digits]';
+  testName = 'Addition [Decimal]';
   operator = '+';
 
   parentEmail = '';
@@ -123,8 +123,8 @@ export class AdditionDecimalComponent implements OnInit {
   // get new question/right-answer/2 wrong-answers randomly
   getStart() {
     this.getQuestionNumber();
-    this.getNumber1(this.number1Lower, this.number1Upper);
-    this.getNumber2(this.number2Lower, this.number2Upper);
+    this.getNumber1();
+    this.getNumber2();
     this.getCorrectAnswer();
     this.getWrongAnswer1();
     this.getWrongAnswer2();
@@ -138,6 +138,10 @@ export class AdditionDecimalComponent implements OnInit {
     var questionNumber = this.questionNumber;
     this.questionNumber = this.questionNumber + 1;
     return this.questionNumber;
+  }
+  // get random number
+  genRand(min, max, decimalPlaces) {
+    return (Math.random() * (max - min) + min).toFixed(decimalPlaces) * 1;
   }
   getRandomNumber(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -153,31 +157,35 @@ export class AdditionDecimalComponent implements OnInit {
     this.wrongLocation1 = wrongLocation1;
     this.wrongLocation2 = wrongLocation2;
   }    
-  getNumber1 = (min, max) => {
-    var number1 = Math.floor(Math.random() * (max - min + 1)) + min;
+  getNumber1 = () => {
+    var number1 = this.genRand(1, 99, 2);
     this.number1 = number1;
     return number1;
   }
-  getNumber2 = (min, max) => {
-    var number2 = Math.floor(Math.random() * (max - min + 1)) + min;
+  getNumber2 = () => {
+    var number2 = this.genRand(1, 99, 2);
     this.number2 = number2;
     return number2;
   }
   getCorrectAnswer = () => {
-    var correctAnswer = this.number1 + this.number2;
-    this.correctAnswer = correctAnswer;
+    var number1 = this.number1;
+    var number2 = this.number2;
+    var correctAnswer = (number1 + number2).toFixed(2);
+    this.correctAnswer = Number(correctAnswer);
     return correctAnswer;
   }
-  // +1
   getWrongAnswer1 = () => {
-    var wrongAnswer1 = this.correctAnswer + 1;
-    this.wrongAnswer1 = wrongAnswer1;
+    var number1 = this.number1;
+    var number2 = this.number2;
+    var wrongAnswer1 = (number1 + number2 + 0.01).toFixed(2);
+    this.wrongAnswer1 = Number(wrongAnswer1);
     return wrongAnswer1;
   }
-  // -1
   getWrongAnswer2 = () => {
-    var wrongAnswer2 = this.correctAnswer - 1;
-    this.wrongAnswer2 = wrongAnswer2;
+    var number1 = this.number1;
+    var number2 = this.number2;
+    var wrongAnswer2 = (number1 + number2 - 0.01).toFixed(2);
+    this.wrongAnswer2 = Number(wrongAnswer2);
     return wrongAnswer2;
   }
 
