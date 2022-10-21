@@ -18,6 +18,7 @@ import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
 import { MyGroceryComponent } from './my-grocery/my-grocery.component';
 import { AdditionTwoByTwoComponent } from './math-test/addition-two-by-two/addition-two-by-two.component';
+import { DisplayTestResultComponent } from './math-test/display-test-result/display-test-result.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdditionTwoByTwoComponent } from './math-test/addition-two-by-two/addit
     SigninComponent,
     RegisterComponent,
     MyGroceryComponent,
-    AdditionTwoByTwoComponent,  
+    AdditionTwoByTwoComponent,
+    DisplayTestResultComponent,  
   ],
   imports: [
     BrowserModule,
