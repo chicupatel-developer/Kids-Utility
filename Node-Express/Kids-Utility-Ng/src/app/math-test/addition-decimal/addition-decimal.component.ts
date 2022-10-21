@@ -34,11 +34,11 @@ export class AdditionDecimalComponent implements OnInit {
   wrongLocation2 = 0;
   questionNumber = 0;
   answerOption = '-';
-  number1 = 0;
-  number2 = 0;
-  correctAnswer = 0;
-  wrongAnswer1 = 0;
-  wrongAnswer2 = 0;
+  number1 = 0.00;
+  number2 = 0.00;
+  correctAnswer = '';
+  wrongAnswer1 = '';
+  wrongAnswer2 = '';
   myProgress = [];
   totalCorrect = 0;
   totalWrong = 0;
@@ -159,7 +159,7 @@ export class AdditionDecimalComponent implements OnInit {
   }    
   getNumber1 = () => {
     var number1 = this.genRand(1, 99, 2);
-    this.number1 = number1;
+    this.number1 = number1;    
     return number1;
   }
   getNumber2 = () => {
@@ -168,25 +168,16 @@ export class AdditionDecimalComponent implements OnInit {
     return number2;
   }
   getCorrectAnswer = () => {
-    var number1 = this.number1;
-    var number2 = this.number2;
-    var correctAnswer = (number1 + number2).toFixed(2);
-    this.correctAnswer = Number(correctAnswer);
-    return correctAnswer;
+    this.correctAnswer = (Number((this.number1.toFixed(2) + this.number2.toFixed(2)))).toFixed(2);        
+    return this.correctAnswer;
   }
-  getWrongAnswer1 = () => {
-    var number1 = this.number1;
-    var number2 = this.number2;
-    var wrongAnswer1 = (number1 + number2 + 0.01).toFixed(2);
-    this.wrongAnswer1 = Number(wrongAnswer1);
-    return wrongAnswer1;
+  getWrongAnswer1 = () => {    
+    this.wrongAnswer1 = (Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.01))).toFixed(2);    
+    return this.wrongAnswer1;
   }
-  getWrongAnswer2 = () => {
-    var number1 = this.number1;
-    var number2 = this.number2;
-    var wrongAnswer2 = (number1 + number2 - 0.01).toFixed(2);
-    this.wrongAnswer2 = Number(wrongAnswer2);
-    return wrongAnswer2;
+  getWrongAnswer2 = () => {    
+    this.wrongAnswer2 = (Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.02))).toFixed(2);    
+    return this.wrongAnswer2;
   }
 
   // call back from display-question component
@@ -277,9 +268,9 @@ export class AdditionDecimalComponent implements OnInit {
     this.answerOption = '-';
     this.number1 = 0;
     this.number2 = 0;
-    this.correctAnswer = 0;
-    this.wrongAnswer1 = 0;
-    this.wrongAnswer2 = 0;
+    this.correctAnswer = '';
+    this.wrongAnswer1 = '';
+    this.wrongAnswer2 = '';
     this.myProgress = [];
     this.totalCorrect = 0;
     this.totalWrong = 0;
