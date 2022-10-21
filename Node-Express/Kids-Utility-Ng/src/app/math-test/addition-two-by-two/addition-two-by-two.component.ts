@@ -24,6 +24,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
   operator = '+';
 
   parentEmail = '';
+  currentUser = '';
 
   // timer
   seconds = 0;
@@ -62,6 +63,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
       this.router.navigate(['/home']);
     }
     this.setParentEmail();
+    this.setCurrentUser();
 
     this.onStartTest();
   }
@@ -72,6 +74,14 @@ export class AdditionTwoByTwoComponent implements OnInit {
     }
     else {
       this.parentEmail = "";
+    }
+  }
+  setCurrentUser() {
+    if ((localStorage.getItem('userName')) != "") {
+      this.currentUser = (localStorage.getItem('userName'));
+    }
+    else {
+      this.currentUser = "";
     }
   }
  
@@ -171,6 +181,8 @@ export class AdditionTwoByTwoComponent implements OnInit {
     if (testCollection) {
       this.displayTestResult = true;
       this.questionNumber = 0;
+
+      this.displayFinalTestResult();
     }
     else {
       this.displayTestResult = false;
@@ -202,6 +214,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
     }
 
     // continue with next question
+    this.answerOption = '-';
     this.getStart();
   }
 
@@ -228,4 +241,36 @@ export class AdditionTwoByTwoComponent implements OnInit {
     console.log(e.target.value);
     this.answerOption = e.target.value;
   }
+  // display test result
+  // reset myProgress to [] @ local-storage
+  // calculate totalCorrect and totalWrong
+  displayFinalTestResult() {
+    var testCollection = JSON.parse(localStorage.getItem("my-progress") || "[]");
+    if (testCollection) {
+      const correctResponse = testCollection.filter(item => item.questionResult === 'Correct');
+      const wrongResponse = testCollection.filter(item => item.questionResult === 'Wrong');
+
+      this.totalCorrect = correctResponse.length;
+      this.totalWrong = wrongResponse.length;
+          
+
+      // post test result to json file
+      const testresult = {
+        userName: this.currentUser,
+        testName: this.testName,
+        totalCorrect: correctResponse.length + '',
+        totalWrong: wrongResponse.length + '',
+      };
+          
+      console.log(testresult);
+    }
+
+    // @last reset local-storage
+    this.resetMyProgressAtLocalStorage();
+  }
+
+  resetMyProgressAtLocalStorage() {
+    localStorage.setItem("my-progress", JSON.stringify([]));
+  }
+    
 }
