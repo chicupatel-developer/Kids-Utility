@@ -219,32 +219,11 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.getStart();
   }
 
-  // xfer to display-question component
-  getOptionValueForRightAnswer() {
-    if (this.answerOption == (this.number1 + this.number2).toString())
-      return true;
-    else
-      return false;
-  }
-  getOptionValueForWrongAnswer1() {
-    if (this.answerOption == this.wrongAnswer1.toString())
-      return true;
-    else
-      return false;
-  }
-  getOptionValueForWrongAnswer2() {
-    if (this.answerOption == this.wrongAnswer2.toString())
-      return true;
-    else
-      return false;
-  }
-
   // call back from display-question component
   onAnswerOptionChange(userAnswer) {
     console.log(userAnswer);
     this.answerOption = userAnswer;
-  }
-  
+  }  
 
   // display test result
   // reset myProgress to [] @ local-storage
@@ -285,12 +264,9 @@ export class AdditionTwoByTwoComponent implements OnInit {
 
     // @last reset local-storage
     this.resetMyProgressAtLocalStorage();
-  }
-  resetMyProgressAtLocalStorage() {
-    localStorage.setItem("my-progress", JSON.stringify([]));
-  }
-    
+  } 
 
+  // reset current test
   // next test
   resetTest() {
     this.location = 0;
@@ -306,8 +282,9 @@ export class AdditionTwoByTwoComponent implements OnInit {
     this.myProgress = [];
     this.totalCorrect = 0;
     this.totalWrong = 0;
-    this.displayTestResult = false;
-    this.getStart();
-    this.getMyProgressFromLocalStorage();
+    this.displayTestResult = false;    
+  }
+  resetMyProgressAtLocalStorage() {
+    localStorage.setItem("my-progress", JSON.stringify([]));
   }
 }

@@ -28,12 +28,10 @@ export class DisplayQuestionComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges() {
-   console.log('in the display-test-result component...'+ this.testName);
+  ngOnChanges() {   
   }
 
   answerOptionChange(event) {
-    console.log(event.target.value);
     this.answerOption = event.target.value;
     this.onAnswerOptionChange.emit(event.target.value);
   }
