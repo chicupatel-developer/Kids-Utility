@@ -24,8 +24,11 @@
                     <div *ngIf="1==location">
                         <div class="questionOption">
                             <span>
-                                <input name="question" type="radio" value={{value}}
-                                    [checked]="getOptionValueForRightAnswer()" (change)="answerOptionChange($event)" />
+                                <input name="question" 
+                                    type="radio" 
+                                    value={{value}}
+                                    [checked]="getOptionValueForRightAnswer()" 
+                                    (change)="answerOptionChange($event)" />
                             </span>
                             <span>
                                 {{value}}
@@ -35,8 +38,11 @@
                     <div *ngIf="1==wrongLocation1">
                         <div class="questionOption">
                             <span>
-                                <input type="radio" name="question" value={{wrongAnswer1}}
-                                    [checked]="getOptionValueForWrongAnswer1()" (change)="answerOptionChange($event)" />
+                                <input type="radio" 
+                                    name="question" 
+                                    value={{wrongAnswer1}}
+                                    [checked]="getOptionValueForWrongAnswer1()" 
+                                    (change)="answerOptionChange($event)" />
                             </span>
                             <span>
                                 {{wrongAnswer1}}
@@ -46,8 +52,11 @@
                     <div *ngIf="1==wrongLocation2">
                         <div class="questionOption">
                             <span>
-                                <input type="radio" name="question" value={{wrongAnswer2}}
-                                    [checked]="getOptionValueForWrongAnswer2()" (change)="answerOptionChange($event)" />
+                                <input type="radio" 
+                                    name="question" 
+                                    value={{wrongAnswer2}}
+                                    [checked]="getOptionValueForWrongAnswer2()" 
+                                    (change)="answerOptionChange($event)" />
                             </span>
                             <span>
                                 {{wrongAnswer2}}

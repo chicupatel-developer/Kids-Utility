@@ -34,16 +34,18 @@ export class AdditionDecimalComponent implements OnInit {
   wrongLocation2 = 0;
   questionNumber = 0;
   answerOption = '-';
-  number1 = 0.00;
-  number2 = 0.00;
-  correctAnswer = '';
-  wrongAnswer1 = '';
-  wrongAnswer2 = '';
+  number1 = 0;
+  number2 = 0;
+  correctAnswer;
+  wrongAnswer1;
+  wrongAnswer2;
   myProgress = [];
   totalCorrect = 0;
   totalWrong = 0;
   displayTestResult = false;
   testResult = {};
+  plusVariant = 0.01;
+  minusVariant = 0.01;
 
 
   constructor(
@@ -167,16 +169,16 @@ export class AdditionDecimalComponent implements OnInit {
     this.number2 = number2;
     return number2;
   }
-  getCorrectAnswer = () => {
-    this.correctAnswer = ((Number((this.number1.toFixed(2) + this.number2.toFixed(2)))).toFixed(2)).toString();        
+  getCorrectAnswer = () => {    
+    this.correctAnswer = (Number(this.number1.toFixed(2)) + Number(this.number2.toFixed(2))).toFixed(2);    
     return this.correctAnswer;
   }
   getWrongAnswer1 = () => {    
-    this.wrongAnswer1 = ((Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.01))).toFixed(2)).toString();    
+    this.wrongAnswer1 = (Number(this.number1.toFixed(2)) + Number(this.number2.toFixed(2)) + Number(this.plusVariant.toFixed(2))).toFixed(2);
     return this.wrongAnswer1;
   }
   getWrongAnswer2 = () => {    
-    this.wrongAnswer2 = ((Number((this.number1.toFixed(2) + this.number2.toFixed(2) + 0.02))).toFixed(2)).toString();    
+    this.wrongAnswer2 = (Number(this.number1.toFixed(2)) + Number(this.number2.toFixed(2)) - Number(this.minusVariant.toFixed(2))).toFixed(2);
     return this.wrongAnswer2;
   }
 
@@ -268,9 +270,9 @@ export class AdditionDecimalComponent implements OnInit {
     this.answerOption = '-';
     this.number1 = 0;
     this.number2 = 0;
-    this.correctAnswer = '';
-    this.wrongAnswer1 = '';
-    this.wrongAnswer2 = '';
+    this.correctAnswer = 0;
+    this.wrongAnswer1 = 0;
+    this.wrongAnswer2 = 0;
     this.myProgress = [];
     this.totalCorrect = 0;
     this.totalWrong = 0;

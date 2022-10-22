@@ -17,7 +17,7 @@ export class DisplayQuestionComponent implements OnChanges {
   @Input() wrongLocation1;
   @Input() wrongLocation2;
   @Input() operator;
-  @Input() value;
+  @Input() value; // correct-answer
   @Input() wrongAnswer1;
   @Input() wrongAnswer2;
   
@@ -40,7 +40,7 @@ export class DisplayQuestionComponent implements OnChanges {
   }
 
   getOptionValueForRightAnswer() {
-    if (this.answerOption == (this.number1 + this.number2).toString())
+    if (this.answerOption == this.value.toString())
       return true;
     else
       return false;
