@@ -10,6 +10,7 @@ import { AdditionDecimalComponent } from './math-test/addition-decimal/addition-
 import { MinusTwoByTwoComponent } from './math-test/minus-two-by-two/minus-two-by-two.component';
 import { MinusOneByTwoComponent } from './math-test/minus-one-by-two/minus-one-by-two.component';
 import { MinusDecimalComponent } from './math-test/minus-decimal/minus-decimal.component';
+import { MultiplyTwoByTwoComponent } from './math-test/multiply-two-by-two/multiply-two-by-two.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'minus-2by2', component: MinusTwoByTwoComponent },
   { path: 'minus-1by2', component: MinusOneByTwoComponent },
   { path: 'minus-decimal', component: MinusDecimalComponent },
+  { path: 'multiply-2by2', component: MultiplyTwoByTwoComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

@@ -6,23 +6,23 @@ import { UserService } from '../../services/user.service';
 import { LocalDataService } from '../../services/local-data.service';
 
 @Component({
-  selector: 'app-minus-two-by-two',
-  templateUrl: './minus-two-by-two.component.html',
-  styleUrls: ['./minus-two-by-two.component.css']
+  selector: 'app-multiply-two-by-two',
+  templateUrl: './multiply-two-by-two.component.html',
+  styleUrls: ['./multiply-two-by-two.component.css']
 })
   
 
-export class MinusTwoByTwoComponent implements OnInit {
+export class MultiplyTwoByTwoComponent implements OnInit {
 
-  // Minus 2 digits
+  // Multiply 2 digits
   number1Lower = 0;
   number1Upper = 99;
   number2Lower = 0;
   number2Upper = 99;
 
-  testName = 'Minus [2 Digits - 2 Digits]';  
-  operator = '-';
-  totalQuestions = 20;
+  testName = 'Multiply [2 Digits * 2 Digits]';  
+  operator = '*';
+  totalQuestions = 10;
 
   parentEmail = '';
   currentUser = '';
@@ -172,7 +172,7 @@ export class MinusTwoByTwoComponent implements OnInit {
     return number2;
   }
   getCorrectAnswer = () => {
-    var correctAnswer = this.number1 - this.number2;
+    var correctAnswer = this.number1 * this.number2;
     this.correctAnswer = correctAnswer;
     return correctAnswer;
   }
@@ -196,7 +196,7 @@ export class MinusTwoByTwoComponent implements OnInit {
     //store currect question-answer,,, to state and local-storage
     var progressItem = {
       questionNumber: this.questionNumber,
-      question: this.number1 + ' - ' + this.number2 + ' = ___',
+      question: this.number1 + ' * ' + this.number2 + ' = ___',
       myAnswer: this.answerOption,
       correctAnswer: this.getCorrectAnswer(),
       questionResult: this.answerOption == this.getCorrectAnswer().toString() ? "Correct" : "Wrong"
@@ -283,7 +283,7 @@ export class MinusTwoByTwoComponent implements OnInit {
     this.myProgress = [];
     this.totalCorrect = 0;
     this.totalWrong = 0;
-    this.displayTestResult = false;       
+    this.displayTestResult = false;    
   }
   resetMyProgressAtLocalStorage() {
     localStorage.setItem("my-progress", JSON.stringify([]));

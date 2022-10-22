@@ -14,7 +14,7 @@ import { LocalDataService } from '../../services/local-data.service';
 
 export class MinusOneByTwoComponent implements OnInit {
 
-  // Addition 2 digits
+  // Minus 2 digits
   number1Lower = 0;
   number1Upper = 9;
   number2Lower = 10;
