@@ -22,6 +22,7 @@ import { DisplayTestResultComponent } from './math-test/display-test-result/disp
 import { DisplayQuestionComponent } from './math-test/display-question/display-question.component';
 import { AdditionDecimalComponent } from './math-test/addition-decimal/addition-decimal.component';
 import { MinusTwoByTwoComponent } from './math-test/minus-two-by-two/minus-two-by-two.component';
+import { MinusOneByTwoComponent } from './math-test/minus-one-by-two/minus-one-by-two.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MinusTwoByTwoComponent } from './math-test/minus-two-by-two/minus-two-b
     DisplayTestResultComponent,
     DisplayQuestionComponent,
     AdditionDecimalComponent,
-    MinusTwoByTwoComponent,  
+    MinusTwoByTwoComponent,
+    MinusOneByTwoComponent,  
   ],
   imports: [
     BrowserModule,

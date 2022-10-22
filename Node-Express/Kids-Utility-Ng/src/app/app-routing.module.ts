@@ -8,6 +8,7 @@ import { MyGroceryComponent } from './my-grocery/my-grocery.component';
 import { AdditionTwoByTwoComponent } from './math-test/addition-two-by-two/addition-two-by-two.component';
 import { AdditionDecimalComponent } from './math-test/addition-decimal/addition-decimal.component';
 import { MinusTwoByTwoComponent } from './math-test/minus-two-by-two/minus-two-by-two.component';
+import { MinusOneByTwoComponent } from './math-test/minus-one-by-two/minus-one-by-two.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'addition-2by2', component: AdditionTwoByTwoComponent },
   { path: 'addition-decimal', component: AdditionDecimalComponent },
   { path: 'minus-2by2', component: MinusTwoByTwoComponent },
+  { path: 'minus-1by2', component: MinusOneByTwoComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

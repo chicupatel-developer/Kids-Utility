@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8 test-name-header">
+        Test : {{testName}}
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+
+
+<div *ngIf="!displayTestResult">
+    <app-display-question (onAnswerOptionChange)="onAnswerOptionChange($event)" (onNextQuestion)="onNextQuestion()"
+        [testName]="testName" [minutes]="minutes" [seconds]="seconds" [questionNumber]="questionNumber"
+        [number1]="number1" [number2]="number2" [location]="location" [wrongLocation1]="wrongLocation1"
+        [wrongLocation2]="wrongLocation2" [operator]="operator" [value]="correctAnswer" [wrongAnswer1]="wrongAnswer1"
+        [wrongAnswer2]="wrongAnswer2">
+    </app-display-question>
+</div>
+
+<div *ngIf="displayTestResult" class="row">
+    <app-display-test-result [testName]="testName" [minutes]="minutes" [seconds]="seconds" [myProgress]="myProgress"
+        [testResult]="testResult" [totalCorrect]="totalCorrect" [totalWrong]="totalWrong" [parentEmail]="parentEmail"
+        [userName]="currentUser">
+    </app-display-test-result>
+</div>
