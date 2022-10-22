@@ -4,7 +4,9 @@
             [routerLink]="['/home']">
             Kids-Utility
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mynavbar">
@@ -22,20 +24,40 @@
                         My-Grocery
                     </a>
                 </li>
-                <li *ngIf="this._userService.isLoggedIn" 
-                    class="nav-item">
-                    <a class='nav-link' aria-current="page" 
-                        [routerLink]="['/addition-2by2']">
-                        Addition[2]&nbsp;[2]
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" 
+                        href="#" 
+                        id="navbarDropdownMenuLink" 
+                        role="button" 
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Math-Test
                     </a>
-                </li>
-                <li *ngIf="this._userService.isLoggedIn" class="nav-item">
-                    <a class='nav-link' 
-                        aria-current="page" 
-                        [routerLink]="['/addition-decimal']">
-                        Addition[Decimal]
-                    </a>
-                </li>
+                    <ul class="dropdown-menu" 
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class='nav-link dropdownItem' 
+                                aria-current="page" 
+                                [routerLink]="['/addition-2by2']">
+                                Addition[2]&nbsp;[2]
+                            </a>
+                        </li>         
+                        <li>
+                            <a class='nav-link dropdownItem' 
+                                aria-current="page" 
+                                [routerLink]="['/addition-decimal']">
+                                Addition[Decimal]
+                            </a>
+                        </li>
+                        <li>
+                            <a class='nav-link dropdownItem' 
+                                aria-current="page" 
+                                [routerLink]="['/minus-2by2']">
+                                Minus[2]&nbsp;[2]
+                            </a>
+                        </li>
+                    </ul>
+                </li>                           
             </ul>
 
             <!-- right align items -->
