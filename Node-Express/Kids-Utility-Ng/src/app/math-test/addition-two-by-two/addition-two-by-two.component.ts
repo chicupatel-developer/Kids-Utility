@@ -22,6 +22,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
 
   testName = 'Addition [2 Digits + 2 Digits]';  
   operator = '+';
+  totalQuestions = 20;
 
   parentEmail = '';
   currentUser = '';
@@ -206,7 +207,7 @@ export class AdditionTwoByTwoComponent implements OnInit {
     localStorage.setItem("my-progress", JSON.stringify(this.myProgress));
 
     // if last question, then display test result
-    if (this.questionNumber == 20) {
+    if (this.questionNumber == this.totalQuestions) {
       this.displayTestResultNow();
 
       // stop timer
