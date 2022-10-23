@@ -27,6 +27,7 @@ import { MinusDecimalComponent } from './math-test/minus-decimal/minus-decimal.c
 import { MultiplyTwoByTwoComponent } from './math-test/multiply-two-by-two/multiply-two-by-two.component';
 import { MultiplyDecimalComponent } from './math-test/multiply-decimal/multiply-decimal.component';
 import { DivisionTwoByOneComponent } from './math-test/division-two-by-one/division-two-by-one.component';
+import { CreateEventComponent } from './event-mgt/create-event/create-event.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DivisionTwoByOneComponent } from './math-test/division-two-by-one/divis
     MinusDecimalComponent,
     MultiplyTwoByTwoComponent,
     MultiplyDecimalComponent,
-    DivisionTwoByOneComponent,  
+    DivisionTwoByOneComponent,
+    CreateEventComponent,  
   ],
   imports: [
     BrowserModule,

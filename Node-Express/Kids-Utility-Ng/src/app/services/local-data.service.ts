@@ -48,6 +48,13 @@ export class LocalDataService {
   getEmailServiceUrl() {
     return "email/";
   }
+  getEventServiceUrl() {
+    return "event/";
+  }
+
+  // send email to parent-email
+  // fetch api
+  // node-express
   sendResultToMyParent(testresult) {
     // prepare data for api call
     var data = {
