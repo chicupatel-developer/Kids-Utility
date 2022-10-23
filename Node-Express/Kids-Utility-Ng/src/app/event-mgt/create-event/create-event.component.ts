@@ -15,6 +15,9 @@ export class CreateEventComponent implements OnInit {
   responseColor = '';
   apiResponse = '';
 
+  eventTimeValue = { hour: 13, minute: 30 };
+  meridian = true;
+
   form: FormGroup = new FormGroup({
     eventDateValue: new FormControl(''),
     eventTimeValue: new FormControl(''),
@@ -38,7 +41,7 @@ export class CreateEventComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.userService.isLoggedIn) {
+    if (!this.userService.isLoggedIn) {
       this.router.navigate(['/home']);
     }
    
@@ -83,7 +86,7 @@ export class CreateEventComponent implements OnInit {
     this.submitted = true;
 
     if (this.form.invalid) {
-      return;
+      // return;
     }
     console.log(this.form.value);   
   }

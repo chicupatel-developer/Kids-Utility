@@ -13,20 +13,13 @@ export class HomeComponent implements OnInit {
   plusVariant = 0.01;
   minusVariant = 0.01;
 
- 
-  timeStartRunTime = { hour: 13, minute: 30 };
-  meridian = true;    
-
-	constructor() {}
- 
+	constructor() {} 
   
   ngOnInit(): void {
    
     console.log((Number(this.number1.toFixed(2)) + Number(this.number2.toFixed(2))).toFixed(2));
     console.log((Number(this.number1.toFixed(2))+Number(this.number2.toFixed(2))+Number(this.plusVariant.toFixed(2))).toFixed(2) );
     console.log((Number(this.number1.toFixed(2))+Number(this.number2.toFixed(2))-Number(this.minusVariant.toFixed(2))).toFixed(2) );
-    
-
     
   }
 
