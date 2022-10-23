@@ -10,6 +10,9 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// bs datepicker
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 ////////components
 import { HeaderComponent } from './header/header.component';
@@ -51,11 +54,13 @@ import { CreateEventComponent } from './event-mgt/create-event/create-event.comp
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,   
     FormsModule,    
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
