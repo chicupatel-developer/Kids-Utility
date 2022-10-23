@@ -8,6 +8,8 @@ import {
   ValidatorFn
 } from '@angular/forms';
 
+import { LocalDataService } from '../services/local-data.service';
+
 @Component({
   selector: 'app-my-grocery',
   templateUrl: './my-grocery.component.html',
@@ -18,10 +20,7 @@ export class MyGroceryComponent implements OnInit {
   addItemApiResponse = '';
   
   apiResponse = '';
-  responseColor = '';
-
-  baseServerUrl = 'http://localhost:5000/';
-  baseGroceryUrl = 'grocery/';
+  responseColor = ''; 
 
   groceryCollection: [{name: '', cat: '', selected: false}];
   
@@ -34,7 +33,7 @@ export class MyGroceryComponent implements OnInit {
 
   form: FormGroup;
  
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public localDataService: LocalDataService,) {
     this.form = this.fb.group({
       checkArray: this.fb.array([])
     });
@@ -74,7 +73,7 @@ export class MyGroceryComponent implements OnInit {
   }
   
   getGroceryCollection() {
-    fetch(this.baseServerUrl+this.baseGroceryUrl)
+    fetch(this.localDataService.getServerUrl()+this.localDataService.getGroceryServiceUrl())
       .then(res => res.json())
       .then(data => {        
         console.log(data);
@@ -112,7 +111,7 @@ export class MyGroceryComponent implements OnInit {
           name: this.formEntry.value["ItemName"],
           selected: false,
         };
-      fetch(this.baseServerUrl+this.baseGroceryUrl+"add", {
+      fetch(this.localDataService.getServerUrl()+this.localDataService.getGroceryServiceUrl()+"add", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
@@ -147,7 +146,7 @@ export class MyGroceryComponent implements OnInit {
     this.apiResponse = '';
 
     // send groceryList to server
-    fetch(this.baseServerUrl+this.baseGroceryUrl+"edit", {
+    fetch(this.localDataService.getServerUrl()+this.localDataService.getGroceryServiceUrl()+"edit", {
       method: "POST",
       // body: JSON.stringify(groceryCollection),
       body: JSON.stringify(this.groceryCollection),

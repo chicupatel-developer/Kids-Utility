@@ -50,7 +50,7 @@ export default class DisplayTestResult extends Component {
                     console.log(json);
                     // this.getTestResults();
                 }
-                );
+            );
 
 
             // email to parent

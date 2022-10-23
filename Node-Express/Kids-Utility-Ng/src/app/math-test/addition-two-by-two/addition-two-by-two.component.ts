@@ -253,19 +253,36 @@ export class AdditionTwoByTwoComponent implements OnInit {
 
       // post test result to json file
       const testresult = {
+        parentEmail: this.parentEmail,
         userName: this.currentUser,
         testName: this.testName,
         totalCorrect: correctResponse.length + '',
         totalWrong: wrongResponse.length + '',
+        timeMinutes: this.minutes + '',
+        timeSeconds: this.seconds + ''
       };
           
       console.log(testresult);
       this.testResult = testresult;
+
+      fetch(this.localDataService.getServerUrl() + this.localDataService.getMathTestServiceUrl() + 'test-result-create', {
+        method: 'POST',
+        body: JSON.stringify(testresult),
+        headers: { 'Content-Type': 'application/json' }
+      }).then(res => res.json())
+        .then(json => {
+          console.log(json);
+        }
+      );
+      
+      // call to local-data-service
+      // email to parent
+      this.localDataService.sendResultToMyParent(testresult);
     }
 
     // @last reset local-storage
     this.resetMyProgressAtLocalStorage();
-  } 
+  }
 
   // reset current test
   // next test

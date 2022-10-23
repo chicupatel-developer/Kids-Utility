@@ -10,10 +10,7 @@ import { LocalDataService } from '../services/local-data.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent implements OnInit {
-
-  baseServerUrl = 'http://localhost:5000/';
-  baseAuthUrl = 'auth/';
+export class SigninComponent implements OnInit { 
 
   responseColor = '';
   apiResponse = '';
@@ -84,7 +81,7 @@ export class SigninComponent implements OnInit {
     console.log(this.signinModel);
 
     // api call
-    fetch(this.baseServerUrl+this.baseAuthUrl+"login", {
+    fetch(this.localDataService.getServerUrl()+this.localDataService.getAuthServiceUrl()+"login", {
       method: "POST",
       body: JSON.stringify(this.signinModel),
       headers: { "Content-Type": "application/json" },

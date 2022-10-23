@@ -12,10 +12,7 @@ import Validation from '../services/validation';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  baseServerUrl = 'http://localhost:5000/';
-  baseAuthUrl = 'auth/';
-
+ 
   responseColor = '';
   apiResponse = '';
 
@@ -97,7 +94,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.registerModel);
 
     // api call
-    fetch(this.baseServerUrl+this.baseAuthUrl+"usercreate", {
+    fetch(this.localDataService.getServerUrl()+this.localDataService.getAuthServiceUrl()+"usercreate", {
       method: "POST",
       body: JSON.stringify(this.registerModel),
       headers: { "Content-Type": "application/json" },
