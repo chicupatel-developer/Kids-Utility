@@ -1,1 +1,136 @@
-<p>view-event works!</p>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div >
+            <button type="button" (click)="getTodayEvents()" 
+                class="btn btn-primary float-center cviewBtn">
+                Today's Events!
+            </button>
+        </div>
+        <div>
+            <button type="button" (click)="getThisWeekEvents()" 
+                class="btn btn-primary float-center cviewBtn">
+                This Week's Events!
+            </button>
+         </div>     
+        <div>
+            <button type="button" (click)="getThisMonthEvents()" 
+                class="btn btn-primary float-center cviewBtn">
+                This Month's Events!
+            </button>
+        </div>
+        <div>
+            <button type="button" (click)="getNextMonthEvents()" 
+                class="btn btn-success float-center nviewBtn">
+                Next Month's Events!
+            </button>
+        </div>
+        <div>
+            <button type="button" (click)="getPreviousMonthEvents()" 
+                class="btn btn-block float-center pviewBtn">
+                Previous Month's Events!
+            </button>
+        </div>
+        <div >
+            <button type="button" (click)="getAllPreviousMonthsEvents()" 
+                class="btn btn-block float-center pviewBtn">
+                All Previous Months' Events!
+            </button>
+        </div>
+    </div>
+    <div *ngIf="eventOption=='today'" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">
+                Today's Events
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-today-event></app-today-event>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="eventOption=='thisweek'" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">
+                This Week's Events
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-this-week-event></app-this-week-event>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="eventOption=='thismonth'" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">
+                This Month's Events
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-this-month-event></app-this-month-event>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="eventOption=='nextmonth'" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">
+                Next Month's Events
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-next-month-event></app-next-month-event>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="eventOption=='previousmonth'" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">
+                Previous Month's Events
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-previous-month-event></app-previous-month-event>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="eventOption=='allpreviousmonth'" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">
+                All Previous Month's Events
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-all-previous-month-event></app-all-previous-month-event>
+            </div>
+        </div>
+    </div>
+</div>

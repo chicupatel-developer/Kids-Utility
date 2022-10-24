@@ -7,9 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewEventComponent implements OnInit {
 
+  eventOption = 'today';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getTodayEvents() {
+    this.eventOption = 'today';    
+  }
+  getThisWeekEvents() {
+    this.eventOption = 'thisweek';    
+  }
+  getThisMonthEvents() {
+    this.eventOption = 'thismonth';    
+  }
+  getNextMonthEvents() {
+    this.eventOption = 'nextmonth';
+  }
+  getPreviousMonthEvents() {
+    this.eventOption = 'previousmonth';
+  }
+  getAllPreviousMonthsEvents() {
+    this.eventOption = 'allpreviousmonth';
   }
 
 }

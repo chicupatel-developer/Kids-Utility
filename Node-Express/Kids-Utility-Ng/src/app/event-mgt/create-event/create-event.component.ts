@@ -100,12 +100,12 @@ export class CreateEventComponent implements OnInit {
     var eventDate_ = this.form.value["eventDateValue"];
     var edate = new Date(eventDate_);
     edate.setHours(this.eventTimeValue.hour - 5, this.eventTimeValue.minute, 0);   // Set hours, minutes and seconds
-    // console.log(edate.toUTCString()+"-0600 (Central Standard Time)");
+    // console.log(edate.toUTCString()+"-0500 (Central Standard Time)");
 
     var eventModel = {
       id: this.localDataService.getGUID(),
       userName: this.currentUser,
-      eventDate: edate.toUTCString() + "-0600 (Central Standard Time)",
+      eventDate: edate.toUTCString() + "-0500 (Central Standard Time)",
       eventTitle: this.form.value["eventTitle"],
       eventDesc: this.form.value["eventDesc"],
     }
