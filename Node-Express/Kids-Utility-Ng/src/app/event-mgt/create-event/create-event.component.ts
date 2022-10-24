@@ -92,7 +92,7 @@ export class CreateEventComponent implements OnInit {
     this.submitted = true;
 
     if (this.form.invalid) {
-      // return;
+      return;
     }
     console.log(this.form.value);
 
