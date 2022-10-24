@@ -1,12 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-8 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h3>Create-Event</h3>
+                    <h3>Create Your Event !</h3>
                     <p></p>
                     <div *ngIf="apiResponse">
-                        <span [style.color]="responseColor">
+                        <span [style.color]="responseColor" 
+                            class="apiResponse">
                             {{apiResponse}}
                         </span>
                     </div>
@@ -14,32 +15,53 @@
                 <div class="card-body">
                     <form [formGroup]="form" 
                         (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label>Event-Date</label>
-                            <input [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }" type="text" placeholder="Start Run Time"
-                                bsDatepicker formControlName="eventDateValue" class="form-control eventDate"
-                                [ngClass]="{ 'is-invalid': submitted && f['eventDateValue'].errors }" />
-                            <div *ngIf="submitted && f['eventDateValue'].errors" class="invalid-feedback">
-                                <div *ngIf="f['eventDateValue'].errors['required']">
-                                    Event Date is required
+                        <div class="row">
+                            <div class="col-md-6 mx-auto">
+                                <div class="form-group">
+                                    <label>Event-Date</label>
+                                    <input [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }" type="text" placeholder="Start Run Time"
+                                        bsDatepicker formControlName="eventDateValue" class="form-control eventDate"
+                                        [ngClass]="{ 'is-invalid': submitted && f['eventDateValue'].errors }" />
+                                    <div *ngIf="submitted && f['eventDateValue'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['eventDateValue'].errors['required']">
+                                            Event Date is required
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                    <label>Event-Time</label>
+                                    <ngb-timepicker class="form-control" formControlName="eventTimeValue"
+                                        [ngClass]="{ 'is-invalid': submitted && f['eventTimeValue'].errors }" [(ngModel)]="eventTimeValue"
+                                        [meridian]="meridian">
+                                    </ngb-timepicker>
+                                    <div *ngIf="submitted && f['eventTimeValue'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['eventTimeValue'].errors['required']">Event Time is required</div>
+                                    </div>
                                 </div>
                             </div>
-                            <p></p>
-                            <label>Event-Time</label>
-                            <ngb-timepicker 
-                                class="form-control"
-                                formControlName="eventTimeValue" 
-                                [ngClass]="{ 'is-invalid': submitted && f['eventTimeValue'].errors }"
-                                [(ngModel)]="eventTimeValue" 
-                                [meridian]="meridian">
-                            </ngb-timepicker>                          
-                            <div *ngIf="submitted && f['eventTimeValue'].errors" class="invalid-feedback">
-                                <div *ngIf="f['eventTimeValue'].errors['required']">Event Time is required</div>                             
+                            <div class="col-md-6 mx-auto">
+                                <div class="form-group">
+                                    <label>Event-Title</label>
+                                    <input type="text" 
+                                        formControlName="eventTitle" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f['eventTitle'].errors }" />
+                                    <div *ngIf="submitted && f['eventTitle'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['eventTitle'].errors['required']">Event Title is required</div>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-group">
+                                    <label>Event-Desc</label>
+                                    <input type="text" formControlName="eventDesc" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f['eventDesc'].errors }" />
+                                    <div *ngIf="submitted && f['eventDesc'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['eventDesc'].errors['required']">Event Desc is required</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <p></p>
-
-
+                        <hr />
+                        <p></p>
                         <div class="form-group">
                             <button type="submit" 
                                 class="btn btn-success">

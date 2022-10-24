@@ -25,13 +25,8 @@ export class CreateEventComponent implements OnInit {
     eventDesc: new FormControl(''),
   });
   submitted = false;
-  eventModel = {
-    eventDate: '',
-    eventTitle: '',
-    eventDesc: '',
-    userName: '',
-    id: '',
-  };
+ 
+  currentUser = '';
   
   constructor(
     public localDataService: LocalDataService,
@@ -40,11 +35,22 @@ export class CreateEventComponent implements OnInit {
     public router: Router,
   ) { }
 
+  setCurrentUser() {
+    if ((localStorage.getItem('userName')) != "") {
+      this.currentUser = (localStorage.getItem('userName'));
+    }
+    else {
+      this.currentUser = "";
+    }
+  }
+  
   ngOnInit(): void {
     if (!this.userService.isLoggedIn) {
       this.router.navigate(['/home']);
     }
    
+    this.setCurrentUser();
+
     this.form = this.formBuilder.group(
       {
         eventDateValue: [
@@ -88,14 +94,55 @@ export class CreateEventComponent implements OnInit {
     if (this.form.invalid) {
       // return;
     }
-    console.log(this.form.value);   
+    console.log(this.form.value);
+
+
+    var eventDate_ = this.form.value["eventDateValue"];
+    var edate = new Date(eventDate_);
+    edate.setHours(this.eventTimeValue.hour - 5, this.eventTimeValue.minute, 0);   // Set hours, minutes and seconds
+    // console.log(edate.toUTCString()+"-0600 (Central Standard Time)");
+
+    var eventModel = {
+      id: this.localDataService.getGUID(),
+      userName: this.currentUser,
+      eventDate: edate.toUTCString() + "-0600 (Central Standard Time)",
+      eventTitle: this.form.value["eventTitle"],
+      eventDesc: this.form.value["eventDesc"],
+    }
+
+    console.log(eventModel);
+
+    // api call
+    fetch(this.localDataService.getServerUrl()+this.localDataService.getEventServiceUrl()+'create', {
+      method: 'POST',
+      body: JSON.stringify(eventModel),
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json())
+      .then(json => {
+        console.log(json);
+        if (json.error) {
+          this.responseColor = 'red';
+          this.apiResponse = json.error;
+        }
+        else {
+          this.responseColor = 'green';
+          this.apiResponse = json.message;
+
+          this.onReset();
+
+          // redirect to view-event
+          setTimeout(() => {
+            this.apiResponse = '';
+            this.responseColor = '';
+          }, 2000);
+        }
+      }
+      );
   }
 
   onReset(): void {
     this.submitted = false;
     this.form.reset();
-    this.responseColor = '';
-    this.apiResponse = '';
   }
 
 }
