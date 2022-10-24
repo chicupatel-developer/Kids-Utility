@@ -12,10 +12,11 @@ import { LocalDataService } from '../../services/local-data.service';
 })
 export class ViewEventComponent implements OnInit {
 
-  eventOption = 'today';
+  eventOption = '';
 
   currentUser = '';
   myEvents = [];
+  myEventsToDisplay = [];
 
   constructor(
     public localDataService: LocalDataService,
@@ -41,17 +42,27 @@ export class ViewEventComponent implements OnInit {
     this.getAllMyEvents();
   }
 
+  sortByDateAsc(data) {
+    return data.sort((a: any, b: any) => {
+      return <any>new Date(a.eventDate) - <any>new Date(b.eventDate);
+    });
+  }
+  
   getAllMyEvents() {
-    fetch(this.localDataService.getServerUrl()+this.localDataService.getEventServiceUrl())
+    fetch(this.localDataService.getServerUrl() + this.localDataService.getEventServiceUrl())
       .then(res => res.json())
       .then(data => {
 
         var currentUser = this.currentUser;
         data = data.filter(entry => entry.userName == currentUser);
 
+        // order by date/time
+        data = this.sortByDateAsc(data);        
+        
         console.log(data);
 
-        this.myEvents = data;      
+        this.myEvents = data;
+        this.getTodayEvents();
       }
       );
   }
@@ -75,7 +86,8 @@ export class ViewEventComponent implements OnInit {
           });
         }
       }
-      console.log('today events,,,',todayEvents_);
+      
+      this.myEventsToDisplay = [...todayEvents_];
     }
   }
 

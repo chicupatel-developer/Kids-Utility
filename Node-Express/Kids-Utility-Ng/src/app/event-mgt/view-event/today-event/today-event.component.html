@@ -1,4 +1,19 @@
-<div class="eventContainer">
-    today-event works!
+<div *ngIf="myEventsToDisplay && myEventsToDisplay.length>0" 
+    class="eventContainer">   
+
+    <div *ngFor="let e of myEventsToDisplay; let i=index">
+        <div class="eventContent">
+            {{e.eventData.eventTitle}}
+            <br />
+            <span class="eventTime">
+                [ Today @ {{e.eventData.eventDate | date: "hh:mm a"}}]
+            </span>
+            <br />
+            <span>{{e.eventData.eventDate | date: "EEE, dd - MMM"}}</span>
+            <p></p>
+            {{e.eventData.eventDesc}}
+        </div>
+    </div>
 </div>
+
 

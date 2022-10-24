@@ -4,3 +4,18 @@
     font-weight: bold;
     font-style: italic;
 }
+
+.eventContent{
+    text-align: center;
+    vertical-align: middle;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 2px solid green;
+    border-radius: 10px;
+    background-color: lightskyblue;
+}
+
+.eventTime { 
+    color: red;
+    font-size: large;    
+}

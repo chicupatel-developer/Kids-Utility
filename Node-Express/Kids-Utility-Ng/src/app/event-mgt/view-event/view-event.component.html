@@ -37,6 +37,20 @@
             </button>
         </div>
     </div>
+    <div *ngIf="eventOption==''" class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-9 eventListHeader">                
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">               
+            </div>
+        </div>
+    </div>
     <div *ngIf="eventOption=='today'" class="col-md-8 mx-auto">
         <div class="row">
             <div class="col-sm-1">
@@ -49,7 +63,9 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-today-event></app-today-event>
+                <app-today-event
+                    [myEventsToDisplay]="myEventsToDisplay">
+                </app-today-event>
             </div>
         </div>
     </div>

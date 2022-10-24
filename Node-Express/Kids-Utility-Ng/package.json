@@ -24,6 +24,7 @@
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
     "bootstrap-timepicker": "^0.5.2",
+    "moment": "^2.29.4",
     "ngx-bootstrap": "^8.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
