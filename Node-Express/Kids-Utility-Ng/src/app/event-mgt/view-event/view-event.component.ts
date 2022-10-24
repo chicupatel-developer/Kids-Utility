@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { UserService } from '../../services/user.service';
+import { LocalDataService } from '../../services/local-data.service';
 
 @Component({
   selector: 'app-view-event',
@@ -9,14 +14,71 @@ export class ViewEventComponent implements OnInit {
 
   eventOption = 'today';
 
-  constructor() { }
+  currentUser = '';
+  myEvents = [];
 
+  constructor(
+    public localDataService: LocalDataService,
+    public userService: UserService,
+    private formBuilder: FormBuilder,
+    public router: Router,
+  ) { }
+
+  setCurrentUser() {
+    if ((localStorage.getItem('userName')) != "") {
+      this.currentUser = (localStorage.getItem('userName'));
+    }
+    else {
+      this.currentUser = "";
+    }
+  }
+  
   ngOnInit(): void {
+    if (!this.userService.isLoggedIn) {
+      this.router.navigate(['/home']);
+    }   
+    this.setCurrentUser();
+    this.getAllMyEvents();
+  }
+
+  getAllMyEvents() {
+    fetch(this.localDataService.getServerUrl()+this.localDataService.getEventServiceUrl())
+      .then(res => res.json())
+      .then(data => {
+
+        var currentUser = this.currentUser;
+        data = data.filter(entry => entry.userName == currentUser);
+
+        console.log(data);
+
+        this.myEvents = data;      
+      }
+      );
   }
 
   getTodayEvents() {
     this.eventOption = 'today';    
+
+    if (this.myEvents && this.myEvents.length > 0) {
+      var currentDateTime = new Date();
+      var currentDate_ = currentDateTime.getDate() + '-' + currentDateTime.getMonth() + '-' + currentDateTime.getFullYear();
+      var i;
+      var eventDate;
+      var todayEvents_ = [];
+      for (i = 0; i < this.myEvents.length; i++) {
+        eventDate = new Date(this.myEvents[i].eventDate);
+        var eventDate_ = eventDate.getDate() + '-' + eventDate.getMonth() + '-' + eventDate.getFullYear();                  
+        if (currentDate_ === eventDate_) {
+          todayEvents_.push({
+            eventData: this.myEvents[i],
+            offsetFromToday: 0
+          });
+        }
+      }
+      console.log('today events,,,',todayEvents_);
+    }
   }
+
   getThisWeekEvents() {
     this.eventOption = 'thisweek';    
   }
