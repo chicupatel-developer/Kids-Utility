@@ -1,19 +1,39 @@
-<div *ngIf="myEventsToDisplay && myEventsToDisplay.length>0" 
+<div class="row pageControl">
+    <div class="col-md-6 mx-auto">
+        <button type="button" (click)="onPreviousButton()" class="btn btn-success">
+            Previous
+        </button>
+    </div>
+    <div class="col-md-6 mx-auto nextPageBtn">
+            <button type="button" 
+                (click)="onNextButton()" 
+                class="btn btn-success">
+                Next
+            </button>
+    </div> 
+</div>
+
+<div *ngIf="currentPageData && currentPageData.length>0" 
     class="eventContainer">   
 
-    <div *ngFor="let e of myEventsToDisplay; let i=index">
-        <div class="eventContent">
-            {{e.eventData.eventTitle}}
-            <br />
-            <span class="eventTime">
-                [ Today @ {{e.eventData.eventDate | date: "hh:mm a"}}]
-            </span>
-            <br />
-            <span>{{e.eventData.eventDate | date: "EEE, dd - MMM"}}</span>
-            <p></p>
-            {{e.eventData.eventDesc}}
+    <div class="row">
+        <div *ngFor="let e of currentPageData; let i=index">
+            <div class="col-md-6 mx-auto">
+                <div class="eventContent">
+                    {{e.eventData.eventTitle}}
+                    <br />
+                    <span class="eventTime">
+                        [ Today @ {{e.eventData.eventDate | date: "hh:mm a"}}]
+                    </span>
+                    <br />
+                    <span>{{e.eventData.eventDate | date: "EEE, dd - MMM"}}</span>
+                    <p></p>
+                    {{e.eventData.eventDesc}}
+                </div>              
+            </div>
         </div>
     </div>
+  
 </div>
 
 

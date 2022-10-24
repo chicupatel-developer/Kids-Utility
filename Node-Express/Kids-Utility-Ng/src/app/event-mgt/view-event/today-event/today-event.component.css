@@ -1,5 +1,5 @@
 .eventContainer {
-    padding: 20px;
+    padding: 10px;
     font-size: medium;
     font-weight: bold;
     font-style: italic;
@@ -18,4 +18,11 @@
 .eventTime { 
     color: red;
     font-size: large;    
+}
+
+.pageControl { 
+    padding: 20px;
+}
+.nextPageBtn { 
+    text-align: right;
 }
