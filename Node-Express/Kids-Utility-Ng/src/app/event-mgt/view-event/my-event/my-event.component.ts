@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { LocalDataService } from '../../../services/local-data.service';
 
 @Component({
   selector: 'app-my-event',
@@ -14,7 +15,10 @@ export class MyEventComponent implements OnChanges {
   currentPageData = [];
   totalPages = 0;
   
-  constructor() { }
+  constructor(
+    public router: Router,
+    public localDataService: LocalDataService,
+  ) { }
 
   ngOnInit(): void {
     console.log('events : ', this.myEventsToDisplay);
@@ -59,6 +63,12 @@ export class MyEventComponent implements OnChanges {
 
   viewEvent(e, event) {
     console.log('viewing event,,,', event);
+
+    this.localDataService.setMyEvent(event);
+
+    setTimeout(() => {
+      this.router.navigate(['/event-details']);
+    }, 1000);
   }
   editEvent(e, event) {
     console.log('editing event,,,', event);

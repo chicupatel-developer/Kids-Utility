@@ -1,0 +1,50 @@
+.eventContainer {
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.eventContent {
+    text-align: center;
+    vertical-align: middle;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 2px solid green;
+    border-radius: 10px;
+    background-color: lightskyblue;
+    padding-left: 2px;
+    font-size: large;
+}
+
+.eventDetailsHeader {
+    background-color: lightgray;
+    font-size: large;
+    font-style: italic;
+    font-weight: bold;
+    border-color: blue;
+    border-style: dotted;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
+}
+
+.currentEventTime {
+    color: red;
+    font-size: large;
+}
+
+.pastEventTime {
+    color: green;
+    font-size: medium;
+}
+
+.comingEventTime {
+    color: blue;
+    font-size: large;
+}
+
+.eventDetailsStyle {
+    font-size: x-large;
+}

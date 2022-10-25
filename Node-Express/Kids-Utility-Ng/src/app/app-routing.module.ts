@@ -15,6 +15,7 @@ import { MultiplyDecimalComponent } from './math-test/multiply-decimal/multiply-
 import { DivisionTwoByOneComponent } from './math-test/division-two-by-one/division-two-by-one.component';
 import { CreateEventComponent } from './event-mgt/create-event/create-event.component';
 import { ViewEventComponent } from './event-mgt/view-event/view-event.component';
+import { EventDetailsComponent } from './event-mgt/view-event/event-details/event-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'division-2by1', component: DivisionTwoByOneComponent },
   { path: 'create-event', component: CreateEventComponent },
   { path: 'view-event', component: ViewEventComponent },
+  { path: 'event-details', component: EventDetailsComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

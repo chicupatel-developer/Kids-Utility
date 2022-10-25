@@ -1,0 +1,54 @@
+<div *ngIf="myEvent"
+    class="eventContainer">
+
+  
+
+    <div class="row eventContent">
+        <div class="col-md-2 mx-auto">
+        </div>
+        <div class="col-md-8 mx-auto">
+            <div class="row">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-9 eventDetailsHeader">
+                    Event - Details
+                </div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="eventDetailsStyle">
+                        {{myEvent.eventData.eventTitle}}
+                        <br />
+                        <span>
+                            <span class="pastEventTime" *ngIf="myEvent.offsetFromToday<0">
+                                [ {{myEvent.offsetFromToday*(-1)}} Days Before @
+                                {{myEvent.eventData.eventDate | date: "hh:mm a"}} ]
+                            </span>
+                            <span class="currentEventTime" *ngIf="myEvent.offsetFromToday==0">
+                                [ Today @ {{myEvent.eventData.eventDate | date: "hh:mm a"}}]
+                            </span>
+                            <span class="comingEventTime" *ngIf="myEvent.offsetFromToday>0">
+                                [ {{myEvent.offsetFromToday}} Days After @
+                                {{myEvent.eventData.eventDate | date: "hh:mm a"}} ]
+                            </span>
+                        </span>
+                        <br />
+                        <span>{{myEvent.eventData.eventDate | date: "EEE, dd - MMM"}}</span>
+                        <p></p>
+                        {{myEvent.eventData.eventDesc}}
+                    </div>
+                </div>
+            </div>          
+        </div>
+        <div class="col-md-2 mx-auto">    
+            <button type="button" 
+                (click)="goBack()" 
+                class="btn btn-success">
+                <i class="fa fa-arrow-left"></i>
+            </button>
+        </div>
+    </div>
+</div>

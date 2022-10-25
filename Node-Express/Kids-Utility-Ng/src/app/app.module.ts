@@ -33,6 +33,7 @@ import { DivisionTwoByOneComponent } from './math-test/division-two-by-one/divis
 import { CreateEventComponent } from './event-mgt/create-event/create-event.component';
 import { ViewEventComponent } from './event-mgt/view-event/view-event.component';
 import { MyEventComponent } from './event-mgt/view-event/my-event/my-event.component';
+import { EventDetailsComponent } from './event-mgt/view-event/event-details/event-details.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { MyEventComponent } from './event-mgt/view-event/my-event/my-event.compo
     DivisionTwoByOneComponent,
     CreateEventComponent,
     ViewEventComponent,  
-    MyEventComponent,  
+    MyEventComponent, EventDetailsComponent,  
   ],
   imports: [
     BrowserModule,
