@@ -37,7 +37,7 @@
             </button>
         </div>
     </div>
-    
+
     <div *ngIf="eventOption==''" class="col-md-8 mx-auto">
         <div class="row">
             <div class="col-sm-1">
@@ -64,7 +64,9 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                <app-my-event 
+                    (onEventDelete)="onEventDelete($event)"
+                    [myEventsToDisplay]="myEventsToDisplay">
                 </app-my-event>
             </div>
         </div>
@@ -81,8 +83,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-my-event
-                    [myEventsToDisplay]="myEventsToDisplay">
+                <app-my-event (onEventDelete)="onEventDelete($event)" [myEventsToDisplay]="myEventsToDisplay">
                 </app-my-event>
             </div>
         </div>
@@ -99,7 +100,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                <app-my-event (onEventDelete)="onEventDelete($event)" [myEventsToDisplay]="myEventsToDisplay">
                 </app-my-event>
             </div>
         </div>
@@ -116,7 +117,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                <app-my-event (onEventDelete)="onEventDelete($event)" [myEventsToDisplay]="myEventsToDisplay">
                 </app-my-event>
             </div>
         </div>
@@ -133,7 +134,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                <app-my-event (onEventDelete)="onEventDelete($event)" [myEventsToDisplay]="myEventsToDisplay">
                 </app-my-event>
             </div>
         </div>
@@ -150,7 +151,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                <app-my-event (onEventDelete)="onEventDelete($event)" [myEventsToDisplay]="myEventsToDisplay">
                 </app-my-event>
             </div>
         </div>

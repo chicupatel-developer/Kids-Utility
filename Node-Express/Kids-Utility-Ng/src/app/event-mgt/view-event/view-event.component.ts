@@ -265,4 +265,10 @@ export class ViewEventComponent implements OnInit {
     }
   }
 
+
+  // call back from child component
+  onEventDelete(eventToDelete) {
+    console.log(eventToDelete);
+  }  
+
 }

@@ -54,7 +54,7 @@
                             <i class="fa fa-edit"></i>
                         </button> 
                         <button type="button" 
-                            (click)="deleteEvent($event,currentPageData[0])" 
+                            (click)="eventDelete(currentPageData[0])" 
                             class="btn btn-block deleteEvent">
                             <i class="fa fa-trash"></i>
                         </button>
@@ -103,8 +103,8 @@
                         class="btn btn-block editEvent">
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button type="button" 
-                        (click)="deleteEvent($event,currentPageData[1])" 
+                    <button type="button"
+                        (click)="eventDelete(currentPageData[1])" 
                         class="btn btn-block deleteEvent">
                         <i class="fa fa-trash"></i>
                     </button>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataService } from '../../../services/local-data.service';
 
@@ -14,6 +14,13 @@ export class MyEventComponent implements OnChanges {
   currentPage = 0;
   currentPageData = [];
   totalPages = 0;
+  
+  @Output() onEventDelete = new EventEmitter();
+
+  eventDelete(eventToDelete) {
+    console.log(eventToDelete);
+    this.onEventDelete.emit(eventToDelete);
+  }
   
   constructor(
     public router: Router,
@@ -72,8 +79,5 @@ export class MyEventComponent implements OnChanges {
   }
   editEvent(e, event) {
     console.log('editing event,,,', event);
-  }
-  deleteEvent(e, event) {
-    console.log('deleting event,,,', event);
   }
 }
