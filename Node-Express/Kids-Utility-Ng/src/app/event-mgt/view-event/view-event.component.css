@@ -31,6 +31,8 @@
 .eventListHeader {
     background-color: lightgray;
     font-size: large;
+    font-style: italic;
+    font-weight: bold;
     border-color: blue;
     border-style: dotted;
     border-radius: 10px;

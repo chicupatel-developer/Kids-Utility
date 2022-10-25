@@ -159,7 +159,35 @@ export class ViewEventComponent implements OnInit {
   getNextMonthEvents() {
     this.eventOption = 'nextmonth';
 
-  
+    if (this.myEvents && this.myEvents.length > 0) {
+      var todaysDate = new Date();
+      todaysDate.setMonth(todaysDate.getMonth() + 1);
+      const nextMonth = todaysDate.getMonth();
+      console.log(nextMonth);
+
+      var todaysDate = new Date();
+      var i;
+      var eventDate;
+      var monthEvents_ = [];
+      for (i = 0; i < this.myEvents.length; i++) {
+        eventDate = new Date(this.myEvents[i].eventDate);
+        if (eventDate.getMonth() == nextMonth) {
+
+          var myToday = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate(), 0, 0, 0);
+          var myEventDate = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate(), 0, 0, 0);
+       
+          // calculate eventdate offset from today                     
+          var d = (Number(myEventDate) - Number(myToday));
+          var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+                     
+          monthEvents_.push({
+            eventData: this.myEvents[i],
+            offsetFromToday: Difference_In_Days
+          });
+        }
+      }
+      this.myEventsToDisplay = [...monthEvents_];
+    }  
   }
 
   getPreviousMonthEvents() {
@@ -197,9 +225,44 @@ export class ViewEventComponent implements OnInit {
       this.myEventsToDisplay = [...monthEvents_];
     }
   }
-  
+
   getAllPreviousMonthsEvents() {
     this.eventOption = 'allpreviousmonth';
+
+    if (this.myEvents && this.myEvents.length > 0) {
+      var todaysDate = new Date();
+      var previousMonth = todaysDate.getMonth() - 1;
+
+      var previousMonthList = [];
+      for (var j = 0; j <= previousMonth; j++) {
+        previousMonthList.push(j);
+      }
+      console.log(previousMonthList);
+
+      var i;
+      var eventDate;
+      var monthEvents_ = [];
+      for (i = 0; i < this.myEvents.length; i++) {
+        eventDate = new Date(this.myEvents[i].eventDate);
+
+        var pMonth;
+        for (pMonth = 0; pMonth < previousMonthList.length; pMonth++) {
+          console.log('checking for pMonth : ' + pMonth);
+          console.log('event date : ' + eventDate.getMonth());
+          if (eventDate.getMonth() === pMonth && eventDate.getFullYear() === todaysDate.getFullYear()) {
+            // calculate eventdate offset from today
+            var d = (eventDate.getTime() - todaysDate.getTime());
+            var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+
+            monthEvents_.push({
+              eventData: this.myEvents[i],
+              offsetFromToday: Difference_In_Days
+            });
+          }
+        }                  
+      }
+      this.myEventsToDisplay = [...monthEvents_];
+    }
   }
 
 }
