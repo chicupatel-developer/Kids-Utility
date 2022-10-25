@@ -63,9 +63,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-today-event
-                    [myEventsToDisplay]="myEventsToDisplay">
-                </app-today-event>
+                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                </app-my-event>
             </div>
         </div>
     </div>
@@ -81,7 +80,9 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-this-week-event></app-this-week-event>
+                <app-my-event
+                    [myEventsToDisplay]="myEventsToDisplay">
+                </app-my-event>
             </div>
         </div>
     </div>
@@ -97,7 +98,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-this-month-event></app-this-month-event>
+                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                </app-my-event>
             </div>
         </div>
     </div>
@@ -113,7 +115,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-next-month-event></app-next-month-event>
+                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                </app-my-event>
             </div>
         </div>
     </div>
@@ -129,7 +132,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-previous-month-event></app-previous-month-event>
+                <app-my-event [myEventsToDisplay]="myEventsToDisplay">
+                </app-my-event>
             </div>
         </div>
     </div>
@@ -145,7 +149,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <app-all-previous-month-event></app-all-previous-month-event>
+       
             </div>
         </div>
     </div>

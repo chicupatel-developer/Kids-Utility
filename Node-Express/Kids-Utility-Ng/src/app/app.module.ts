@@ -32,12 +32,7 @@ import { MultiplyDecimalComponent } from './math-test/multiply-decimal/multiply-
 import { DivisionTwoByOneComponent } from './math-test/division-two-by-one/division-two-by-one.component';
 import { CreateEventComponent } from './event-mgt/create-event/create-event.component';
 import { ViewEventComponent } from './event-mgt/view-event/view-event.component';
-import { TodayEventComponent } from './event-mgt/view-event/today-event/today-event.component';
-import { ThisWeekEventComponent } from './event-mgt/view-event/this-week-event/this-week-event.component';
-import { ThisMonthEventComponent } from './event-mgt/view-event/this-month-event/this-month-event.component';
-import { NextMonthEventComponent } from './event-mgt/view-event/next-month-event/next-month-event.component';
-import { PreviousMonthEventComponent } from './event-mgt/view-event/previous-month-event/previous-month-event.component';
-import { AllPreviousMonthEventComponent } from './event-mgt/view-event/all-previous-month-event/all-previous-month-event.component';
+import { MyEventComponent } from './event-mgt/view-event/my-event/my-event.component';
 
 @NgModule({
   declarations: [
@@ -58,13 +53,8 @@ import { AllPreviousMonthEventComponent } from './event-mgt/view-event/all-previ
     MultiplyDecimalComponent,
     DivisionTwoByOneComponent,
     CreateEventComponent,
-    ViewEventComponent,
-    TodayEventComponent,
-    ThisWeekEventComponent,
-    ThisMonthEventComponent,
-    NextMonthEventComponent,
-    PreviousMonthEventComponent,
-    AllPreviousMonthEventComponent,  
+    ViewEventComponent,  
+    MyEventComponent,  
   ],
   imports: [
     BrowserModule,

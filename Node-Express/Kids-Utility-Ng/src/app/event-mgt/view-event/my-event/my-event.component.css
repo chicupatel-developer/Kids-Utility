@@ -5,7 +5,7 @@
     font-style: italic;
 }
 
-.eventContent{
+.eventContent {
     text-align: center;
     vertical-align: middle;
     padding-bottom: 10px;
@@ -15,14 +15,25 @@
     background-color: lightskyblue;
 }
 
-.eventTime { 
+.currentEventTime {
     color: red;
-    font-size: large;    
+    font-size: large;
 }
 
-.pageControl { 
+.pastEventTime {
+    color: green;
+    font-size: medium;
+}
+
+.comingEventTime {
+    color: blue;
+    font-size: large;
+}
+
+.pageControl {
     padding: 20px;
 }
-.nextPageBtn { 
+
+.nextPageBtn {
     text-align: right;
 }

@@ -92,17 +92,112 @@ export class ViewEventComponent implements OnInit {
   }
 
   getThisWeekEvents() {
-    this.eventOption = 'thisweek';    
+    this.eventOption = 'thisweek';
+
+    if (this.myEvents && this.myEvents.length > 0) {
+      // getting firstday and lastday of current week
+      var currentDate = new Date();
+      var firstday = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
+      var lastday = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 6));
+      console.log(firstday + ' : ' + lastday)
+          
+      firstday = new Date(firstday.setHours(0, 0, 0, 0));
+      lastday = new Date(lastday.setHours(0, 0, 0, 0));
+      console.log(firstday + ' : ' + lastday);
+
+      var i;
+      var eventDate;
+      var weekEvents_ = [];
+      for (i = 0; i < this.myEvents.length; i++) {
+        eventDate = new Date(this.myEvents[i].eventDate);
+        var eventDate_ = eventDate;
+        if ((eventDate_.setHours(0, 0, 0, 0) <= lastday.setHours(0, 0, 0, 0)) && (eventDate_.setHours(0, 0, 0, 0) >= firstday.setHours(0, 0, 0, 0))) {
+          // calculate eventdate offset from today
+          var currentDateTime = new Date();
+          var difference = eventDate.getTime() - currentDateTime.getTime();
+          var days = Math.ceil(difference / (1000 * 3600 * 24));
+          console.log(eventDate + ' : ' + days);
+
+          weekEvents_.push({
+            eventData: this.myEvents[i],
+            offsetFromToday: Number(days)
+          });
+        }
+      }
+      this.myEventsToDisplay = [...weekEvents_];
+    }     
   }
+
   getThisMonthEvents() {
-    this.eventOption = 'thismonth';    
+    this.eventOption = 'thismonth';
+
+    if (this.myEvents && this.myEvents.length > 0) {
+      var todaysDate = new Date();
+      var i;
+      var eventDate;
+      var monthEvents_ = [];
+      for (i = 0; i < this.myEvents.length; i++) {
+        eventDate = new Date(this.myEvents[i].eventDate);
+        if (eventDate.getMonth() == todaysDate.getMonth()) {
+          var myToday = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate(), 0, 0, 0);
+          var myEventDate = new Date(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate(), 0, 0, 0);
+       
+          // calculate eventdate offset from today                     
+          var d = (Number(myEventDate) - Number(myToday));
+          var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+          
+          monthEvents_.push({
+            eventData: this.myEvents[i],
+            offsetFromToday: Difference_In_Days
+          });
+        }
+      }
+      this.myEventsToDisplay = [...monthEvents_];
+    }
   }
+
   getNextMonthEvents() {
     this.eventOption = 'nextmonth';
+
+  
   }
+
   getPreviousMonthEvents() {
     this.eventOption = 'previousmonth';
+
+    if (this.myEvents && this.myEvents.length > 0) {
+      var todaysDate = new Date();
+      var previousMonth = todaysDate.getMonth() - 1;
+      var previousYear = todaysDate.getFullYear() - 1;
+      var previousDate = new Date(todaysDate.getFullYear(), previousMonth, 1);
+      console.log(previousMonth);
+      // current month is january(0)
+      if (previousMonth < 0) {
+        previousMonth = 11;
+        previousDate = new Date(previousYear, previousMonth, 1);
+      }
+      console.log(previousDate);
+
+      var i;
+      var eventDate;
+      var monthEvents_ = [];
+      for (i = 0; i < this.myEvents.length; i++) {
+        eventDate = new Date(this.myEvents[i].eventDate);
+        if (eventDate.getMonth() === previousMonth && eventDate.getFullYear() === previousDate.getFullYear()) {
+          // calculate eventdate offset from today
+          var d = (eventDate.getTime() - todaysDate.getTime());
+          var Difference_In_Days = (d / (1000 * 3600 * 24)).toFixed(0);
+
+          monthEvents_.push({
+            eventData: this.myEvents[i],
+            offsetFromToday: Difference_In_Days
+          });
+        }
+      }
+      this.myEventsToDisplay = [...monthEvents_];
+    }
   }
+  
   getAllPreviousMonthsEvents() {
     this.eventOption = 'allpreviousmonth';
   }
