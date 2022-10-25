@@ -269,6 +269,30 @@ export class ViewEventComponent implements OnInit {
   // call back from child component
   onEventDelete(eventToDelete) {
     console.log(eventToDelete);
-  }  
+
+    var data = {
+      id: eventToDelete.eventData.id
+    };
+
+    console.log(data);
+
+    // api call
+    fetch(this.localDataService.getServerUrl() + this.localDataService.getEventServiceUrl() + 'delete', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json())
+      .then(json => {
+        console.log(json);
+        if (json.error) {                    
+        }
+        else {          
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
+      }
+      );
+  }
 
 }
