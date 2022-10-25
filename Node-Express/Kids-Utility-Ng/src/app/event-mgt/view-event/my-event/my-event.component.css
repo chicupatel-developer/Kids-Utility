@@ -13,6 +13,7 @@
     border: 2px solid green;
     border-radius: 10px;
     background-color: lightskyblue;
+    padding-left: 2px;
 }
 
 .currentEventTime {
@@ -36,4 +37,14 @@
 
 .nextPageBtn {
     text-align: right;
+}
+
+.deleteEvent {
+    color : red;
+}
+.editEvent {
+    color : blue;
+}
+.viewEvent {
+    color : green;
 }

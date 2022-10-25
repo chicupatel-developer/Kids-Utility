@@ -16,53 +16,100 @@
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div *ngIf="currentPageData[0]" class="eventContent">
-                <span>
-                    {{currentPageData[0].eventData.eventTitle}}
-                    <br />
-                    <span>
-                        <span class="pastEventTime" *ngIf="currentPageData[0].offsetFromToday<0">
-                            [ {{currentPageData[0].offsetFromToday*(-1)}} Days Before @
-                            {{currentPageData[0].eventData.eventDate | date: "hh:mm a"}} ]
-                        </span>
-                        <span class="currentEventTime" *ngIf="currentPageData[0].offsetFromToday==0">
-                            [ Today @ {{currentPageData[0].eventData.eventDate | date: "hh:mm a"}}]
-                        </span>
-                        <span class="comingEventTime" *ngIf="currentPageData[0].offsetFromToday>0">
-                            [ {{currentPageData[0].offsetFromToday}} Days After @
-                            {{currentPageData[0].eventData.eventDate | date: "hh:mm a"}} ]
-                        </span>
-                    </span>
-                    <br />
-                    <span>{{currentPageData[0].eventData.eventDate | date: "EEE, dd - MMM"}}</span>
-                    <p></p>
-                    {{currentPageData[0].eventData.eventDesc}}
-                </span>
+             
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div>
+                            {{currentPageData[0].eventData.eventTitle}}
+                            <br />
+                            <span>
+                                <span class="pastEventTime" *ngIf="currentPageData[0].offsetFromToday<0">
+                                    [ {{currentPageData[0].offsetFromToday*(-1)}} Days Before @
+                                    {{currentPageData[0].eventData.eventDate | date: "hh:mm a"}} ]
+                                </span>
+                                <span class="currentEventTime" *ngIf="currentPageData[0].offsetFromToday==0">
+                                    [ Today @ {{currentPageData[0].eventData.eventDate | date: "hh:mm a"}}]
+                                </span>
+                                <span class="comingEventTime" *ngIf="currentPageData[0].offsetFromToday>0">
+                                    [ {{currentPageData[0].offsetFromToday}} Days After @
+                                    {{currentPageData[0].eventData.eventDate | date: "hh:mm a"}} ]
+                                </span>
+                            </span>
+                            <br />
+                            <span>{{currentPageData[0].eventData.eventDate | date: "EEE, dd - MMM"}}</span>
+                            <p></p>
+                            {{currentPageData[0].eventData.eventDesc}}
+                        </div>
+                    </div>
+                    <div class="col-md-2 mx-auto">
+                        <button type="button" 
+                            (click)="viewEvent($event,currentPageData[0])" 
+                            class="btn btn-block viewEvent">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button type="button" 
+                            (click)="editEvent($event,currentPageData[0])" 
+                            class="btn btn-block editEvent">
+                            <i class="fa fa-edit"></i>
+                        </button> 
+                        <button type="button" 
+                            (click)="deleteEvent($event,currentPageData[0])" 
+                            class="btn btn-block deleteEvent">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+             
             </div>
         </div>
         <div class="col-md-6 mx-auto">
             <div *ngIf="currentPageData[1]" class="eventContent">
-                <span>
-                    {{currentPageData[1].eventData.eventTitle}}
-                    <br />
-                    <span>
-                        <span class="pastEventTime" *ngIf="currentPageData[1].offsetFromToday<0">
-                            [ {{currentPageData[1].offsetFromToday*(-1)}} Days Before @
-                            {{currentPageData[1].eventData.eventDate | date: "hh:mm
-                            a"}} ]
+                
+                <div class="row">
+                 <div class="col-md-10 mx-auto">
+                    <div>
+                        {{currentPageData[1].eventData.eventTitle}}
+                        <br />
+                        <span>
+                            <span class="pastEventTime" *ngIf="currentPageData[1].offsetFromToday<0">
+                                [ {{currentPageData[1].offsetFromToday*(-1)}} Days Before @
+                                {{currentPageData[1].eventData.eventDate | date: "hh:mm
+                                a"}} ]
+                            </span>
+                            <span class="currentEventTime" *ngIf="currentPageData[1].offsetFromToday==0">
+                                [ Today @ {{currentPageData[1].eventData.eventDate | date: "hh:mm a"}}]
+                            </span>
+                            <span class="comingEventTime" *ngIf="currentPageData[1].offsetFromToday>0">
+                                [ {{currentPageData[1].offsetFromToday}} Days After @
+                                {{currentPageData[1].eventData.eventDate | date: "hh:mm a"}} ]
+                            </span>
                         </span>
-                        <span class="currentEventTime" *ngIf="currentPageData[1].offsetFromToday==0">
-                            [ Today @ {{currentPageData[1].eventData.eventDate | date: "hh:mm a"}}]
-                        </span>
-                        <span class="comingEventTime" *ngIf="currentPageData[1].offsetFromToday>0">
-                            [ {{currentPageData[1].offsetFromToday}} Days After @
-                            {{currentPageData[1].eventData.eventDate | date: "hh:mm a"}} ]
-                        </span>
-                    </span>
-                    <br />
-                    <span>{{currentPageData[1].eventData.eventDate | date: "EEE, dd - MMM"}}</span>
-                    <p></p>
-                    {{currentPageData[1].eventData.eventDesc}}
-                </span>
+                        <br />
+                        <span>{{currentPageData[1].eventData.eventDate | date: "EEE, dd - MMM"}}</span>
+                        <p></p>
+                        {{currentPageData[1].eventData.eventDesc}}
+                    </div>
+                 </div>
+                <div class="col-md-2 mx-auto">
+                    <button type="button" 
+                        (click)="viewEvent($event,currentPageData[1])" 
+                        class="btn btn-block viewEvent">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                    <button type="button" 
+                        (click)="editEvent($event,currentPageData[1])" 
+                        class="btn btn-block editEvent">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button type="button" 
+                        (click)="deleteEvent($event,currentPageData[1])" 
+                        class="btn btn-block deleteEvent">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                </div>
+             
             </div>
         </div>
     </div>

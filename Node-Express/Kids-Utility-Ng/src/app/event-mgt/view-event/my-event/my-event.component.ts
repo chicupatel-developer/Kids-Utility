@@ -56,4 +56,14 @@ export class MyEventComponent implements OnChanges {
     var currentPageData_ = this.myEventsToDisplay.slice(start, end);
     this.currentPageData = [...currentPageData_];
   }
+
+  viewEvent(e, event) {
+    console.log('viewing event,,,', event);
+  }
+  editEvent(e, event) {
+    console.log('editing event,,,', event);
+  }
+  deleteEvent(e, event) {
+    console.log('deleting event,,,', event);
+  }
 }
