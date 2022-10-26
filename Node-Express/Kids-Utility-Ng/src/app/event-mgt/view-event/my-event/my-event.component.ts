@@ -17,15 +17,26 @@ export class MyEventComponent implements OnChanges {
   
   @Output() onEventDelete = new EventEmitter();
 
-  eventDelete(eventToDelete) {
-    console.log(eventToDelete);
-    this.onEventDelete.emit(eventToDelete);
-  }
+ 
   
   constructor(
     public router: Router,
     public localDataService: LocalDataService,
   ) { }
+
+
+  resetPaging() {
+    this.currentPage = 0;
+    this.currentPageData = [];
+    this.totalPages = 0;
+
+    var start = this.currentPage * 2;
+    var end = start + 2;
+    var currentPageData_ = this.myEventsToDisplay.slice(start, end);
+    this.currentPageData = [...currentPageData_];
+
+    this.totalPages = Math.ceil(this.myEventsToDisplay.length / 2);
+  }
 
   ngOnInit(): void {
     console.log('events : ', this.myEventsToDisplay);
@@ -38,7 +49,12 @@ export class MyEventComponent implements OnChanges {
     this.totalPages = Math.ceil(this.myEventsToDisplay.length / 2);
 
   }
+
   ngOnChanges() {  
+    console.log('from the child now,,,',this.myEventsToDisplay);
+
+    // this will refresh this child component's data and paging controls
+    this.resetPaging();
   }
 
   onNextButton() {  
@@ -79,5 +95,9 @@ export class MyEventComponent implements OnChanges {
   }
   editEvent(e, event) {
     console.log('editing event,,,', event);
+  }
+  eventDelete(eventToDelete) {
+    console.log(eventToDelete);
+    this.onEventDelete.emit(eventToDelete);
   }
 }

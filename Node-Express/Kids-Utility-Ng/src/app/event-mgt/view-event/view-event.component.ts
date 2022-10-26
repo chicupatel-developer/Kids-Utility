@@ -49,6 +49,7 @@ export class ViewEventComponent implements OnInit {
   }
   
   getAllMyEvents() {
+    console.log('getting all events');
     fetch(this.localDataService.getServerUrl() + this.localDataService.getEventServiceUrl())
       .then(res => res.json())
       .then(data => {
@@ -57,12 +58,24 @@ export class ViewEventComponent implements OnInit {
         data = data.filter(entry => entry.userName == currentUser);
 
         // order by date/time
-        data = this.sortByDateAsc(data);        
+        data = this.sortByDateAsc(data);
         
         console.log(data);
 
         this.myEvents = data;
-        this.getTodayEvents();
+
+        if (this.localDataService.getEventOption() == "" || this.localDataService.getEventOption() == null || this.localDataService.getEventOption() == undefined)
+          this.getTodayEvents();
+        else if (this.localDataService.getEventOption() == "thisweek")
+          this.getThisWeekEvents();
+        else if (this.localDataService.getEventOption() == "thismonth")
+          this.getThisMonthEvents();
+        else if (this.localDataService.getEventOption() == "nextmonth")
+          this.getNextMonthEvents();
+        else if (this.localDataService.getEventOption() == "previousmonth")
+          this.getPreviousMonthEvents();
+        else if (this.localDataService.getEventOption() == "allpreviousmonth")
+          this.getAllPreviousMonthsEvents();
       }
       );
   }
@@ -85,9 +98,9 @@ export class ViewEventComponent implements OnInit {
             offsetFromToday: 0
           });
         }
-      }
-      
+      }      
       this.myEventsToDisplay = [...todayEvents_];
+      this.localDataService.setEventOption('today');
     }
   }
 
@@ -99,11 +112,11 @@ export class ViewEventComponent implements OnInit {
       var currentDate = new Date();
       var firstday = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
       var lastday = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 6));
-      console.log(firstday + ' : ' + lastday)
+      // console.log(firstday + ' : ' + lastday)
           
       firstday = new Date(firstday.setHours(0, 0, 0, 0));
       lastday = new Date(lastday.setHours(0, 0, 0, 0));
-      console.log(firstday + ' : ' + lastday);
+      // console.log(firstday + ' : ' + lastday);
 
       var i;
       var eventDate;
@@ -116,7 +129,7 @@ export class ViewEventComponent implements OnInit {
           var currentDateTime = new Date();
           var difference = eventDate.getTime() - currentDateTime.getTime();
           var days = Math.ceil(difference / (1000 * 3600 * 24));
-          console.log(eventDate + ' : ' + days);
+          // console.log(eventDate + ' : ' + days);
 
           weekEvents_.push({
             eventData: this.myEvents[i],
@@ -125,6 +138,7 @@ export class ViewEventComponent implements OnInit {
         }
       }
       this.myEventsToDisplay = [...weekEvents_];
+      this.localDataService.setEventOption('thisweek');
     }     
   }
 
@@ -153,6 +167,7 @@ export class ViewEventComponent implements OnInit {
         }
       }
       this.myEventsToDisplay = [...monthEvents_];
+      this.localDataService.setEventOption('thismonth');
     }
   }
 
@@ -187,6 +202,7 @@ export class ViewEventComponent implements OnInit {
         }
       }
       this.myEventsToDisplay = [...monthEvents_];
+      this.localDataService.setEventOption('nextmonth');
     }  
   }
 
@@ -223,6 +239,7 @@ export class ViewEventComponent implements OnInit {
         }
       }
       this.myEventsToDisplay = [...monthEvents_];
+      this.localDataService.setEventOption('previousmonth');
     }
   }
 
@@ -262,6 +279,7 @@ export class ViewEventComponent implements OnInit {
         }                  
       }
       this.myEventsToDisplay = [...monthEvents_];
+      this.localDataService.setEventOption('allpreviousmonth');
     }
   }
 
@@ -273,8 +291,6 @@ export class ViewEventComponent implements OnInit {
     var data = {
       id: eventToDelete.eventData.id
     };
-
-    console.log(data);
 
     // api call
     fetch(this.localDataService.getServerUrl() + this.localDataService.getEventServiceUrl() + 'delete', {
@@ -288,11 +304,16 @@ export class ViewEventComponent implements OnInit {
         }
         else {          
           setTimeout(() => {
-            window.location.reload();
+            // window.location.reload();
+
+            this.getAllMyEvents();
+            
           }, 1000);
         }
       }
-      );
+    );
+    
+    
   }
 
 }

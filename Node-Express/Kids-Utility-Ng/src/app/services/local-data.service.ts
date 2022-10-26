@@ -9,6 +9,7 @@ export class LocalDataService {
   private ParentEmail;
   private isAuthenticated;  
   private MyEvent;
+  private EventOption;
 
   constructor() { }
 
@@ -95,5 +96,11 @@ export class LocalDataService {
   }
   getMyEvent() {
     return this.MyEvent;
+  }
+  setEventOption(val) {
+    this.EventOption = val;
+  }
+  getEventOption() {
+    return this.EventOption;
   }
 }
