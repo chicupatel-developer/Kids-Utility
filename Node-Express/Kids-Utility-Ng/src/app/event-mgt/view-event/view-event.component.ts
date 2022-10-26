@@ -64,6 +64,8 @@ export class ViewEventComponent implements OnInit {
 
         this.myEvents = data;
 
+
+        console.log('event option after child delete,,,', this.localDataService.getEventOption());
         if (this.localDataService.getEventOption() == "" || this.localDataService.getEventOption() == null || this.localDataService.getEventOption() == undefined)
           this.getTodayEvents();
         else if (this.localDataService.getEventOption() == "thisweek")
@@ -283,7 +285,6 @@ export class ViewEventComponent implements OnInit {
     }
   }
 
-
   // call back from child component
   onEventDelete(eventToDelete) {
     console.log(eventToDelete);
@@ -315,5 +316,4 @@ export class ViewEventComponent implements OnInit {
     
     
   }
-
 }
