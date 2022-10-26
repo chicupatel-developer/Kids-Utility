@@ -32,29 +32,27 @@ export class EditEventComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      eventTitle: ['', Validators.required],
-      eventDesc: ['', Validators.required],
-      eventDateValue: new FormControl(''),
-      eventTimeValue: new FormControl(''),
-    });
-
-   
     this.editingEvent = this.localDataService.getMyEvent();
-
-    console.log(this.editingEvent.eventData);
-
+  
     if (this.editingEvent == null || this.editingEvent == undefined)
       this.router.navigate(['/view-event']);
     else {
+
+      this.form = this.fb.group({
+        eventTitle: ['', Validators.required],
+        eventDesc: ['', Validators.required],
+        eventDateValue: new FormControl(''),
+        eventTimeValue: new FormControl(''),
+      });
+
+      this.eventTimeValue.hour = new Date(this.editingEvent.eventData.eventDate).getHours();
+      this.eventTimeValue.minute = new Date(this.editingEvent.eventData.eventDate).getMinutes();
       this.form.setValue({
         eventTitle: this.editingEvent.eventData.eventTitle,
         eventDesc: this.editingEvent.eventData.eventDesc,
         eventDateValue: new Date(this.editingEvent.eventData.eventDate),
         eventTimeValue: this.eventTimeValue,
       });
-
-
     }
   }
 
