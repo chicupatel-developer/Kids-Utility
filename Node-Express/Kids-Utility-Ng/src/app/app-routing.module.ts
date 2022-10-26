@@ -16,6 +16,7 @@ import { DivisionTwoByOneComponent } from './math-test/division-two-by-one/divis
 import { CreateEventComponent } from './event-mgt/create-event/create-event.component';
 import { ViewEventComponent } from './event-mgt/view-event/view-event.component';
 import { EventDetailsComponent } from './event-mgt/view-event/event-details/event-details.component';
+import { EditEventComponent } from './event-mgt/edit-event/edit-event.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'create-event', component: CreateEventComponent },
   { path: 'view-event', component: ViewEventComponent },
   { path: 'event-details', component: EventDetailsComponent },
+  { path: 'edit-event', component: EditEventComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

@@ -95,6 +95,13 @@ export class MyEventComponent implements OnChanges {
   }
   editEvent(e, event) {
     console.log('editing event,,,', event);
+
+    this.localDataService.setMyEvent(event);
+
+    setTimeout(() => {
+      this.router.navigate(['/edit-event']);
+    }, 1000);
+
   }
   eventDelete(eventToDelete) {
     console.log(eventToDelete);

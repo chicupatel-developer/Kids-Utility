@@ -34,6 +34,7 @@ import { CreateEventComponent } from './event-mgt/create-event/create-event.comp
 import { ViewEventComponent } from './event-mgt/view-event/view-event.component';
 import { MyEventComponent } from './event-mgt/view-event/my-event/my-event.component';
 import { EventDetailsComponent } from './event-mgt/view-event/event-details/event-details.component';
+import { EditEventComponent } from './event-mgt/edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { EventDetailsComponent } from './event-mgt/view-event/event-details/even
     DivisionTwoByOneComponent,
     CreateEventComponent,
     ViewEventComponent,  
-    MyEventComponent, EventDetailsComponent,  
+    MyEventComponent, EventDetailsComponent, EditEventComponent,  
   ],
   imports: [
     BrowserModule,
