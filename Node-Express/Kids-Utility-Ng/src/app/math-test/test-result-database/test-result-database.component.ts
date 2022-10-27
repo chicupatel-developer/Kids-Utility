@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalDataService } from '../../services/local-data.service';
-
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-test-result-database',
@@ -22,9 +22,14 @@ export class TestResultDatabaseComponent implements OnInit {
   tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
 
-  constructor(public localDataService: LocalDataService, private fb: FormBuilder, private router: Router) { }
+  constructor(public userService: UserService, public localDataService: LocalDataService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+
+    if (!this.userService.isLoggedIn) {
+      this.router.navigate(['/home']);
+    }
+
     this.setCurrentUser();
     this.loadTestResults();  
   }

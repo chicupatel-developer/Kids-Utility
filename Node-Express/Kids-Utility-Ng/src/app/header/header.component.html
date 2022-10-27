@@ -24,7 +24,7 @@
                         My-Grocery
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li *ngIf="isUserAuthenticated" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" 
                         href="#" 
                         id="navbarDropdownMenuLink" 
@@ -93,7 +93,7 @@
                         </li>
                     </ul>
                 </li>   
-                <li class="nav-item">
+                <li *ngIf="isUserAuthenticated" class="nav-item">
                     <a class='nav-link' 
                         aria-current="page" 
                         [routerLink]="['/test-result']">
@@ -101,7 +101,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li *ngIf="isUserAuthenticated" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" 
                         href="#" 
                         id="navbarDropdownMenuLink1" role="button" 
