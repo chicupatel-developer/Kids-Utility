@@ -25,6 +25,9 @@
                             formControlName="eventDateValue" 
                             class="form-control eventDate"
                             [ngClass]="{ 'is-invalid': submitted && f['eventDateValue'].errors }" />                       
+                        <div *ngIf="submitted && f['eventDateValue'].errors" class="invalid-feedback">
+                            <div *ngIf="f['eventDateValue'].errors['required']">Event Date is required</div>
+                        </div>
                         <p></p>
                         <label>Event-Time</label>
                         <ngb-timepicker class="form-control" 
@@ -32,7 +35,10 @@
                             [ngClass]="{ 'is-invalid': submitted && f['eventTimeValue'].errors }" 
                             [(ngModel)]="eventTimeValue"
                             [meridian]="meridian">
-                        </ngb-timepicker>                     
+                        </ngb-timepicker>     
+                        <div *ngIf="submitted && f['eventTimeValue'].errors" class="invalid-feedback">
+                            <div *ngIf="f['eventTimeValue'].errors['required']">Event Time is required</div>
+                        </div>
                     </div>
                             </div>
                             <div class="col-md-6 mx-auto">
