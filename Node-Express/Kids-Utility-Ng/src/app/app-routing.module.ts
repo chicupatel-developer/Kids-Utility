@@ -17,6 +17,7 @@ import { CreateEventComponent } from './event-mgt/create-event/create-event.comp
 import { ViewEventComponent } from './event-mgt/view-event/view-event.component';
 import { EventDetailsComponent } from './event-mgt/view-event/event-details/event-details.component';
 import { EditEventComponent } from './event-mgt/edit-event/edit-event.component';
+import { TestResultDatabaseComponent } from './math-test/test-result-database/test-result-database.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'view-event', component: ViewEventComponent },
   { path: 'event-details', component: EventDetailsComponent },
   { path: 'edit-event', component: EditEventComponent },
+  { path: 'test-result', component: TestResultDatabaseComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 

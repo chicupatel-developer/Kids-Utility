@@ -1,0 +1,72 @@
+<div class="container">
+
+    <div class="mainHeader">Test-Result-Database
+        <div *ngIf="currentUser" class="userDiv">
+            Test-Result For : {{currentUser}}
+        </div>
+    </div>
+    
+    <p></p>
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div *ngIf="testResultCollection?.length>0; else noData" class="container">
+
+                        <div class="form-group">
+                            <input type="text" 
+                                class="searchControl form-control" 
+                                placeholder="Search!"
+                                [(ngModel)]="term">
+                        </div>
+                        <p></p>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Test</th>
+                                    <th>Time (M:S)</th>
+                                    <th>Correct</th>
+                                    <th>Wrong</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let test of testResultCollection  | filter:term | paginate
+                                        : {
+                                            itemsPerPage: tableSize,
+                                            currentPage: page,
+                                            totalItems: count
+                                        };
+                                        let i = index
+                                    ">                                  
+                                    <td>{{ test.testName }}</td>
+                                    <td>{{ test.timeMinutes }}M : {{ test.timeSeconds }}S</td>
+                                    <td>
+                                        {{test.totalCorrect}}
+                                    </td>
+                                    <td>
+                                        {{test.totalWrong}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                            <pagination-controls 
+                                previousLabel="Prev" 
+                                nextLabel="Next"
+                                (pageChange)="onTableDataChange($event)">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                    <ng-template #noData>
+                        <div class="container">
+                            <span class="noData">
+                                Test Results Not Found !
+                            </span>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

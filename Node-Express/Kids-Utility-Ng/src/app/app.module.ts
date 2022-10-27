@@ -11,8 +11,16 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // bs datepicker
+// pagination
+// search
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+// services
+import { UserService } from './services/user.service';
+import { LocalDataService } from './services/local-data.service';
 
 ////////components
 import { HeaderComponent } from './header/header.component';
@@ -35,6 +43,7 @@ import { ViewEventComponent } from './event-mgt/view-event/view-event.component'
 import { MyEventComponent } from './event-mgt/view-event/my-event/my-event.component';
 import { EventDetailsComponent } from './event-mgt/view-event/event-details/event-details.component';
 import { EditEventComponent } from './event-mgt/edit-event/edit-event.component';
+import { TestResultDatabaseComponent } from './math-test/test-result-database/test-result-database.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +65,7 @@ import { EditEventComponent } from './event-mgt/edit-event/edit-event.component'
     DivisionTwoByOneComponent,
     CreateEventComponent,
     ViewEventComponent,  
-    MyEventComponent, EventDetailsComponent, EditEventComponent,  
+    MyEventComponent, EventDetailsComponent, EditEventComponent, TestResultDatabaseComponent,  
   ],
   imports: [
     BrowserModule,
@@ -66,9 +75,11 @@ import { EditEventComponent } from './event-mgt/edit-event/edit-event.component'
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
     BsDatepickerModule.forRoot(),
   ],
-  providers: [],
+  providers: [HttpClientModule, LocalDataService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
