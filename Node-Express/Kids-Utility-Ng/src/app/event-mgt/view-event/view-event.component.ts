@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 
 import { UserService } from '../../services/user.service';
 import { LocalDataService } from '../../services/local-data.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-view-event',
@@ -19,6 +20,7 @@ export class ViewEventComponent implements OnInit {
   myEventsToDisplay = [];
 
   constructor(
+    private toastService : ToastService,
     public localDataService: LocalDataService,
     public userService: UserService,
     private formBuilder: FormBuilder,
@@ -301,9 +303,11 @@ export class ViewEventComponent implements OnInit {
     }).then(res => res.json())
       .then(json => {
         console.log(json);
-        if (json.error) {                    
+        if (json.error) {   
+          this.toastService.showError('Event - Delete ',json.error);
         }
-        else {          
+        else {                
+          this.toastService.showSuccess('Event - Delete ',json.message);
           setTimeout(() => {
             // window.location.reload();
 
