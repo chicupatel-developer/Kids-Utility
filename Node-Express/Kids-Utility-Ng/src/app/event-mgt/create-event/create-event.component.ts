@@ -4,6 +4,8 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 
 import { UserService } from '../../services/user.service';
 import { LocalDataService } from '../../services/local-data.service';
+import { ToastService } from '../../services/toast.service';
+
 
 @Component({
   selector: 'app-create-event',
@@ -29,6 +31,7 @@ export class CreateEventComponent implements OnInit {
   currentUser = '';
   
   constructor(
+    private toastService : ToastService,
     public localDataService: LocalDataService,
     public userService: UserService,
     private formBuilder: FormBuilder,
@@ -82,10 +85,10 @@ export class CreateEventComponent implements OnInit {
     );
   }
 
-    get f(): { [key: string]: AbstractControl } {
+  get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
-    }
-  
+  }
+
   onSubmit(): void {
     this.responseColor = '';
     this.apiResponse = '';
@@ -123,10 +126,12 @@ export class CreateEventComponent implements OnInit {
         if (json.error) {
           this.responseColor = 'red';
           this.apiResponse = json.error;
+          this.toastService.showError('Event - Create ',json.error);
         }
         else {
           this.responseColor = 'green';
           this.apiResponse = json.message;
+          this.toastService.showSuccess('Event - Create ',json.message);
 
           this.onReset();
 

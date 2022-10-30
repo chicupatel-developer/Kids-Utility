@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalDataService } from '../../services/local-data.service';
 import { Observable } from 'rxjs';
 import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-edit-event',
@@ -26,6 +27,7 @@ export class EditEventComponent implements OnInit {
   currentUser = '';
 
   constructor(
+    private toastService : ToastService,
     public localDataService: LocalDataService, 
     private fb: FormBuilder,
     private router: Router,
@@ -107,10 +109,12 @@ export class EditEventComponent implements OnInit {
         if (json.error) {
           this.responseColor = 'red';
           this.apiResponse = json.error;
+          this.toastService.showError('Event - Edit ',json.error);
         }
         else {
           this.responseColor = 'green';
           this.apiResponse = json.message;
+          this.toastService.showSuccess('Event - Edit ',json.message);
 
           this.onReset();
 
